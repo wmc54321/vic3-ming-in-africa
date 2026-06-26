@@ -1,0 +1,29 @@
+ideology_mgn_tianxia_order = {
+	icon = "gfx/interface/icons/ideology_icons/confucian.dds"
+
+	lawgroup_citizenship = {
+		law_mgn_heavenly_subjecthood = strongly_approve
+		law_mgn_huayi_unity = neutral
+		law_multicultural = neutral
+	}
+}
+
+ideology_mgn_overseas_reform = {
+	icon = "gfx/interface/icons/ideology_icons/reformer.dds"
+
+	lawgroup_citizenship = {
+		law_mgn_heavenly_subjecthood = neutral
+		law_mgn_huayi_unity = strongly_approve
+		law_multicultural = approve
+	}
+}
+
+ideology_mgn_maritime_opening = {
+	icon = "gfx/interface/icons/ideology_icons/market_liberal.dds"
+
+	lawgroup_citizenship = {
+		law_mgn_heavenly_subjecthood = neutral
+		law_mgn_huayi_unity = approve
+		law_multicultural = neutral
+	}
+}

@@ -1,0 +1,149 @@
+mgn_chinese_subjugation = {
+	icon = "gfx/interface/icons/war_goals/make_tributary.dds"
+
+	kind = custom
+
+	settings = {
+		require_target_be_part_of_war
+		turns_into_subject
+		requires_interest
+
+		conflicts_with_make_subject
+		validate_conflicts_make_subject
+	}
+
+	execution_priority = 12
+
+	contestion_type = control_target_country_capital
+
+	target_type = country
+
+	possible = {
+		ROOT = { mgn_is_chinese_country = yes }
+		scope:target_country ?= {
+			mgn_is_chinese_country = yes
+			NOT = { this = root }
+		}
+	}
+
+	valid = {
+		ROOT = { mgn_is_chinese_country = yes }
+		scope:target_country ?= {
+			mgn_is_chinese_country = yes
+			NOT = { this = root }
+		}
+	}
+
+	maneuvers = {
+		value = 0
+		add = {
+			desc = "MANEUVERS_BASE_VALUE"
+			value = 10
+		}
+	}
+
+	infamy = {
+		value = 0
+		add = {
+			desc = "INFAMY_BASE_VALUE"
+			value = 8
+		}
+	}
+
+	on_enforced = {
+		if = {
+			limit = {
+				scope:target_country ?= { is_country_type = recognized }
+			}
+			ROOT = {
+				create_diplomatic_pact = {
+					country = scope:target_country
+					type = dominion
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				scope:target_country ?= { is_country_type = unrecognized }
+			}
+			ROOT = {
+				create_diplomatic_pact = {
+					country = scope:target_country
+					type = tributary
+				}
+			}
+		}
+		else = {
+			ROOT = {
+				create_diplomatic_pact = {
+					country = scope:target_country
+					type = vassal
+				}
+			}
+		}
+	}
+
+	ai = {
+		is_significant_demand = yes
+	}
+}
+
+mgn_open_chinese_migration = {
+	icon = "gfx/interface/icons/war_goals/open_market.dds"
+
+	kind = custom
+
+	settings = {
+		require_target_be_part_of_war
+	}
+
+	execution_priority = 19
+
+	contestion_type = control_any_target_country_state
+
+	target_type = country
+
+	possible = {
+		ROOT = { c:MGN ?= THIS }
+		scope:target_country ?= {
+			mgn_is_chinese_country = yes
+			NOT = { c:MGN ?= THIS }
+			NOT = { this = root }
+		}
+	}
+
+	valid = {
+		ROOT = { c:MGN ?= THIS }
+		scope:target_country ?= {
+			mgn_is_chinese_country = yes
+			NOT = { has_law_or_variant = law_type:law_no_migration_controls }
+			NOT = { this = root }
+		}
+	}
+
+	maneuvers = {
+		value = 0
+		add = {
+			desc = "MANEUVERS_BASE_VALUE"
+			value = 3
+		}
+	}
+
+	infamy = {
+		value = 0
+		add = {
+			desc = "INFAMY_BASE_VALUE"
+			value = 1
+		}
+	}
+
+	on_enforced = {
+		scope:target_country ?= {
+			activate_law = law_type:law_no_migration_controls
+		}
+	}
+
+	ai = {
+		is_significant_demand = no
+	}
+}

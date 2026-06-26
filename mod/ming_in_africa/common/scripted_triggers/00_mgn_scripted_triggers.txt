@@ -1,0 +1,12 @@
+mgn_is_chinese_country = {
+	OR = {
+		c:CHI ?= THIS
+		c:MGN ?= THIS
+		global_var:chinese_central_government ?= THIS
+		has_journal_entry = je_reunify_china
+		country_has_primary_culture = cu:han
+		country_has_primary_culture = cu:manchu
+		country_has_primary_culture = cu:african_han
+		country_has_primary_culture = cu:western_han
+	}
+}

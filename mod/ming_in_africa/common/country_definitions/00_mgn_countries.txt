@@ -1,0 +1,11 @@
+MGN = {
+	color = { 190 45 35 }
+
+	country_type = unrecognized
+
+	tier = empire
+
+	cultures = { han african_han western_han }
+	religion = confucian
+	capital = STATE_LOWER_EGYPT
+}

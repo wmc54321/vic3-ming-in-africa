@@ -1,0 +1,77 @@
+dp_mgn_unify_china = {
+	war_goal = annex_country
+
+	texture = "gfx/interface/icons/war_goals/annex_country.dds"
+
+	selectable_in_lens = {
+		c:MGN ?= THIS
+	}
+
+	possible = {
+		c:MGN ?= THIS
+		NOT = { is_country_type = decentralized }
+		is_subject = no
+		scope:target_country = {
+			NOT = { is_country_type = decentralized }
+			aggressive_diplomatic_plays_permitted = yes
+			mgn_is_chinese_country = yes
+			NOT = { c:MGN ?= THIS }
+		}
+	}
+
+	on_weekly_pulse = {}
+	on_war_begins = {}
+	on_war_end = {}
+}
+
+dp_mgn_chinese_subjugation = {
+	war_goal = mgn_chinese_subjugation
+
+	texture = "gfx/interface/icons/war_goals/make_tributary.dds"
+
+	possible = {
+		NOT = { is_country_type = decentralized }
+		aggressive_diplomatic_plays_permitted = yes
+		mgn_is_chinese_country = yes
+		scope:target_country = {
+			NOT = { is_country_type = decentralized }
+			NOT = { is_subject_of = root }
+			mgn_is_chinese_country = yes
+			NOT = { this = root }
+		}
+	}
+
+	ai_acceptance_max = 90
+
+	on_weekly_pulse = {}
+	on_war_begins = {}
+	on_war_end = {}
+}
+
+dp_mgn_open_chinese_migration = {
+	war_goal = mgn_open_chinese_migration
+
+	texture = "gfx/interface/icons/war_goals/open_market.dds"
+
+	initiator_can_add_war_goals = no
+	target_can_add_war_goals = no
+
+	possible = {
+		c:MGN ?= THIS
+		NOT = { is_country_type = decentralized }
+		aggressive_diplomatic_plays_permitted = yes
+		scope:target_country = {
+			NOT = { is_country_type = decentralized }
+			NOT = { is_subject_of = root }
+			mgn_is_chinese_country = yes
+			NOT = { has_law_or_variant = law_type:law_no_migration_controls }
+			NOT = { c:MGN ?= THIS }
+		}
+	}
+
+	ai_acceptance_max = 100
+
+	on_weekly_pulse = {}
+	on_war_begins = {}
+	on_war_end = {}
+}

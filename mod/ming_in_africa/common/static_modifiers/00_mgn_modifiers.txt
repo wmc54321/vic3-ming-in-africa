@@ -1,0 +1,15 @@
+mgn_heavenly_court_in_africa = {
+	state_construction_mult = -0.10
+	country_authority_mult = -0.15
+	country_legitimacy_base_add = -5
+	state_tax_capacity_mult = -0.10
+	country_institution_cost_institution_colonial_affairs_mult = 0.25
+	country_institution_cost_institution_police_mult = 0.25
+	country_institution_cost_institution_schools_mult = 0.25
+	country_institution_cost_institution_home_affairs_mult = 0.25
+	state_radicals_from_political_movements_mult = 0.05
+}
+
+mgn_southern_court_administration = {
+	country_bureaucracy_mult = 12.5
+}

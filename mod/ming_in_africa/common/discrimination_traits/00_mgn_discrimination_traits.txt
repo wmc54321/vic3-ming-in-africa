@@ -1,0 +1,7 @@
+heritage_afro_sinitic = {
+	trait_group = heritage_group_african
+}
+
+heritage_western_sinitic = {
+	trait_group = heritage_group_middle_eastern
+}
