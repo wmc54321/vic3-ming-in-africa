@@ -1,0 +1,143 @@
+mgn_shaoming_emperor = {
+	first_name = "Shaoming"
+	last_name = "Zhu"
+	historical = no
+	ruler = yes
+	birth_date = 1796.6.6
+	culture = cu:han
+	religion = rel:confucian
+	interest_group = ig_landowners
+	ideology = ideology_traditionalist
+	home_region = STATE_LOWER_EGYPT
+	traits = {
+		cautious
+	}
+}
+
+mgn_chenglie_heir = {
+	first_name = "Chenglie"
+	last_name = "Zhu"
+	historical = no
+	heir = yes
+	birth_date = 1824.4.12
+	culture = cu:han
+	religion = rel:confucian
+	interest_group = ig_landowners
+	ideology = ideology_moderate
+	home_region = STATE_LOWER_EGYPT
+	traits = {
+		trait_child
+	}
+}
+
+mgn_li_jinghe = {
+	first_name = "Jinghe"
+	last_name = "Li"
+	historical = no
+	role = character_role_politician
+	birth_date = 1788.3.3
+	culture = cu:han
+	religion = rel:confucian
+	interest_group = ig_landowners
+	ideology = ideology_traditionalist
+	home_region = STATE_LOWER_EGYPT
+	traits = {
+		experienced_political_operator
+	}
+}
+
+mgn_chen_shouren = {
+	first_name = "Shouren"
+	last_name = "Chen"
+	historical = no
+	role = character_role_politician
+	birth_date = 1798.9.10
+	culture = cu:han
+	religion = rel:confucian
+	interest_group = ig_devout
+	ideology = ideology_moderate
+	home_region = STATE_LOWER_EGYPT
+	traits = {
+		erudite
+	}
+}
+
+mgn_zhang_zhenhai = {
+	first_name = "Zhenhai"
+	last_name = "Zhang"
+	historical = no
+	is_general = yes
+	birth_date = 1792.2.1
+	culture = cu:han
+	religion = rel:confucian
+	interest_group = ig_armed_forces
+	ideology = ideology_moderate
+	home_region = STATE_LOWER_EGYPT
+	traits = {
+		brave
+	}
+}
+
+mgn_shen_wanze = {
+	first_name = "Wanze"
+	last_name = "Shen"
+	historical = no
+	role = character_role_politician
+	birth_date = 1802.8.19
+	culture = cu:han
+	religion = rel:confucian
+	interest_group = ig_industrialists
+	ideology = ideology_moderate
+	home_region = STATE_ZANZIBAR
+	traits = {
+		expensive_tastes
+	}
+}
+
+mgn_gu_guanlan = {
+	first_name = "Guanlan"
+	last_name = "Gu"
+	historical = no
+	role = character_role_politician
+	birth_date = 1805.5.5
+	culture = cu:han
+	religion = rel:confucian
+	interest_group = ig_intelligentsia
+	ideology = ideology_reformer
+	home_region = STATE_LOWER_EGYPT
+	traits = {
+		innovative
+	}
+}
+
+mgn_ma_zheng = {
+	first_name = "Mahmud"
+	last_name = "Zheng"
+	historical = no
+	role = character_role_politician
+	birth_date = 1795.11.4
+	culture = cu:western_han
+	religion = rel:confucian
+	interest_group = ig_petty_bourgeoisie
+	ideology = ideology_moderate
+	home_region = STATE_TUNISIA
+	traits = {
+		experienced_diplomat
+	}
+}
+
+mgn_nkosi_li = {
+	first_name = "Nkosi"
+	last_name = "Li"
+	historical = no
+	role = character_role_politician
+	birth_date = 1800.7.7
+	culture = cu:african_han
+	religion = rel:confucian
+	interest_group = ig_rural_folk
+	ideology = ideology_moderate
+	home_region = STATE_ZULULAND
+	traits = {
+		charismatic
+	}
+}

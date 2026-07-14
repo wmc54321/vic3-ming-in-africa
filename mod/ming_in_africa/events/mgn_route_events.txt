@@ -1,0 +1,455 @@
+namespace = mgn_route_events
+
+mgn_route_events.10 = {
+	type = country_event
+	placement = root
+	title = mgn_route_events.10.t
+	desc = mgn_route_events.10.d
+	flavor = mgn_route_events.10.f
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+	event_image = {
+		video = "unspecific_ruler_speaking_to_people"
+	}
+
+	option = {
+		default_option = yes
+		name = mgn_route_events.10.a
+	}
+}
+
+mgn_route_events.20 = {
+	type = country_event
+	placement = root
+	title = mgn_route_events.20.t
+	desc = mgn_route_events.20.d
+	flavor = mgn_route_events.20.f
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+	event_image = {
+		video = "unspecific_military_parade"
+	}
+
+	option = {
+		default_option = yes
+		name = mgn_route_events.20.a
+	}
+}
+
+mgn_route_events.30 = {
+	type = country_event
+	placement = root
+	title = mgn_route_events.30.t
+	desc = mgn_route_events.30.d
+	flavor = mgn_route_events.30.f
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+	event_image = {
+		video = "asia_politician_parliament_motion"
+	}
+
+	option = {
+		default_option = yes
+		name = mgn_route_events.30.a
+	}
+}
+
+mgn_route_events.31 = {
+	type = country_event
+	placement = root
+	title = mgn_route_events.31.t
+	desc = mgn_route_events.31.d
+	flavor = mgn_route_events.31.f
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+	event_image = {
+		video = "asia_farmers_market"
+	}
+
+	option = {
+		default_option = yes
+		name = mgn_route_events.31.a
+	}
+}
+
+mgn_route_events.32 = {
+	type = country_event
+	placement = root
+	title = mgn_route_events.32.t
+	desc = mgn_route_events.32.d
+	flavor = mgn_route_events.32.f
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+	event_image = {
+		video = "africa_city_center"
+	}
+
+	option = {
+		default_option = yes
+		name = mgn_route_events.32.a
+	}
+}
+
+mgn_route_events.40 = {
+	type = country_event
+	placement = root
+	title = mgn_route_events.40.t
+	desc = mgn_route_events.40.d
+	flavor = mgn_route_events.40.f
+	icon = "gfx/interface/icons/event_icons/event_trade.dds"
+	event_image = {
+		video = "africa_construction_colony"
+	}
+
+	option = {
+		default_option = yes
+		name = mgn_route_events.40.a
+	}
+}
+
+mgn_route_events.50 = {
+	type = country_event
+	placement = root
+	title = mgn_route_events.50.t
+	desc = mgn_route_events.50.d
+	flavor = mgn_route_events.50.f
+	icon = "gfx/interface/icons/event_icons/event_trade.dds"
+	event_image = {
+		video = "africa_construction_colony"
+	}
+
+	option = {
+		default_option = yes
+		name = mgn_route_events.50.a
+	}
+}
+
+mgn_route_events.60 = {
+	type = country_event
+	placement = root
+	title = mgn_route_events.60.t
+	desc = mgn_route_events.60.d
+	flavor = mgn_route_events.60.f
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+	event_image = {
+		video = "africa_diplomats_negotiating"
+	}
+
+	option = {
+		default_option = yes
+		name = mgn_route_events.60.a
+	}
+}
+
+mgn_route_events.100 = {
+	type = country_event
+	placement = root
+	title = mgn_route_events.100.t
+	desc = mgn_route_events.100.d
+	flavor = mgn_route_events.100.f
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+	event_image = {
+		video = "africa_diplomats_negotiating"
+	}
+
+	option = {
+		name = mgn_route_events.100.a
+		default_option = yes
+		c:MGN ?= {
+			annex = ROOT
+			mgn_start_ming_rebuild_state = yes
+		}
+		ai_chance = { base = 100 }
+	}
+
+	option = {
+		name = mgn_route_events.100.b
+		trigger = { is_player = yes }
+		c:MGN ?= {
+			create_diplomatic_play = {
+				name = mgn_peaceful_unification_rejected
+				type = dp_mgn_two_chinas_unification
+				target_country = ROOT
+				add_war_goal = { holder = c:CHI target_country = c:MGN type = annex_country }
+			}
+		}
+		ai_chance = { base = 0 }
+	}
+}
+
+mgn_route_events.101 = {
+	type = country_event
+	placement = root
+	title = mgn_route_events.101.t
+	desc = mgn_route_events.101.d
+	flavor = mgn_route_events.101.f
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+	event_image = {
+		video = "africa_diplomats_negotiating"
+	}
+
+	option = {
+		name = mgn_route_events.101.a
+		default_option = yes
+		c:CHI ?= {
+			annex = ROOT
+			mgn_start_qing_rebuild_state = yes
+		}
+		ai_chance = { base = 100 }
+	}
+
+	option = {
+		name = mgn_route_events.101.b
+		trigger = { is_player = yes }
+		c:CHI ?= {
+			create_diplomatic_play = {
+				name = mgn_peaceful_unification_rejected
+				type = dp_mgn_two_chinas_unification
+				target_country = ROOT
+				add_war_goal = { holder = c:MGN target_country = c:CHI type = annex_country }
+			}
+		}
+		ai_chance = { base = 0 }
+	}
+}
+
+mgn_route_events.110 = {
+	type = country_event
+	placement = root
+	title = mgn_route_events.110.t
+	desc = mgn_route_events.110.d
+	flavor = mgn_route_events.110.f
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+	event_image = {
+		video = "africa_diplomats_negotiating"
+	}
+
+	option = {
+		name = mgn_route_events.110.a
+		default_option = yes
+		c:MGN ?= {
+			mgn_make_brotherly_subject = { OVERLORD = c:MGN SUBJECT = ROOT }
+			set_variable = mgn_brotherly_hierarchy_acknowledged
+			add_modifier = {
+				name = mgn_brotherly_hierarchy_recognized
+				days = normal_modifier_time
+			}
+		}
+		set_variable = mgn_brotherly_hierarchy_acknowledged
+		add_modifier = {
+			name = mgn_brotherly_hierarchy_recognized
+			days = normal_modifier_time
+		}
+		ai_chance = { base = 100 }
+	}
+
+	option = {
+		name = mgn_route_events.110.b
+		trigger = { is_player = yes }
+		c:MGN ?= {
+			create_diplomatic_play = {
+				name = mgn_brotherly_hierarchy_rejected
+				type = dp_mgn_brotherly_subjugation
+				target_country = ROOT
+				add_war_goal = { holder = ROOT target_country = c:MGN type = mgn_brotherly_vassalization }
+			}
+		}
+		ai_chance = { base = 0 }
+	}
+}
+
+mgn_route_events.111 = {
+	type = country_event
+	placement = root
+	title = mgn_route_events.111.t
+	desc = mgn_route_events.111.d
+	flavor = mgn_route_events.111.f
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+	event_image = {
+		video = "africa_diplomats_negotiating"
+	}
+
+	option = {
+		name = mgn_route_events.111.a
+		default_option = yes
+		c:CHI ?= {
+			mgn_make_brotherly_subject = { OVERLORD = c:CHI SUBJECT = ROOT }
+			set_variable = mgn_brotherly_hierarchy_acknowledged
+			add_modifier = {
+				name = mgn_brotherly_hierarchy_recognized
+				days = normal_modifier_time
+			}
+		}
+		set_variable = mgn_brotherly_hierarchy_acknowledged
+		add_modifier = {
+			name = mgn_brotherly_hierarchy_recognized
+			days = normal_modifier_time
+		}
+		ai_chance = { base = 100 }
+	}
+
+	option = {
+		name = mgn_route_events.111.b
+		trigger = { is_player = yes }
+		c:CHI ?= {
+			create_diplomatic_play = {
+				name = mgn_brotherly_hierarchy_rejected
+				type = dp_mgn_brotherly_subjugation
+				target_country = ROOT
+				add_war_goal = { holder = ROOT target_country = c:CHI type = mgn_brotherly_vassalization }
+			}
+		}
+		ai_chance = { base = 0 }
+	}
+}
+
+mgn_route_events.120 = {
+	type = country_event
+	placement = root
+	title = mgn_route_events.120.t
+	desc = mgn_route_events.120.d
+	flavor = mgn_route_events.120.f
+	icon = "gfx/interface/icons/event_icons/event_trade.dds"
+	event_image = {
+		video = "asia_poor_people_moving"
+	}
+
+	option = {
+		name = mgn_route_events.120.a
+		default_option = yes
+		mgn_adopt_migration_law_from = { COUNTRY = c:MGN }
+		c:MGN ?= { create_bidirectional_truce = { country = ROOT months = 60 } }
+		ai_chance = { base = 100 }
+	}
+
+	option = {
+		name = mgn_route_events.120.b
+		trigger = { is_player = yes }
+		mgn_create_migration_policy_dispute = { INITIATOR = c:MGN TARGET = ROOT }
+		ai_chance = { base = 0 }
+	}
+}
+
+mgn_route_events.121 = {
+	type = country_event
+	placement = root
+	title = mgn_route_events.121.t
+	desc = mgn_route_events.121.d
+	flavor = mgn_route_events.121.f
+	icon = "gfx/interface/icons/event_icons/event_trade.dds"
+	event_image = {
+		video = "asia_poor_people_moving"
+	}
+
+	option = {
+		name = mgn_route_events.121.a
+		default_option = yes
+		mgn_adopt_migration_law_from = { COUNTRY = c:CHI }
+		c:CHI ?= { create_bidirectional_truce = { country = ROOT months = 60 } }
+		ai_chance = { base = 100 }
+	}
+
+	option = {
+		name = mgn_route_events.121.b
+		trigger = { is_player = yes }
+		mgn_create_migration_policy_dispute = { INITIATOR = c:CHI TARGET = ROOT }
+		ai_chance = { base = 0 }
+	}
+}
+
+mgn_route_events.130 = {
+	type = country_event
+	placement = root
+	title = mgn_route_events.130.t
+	desc = mgn_route_events.130.d
+	flavor = mgn_route_events.130.f
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+	event_image = {
+		video = "africa_leader_arguing"
+	}
+
+	option = {
+		name = mgn_route_events.130.a
+		default_option = yes
+	}
+}
+
+mgn_route_events.140 = {
+	type = country_event
+	placement = root
+	title = mgn_route_events.140.t
+	desc = mgn_route_events.140.d
+	flavor = mgn_route_events.140.f
+	icon = "gfx/interface/icons/event_icons/event_industry.dds"
+	event_image = {
+		video = "asia_farmers_market"
+	}
+
+	option = {
+		name = mgn_route_events.140.a
+		default_option = yes
+	}
+}
+
+mgn_route_events.141 = {
+	type = country_event
+	placement = root
+	title = mgn_route_events.141.t
+	desc = mgn_route_events.141.d
+	flavor = mgn_route_events.141.f
+	icon = "gfx/interface/icons/event_icons/event_industry.dds"
+	event_image = {
+		video = "asia_westerners_arriving"
+	}
+
+	option = {
+		name = mgn_route_events.141.a
+		default_option = yes
+	}
+}
+
+mgn_route_events.142 = {
+	type = country_event
+	placement = root
+	title = mgn_route_events.142.t
+	desc = mgn_route_events.142.d
+	flavor = mgn_route_events.142.f
+	icon = "gfx/interface/icons/event_icons/event_industry.dds"
+	event_image = {
+		video = "middleeast_jungle_expedition"
+	}
+
+	option = {
+		name = mgn_route_events.142.a
+		default_option = yes
+	}
+}
+
+mgn_route_events.143 = {
+	type = country_event
+	placement = root
+	title = mgn_route_events.143.t
+	desc = mgn_route_events.143.d
+	flavor = mgn_route_events.143.f
+	icon = "gfx/interface/icons/event_icons/event_industry.dds"
+	event_image = {
+		video = "middleeast_engineer_blueprint"
+	}
+
+	option = {
+		name = mgn_route_events.143.a
+		default_option = yes
+	}
+}
+
+mgn_route_events.144 = {
+	type = country_event
+	placement = root
+	title = mgn_route_events.144.t
+	desc = mgn_route_events.144.d
+	flavor = mgn_route_events.144.f
+	icon = "gfx/interface/icons/event_icons/event_industry.dds"
+	event_image = {
+		video = "unspecific_signed_contract"
+	}
+
+	option = {
+		name = mgn_route_events.144.a
+		default_option = yes
+	}
+}

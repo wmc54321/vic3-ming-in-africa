@@ -1,0 +1,13 @@
+CHARACTERS = {
+	c:MGN ?= {
+		create_character = { template = mgn_shaoming_emperor }
+		create_character = { template = mgn_chenglie_heir }
+		create_character = { template = mgn_li_jinghe }
+		create_character = { template = mgn_chen_shouren }
+		create_character = { template = mgn_zhang_zhenhai }
+		create_character = { template = mgn_shen_wanze }
+		create_character = { template = mgn_gu_guanlan }
+		create_character = { template = mgn_ma_zheng }
+		create_character = { template = mgn_nkosi_li }
+	}
+}

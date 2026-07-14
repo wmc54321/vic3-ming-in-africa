@@ -1,0 +1,61 @@
+african_han = {
+	color = rgb{ 180 90 55 }
+	religion = confucian
+	heritage = heritage_afro_sinitic
+	language = language_mandarin
+	name_format = last_first
+
+	obsessions = {
+		opium
+	}
+
+	traditions = { tradition_sinosphere }
+	male_common_first_names = {
+		Chen Cheng Deng Dong Gao Hsia Hu Huang Kong Kwong Li Liang Liao Liu Luo Ma Mao Pan Tan Wang Xie Yang Yu Zhang Zhu
+	}
+	female_common_first_names = {
+		Akew Jin Jinhong Junying Qingtang Sanniang Shanziang Shih Taiqing Xiefen Xiugu Xuanjiao Yu Yunmei
+	}
+	noble_last_names = {
+		Cui Li Nie Zhang
+	}
+	common_last_names = {
+		Dong Fang Hu Jiang Jin Lu Ma Peng Qiu Shen Sun Tian Ting Wei Wu Ye Zhao
+	}
+	ethnicities = {
+		1 = asian
+		1 = african
+	}
+	graphics = east_asian
+}
+
+western_han = {
+	color = rgb{ 170 105 65 }
+	religion = confucian
+	heritage = heritage_western_sinitic
+	language = language_mandarin
+	name_format = last_first
+
+	obsessions = {
+		opium
+	}
+
+	traditions = { tradition_sinosphere }
+	male_common_first_names = {
+		Chen Cheng Deng Dong Gao Hsia Hu Huang Kong Kwong Li Liang Liao Liu Luo Ma Mao Pan Tan Wang Xie Yang Yu Zhang Zhu
+	}
+	female_common_first_names = {
+		Akew Jin Jinhong Junying Qingtang Sanniang Shanziang Shih Taiqing Xiefen Xiugu Xuanjiao Yu Yunmei
+	}
+	noble_last_names = {
+		Cui Li Nie Zhang
+	}
+	common_last_names = {
+		Dong Fang Hu Jiang Jin Lu Ma Peng Qiu Shen Sun Tian Ting Wei Wu Ye Zhao
+	}
+	ethnicities = {
+		1 = asian
+		1 = middle_eastern
+	}
+	graphics = east_asian
+}

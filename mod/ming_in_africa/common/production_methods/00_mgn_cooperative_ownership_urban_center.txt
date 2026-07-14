@@ -1,0 +1,41 @@
+# Overrides cooperative-ownership reverse links for the Ming people's capital variant.
+
+pm_traditional_patronage = {
+	texture = "gfx/interface/icons/production_method_icons/ownership_aristocrats.dds"
+
+	disallowing_laws = {
+		law_command_economy
+		law_cooperative_ownership
+		law_mgn_overseas_cooperative_ownership
+	}
+
+	building_modifiers = {
+		level_scaled = {
+			building_employment_academics_add = 1000
+			building_employment_clerks_add = 3000
+			building_employment_laborers_add = 1000
+		}
+	}
+}
+
+pm_bourgeoisie_patronage = {
+	texture = "gfx/interface/icons/production_method_icons/privately_owned.dds"
+
+	unlocking_technologies = {
+		realism
+	}
+
+	disallowing_laws = {
+		law_command_economy
+		law_cooperative_ownership
+		law_mgn_overseas_cooperative_ownership
+	}
+
+	building_modifiers = {
+		level_scaled = {
+			building_employment_academics_add = 1500
+			building_employment_clerks_add = 2500
+			building_employment_laborers_add = 1000
+		}
+	}
+}

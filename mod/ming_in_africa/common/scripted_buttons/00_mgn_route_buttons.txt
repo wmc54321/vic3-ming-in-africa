@@ -1,0 +1,780 @@
+button_mgn_launch_ming_reconquest = {
+	name = "button_mgn_launch_ming_reconquest"
+	desc = "button_mgn_launch_ming_reconquest_desc"
+
+	visible = {
+		c:MGN ?= THIS
+	}
+
+	possible = {
+		custom_tooltip = {
+			text = mgn_tt_two_chinas_peace_tt
+			hidden_trigger = { mgn_two_chinas_not_at_war = yes }
+		}
+		custom_tooltip = {
+			text = mgn_tt_two_chinas_no_truce_tt
+			hidden_trigger = { mgn_two_chinas_no_truce = yes }
+		}
+		custom_tooltip = {
+			text = mgn_tt_higher_rank_than_other_china_tt
+			hidden_trigger = { mgn_has_higher_rank_than_other_china = yes }
+		}
+		custom_tooltip = {
+			text = mgn_tt_no_force_unification_in_progress_tt
+			hidden_trigger = { NOT = { has_variable = mgn_force_unification_in_progress } }
+		}
+	}
+
+	effect = {
+		set_variable = { name = mgn_force_unification_in_progress days = 30 }
+		create_diplomatic_play = {
+			name = mgn_two_chinas_unification_war
+			target_country = c:CHI
+			type = dp_mgn_two_chinas_unification
+			add_war_goal = { holder = c:CHI target_country = ROOT type = annex_country }
+		}
+	}
+
+	ai_chance = { value = 10 }
+}
+
+button_mgn_launch_qing_conquest = {
+	name = "button_mgn_launch_qing_conquest"
+	desc = "button_mgn_launch_qing_conquest_desc"
+
+	visible = {
+		c:CHI ?= THIS
+	}
+
+	possible = {
+		custom_tooltip = {
+			text = mgn_tt_two_chinas_peace_tt
+			hidden_trigger = { mgn_two_chinas_not_at_war = yes }
+		}
+		custom_tooltip = {
+			text = mgn_tt_two_chinas_no_truce_tt
+			hidden_trigger = { mgn_two_chinas_no_truce = yes }
+		}
+		custom_tooltip = {
+			text = mgn_tt_higher_rank_than_other_china_tt
+			hidden_trigger = { mgn_has_higher_rank_than_other_china = yes }
+		}
+		custom_tooltip = {
+			text = mgn_tt_no_force_unification_in_progress_tt
+			hidden_trigger = { NOT = { has_variable = mgn_force_unification_in_progress } }
+		}
+	}
+
+	effect = {
+		set_variable = { name = mgn_force_unification_in_progress days = 30 }
+		create_diplomatic_play = {
+			name = mgn_two_chinas_unification_war
+			target_country = c:MGN
+			type = dp_mgn_two_chinas_unification
+			add_war_goal = { holder = c:MGN target_country = ROOT type = annex_country }
+		}
+	}
+
+	ai_chance = { value = 10 }
+}
+
+button_mgn_claim_ming_reconquest_complete = {
+	name = "button_mgn_claim_ming_reconquest_complete"
+	desc = "button_mgn_claim_ming_reconquest_complete_desc"
+
+	visible = {
+		c:MGN ?= THIS
+		NOT = { has_variable = mgn_rebuild_state_started }
+	}
+
+	possible = {
+		custom_tooltip = {
+			text = mgn_can_claim_ming_reconquest_complete_tt
+			hidden_trigger = { mgn_ming_can_claim_reconquest_complete = yes }
+		}
+	}
+
+	effect = {
+		mgn_start_ming_rebuild_state = yes
+	}
+
+	ai_chance = { value = 0 }
+}
+
+button_mgn_claim_qing_conquest_complete = {
+	name = "button_mgn_claim_qing_conquest_complete"
+	desc = "button_mgn_claim_qing_conquest_complete_desc"
+
+	visible = {
+		c:CHI ?= THIS
+		mgn_qing_counterpart_exists = yes
+		NOT = { has_variable = mgn_rebuild_state_started }
+	}
+
+	possible = {
+		custom_tooltip = {
+			text = mgn_can_claim_qing_conquest_complete_tt
+			hidden_trigger = { mgn_qing_can_claim_conquest_complete = yes }
+		}
+	}
+
+	effect = {
+		mgn_start_qing_rebuild_state = yes
+	}
+
+	ai_chance = { value = 0 }
+}
+
+button_mgn_recognize_brotherly_hierarchy = {
+	name = "button_mgn_recognize_brotherly_hierarchy"
+	desc = "button_mgn_recognize_brotherly_hierarchy_desc"
+
+	visible = {
+		mgn_is_two_chinas_participant = yes
+	}
+
+	possible = {
+		custom_tooltip = {
+			text = mgn_tt_two_chinas_peace_tt
+			hidden_trigger = { mgn_two_chinas_not_at_war = yes }
+		}
+		custom_tooltip = {
+			text = mgn_tt_two_chinas_no_truce_tt
+			hidden_trigger = { mgn_two_chinas_no_truce = yes }
+		}
+		custom_tooltip = {
+			text = mgn_tt_ritual_monarchies_not_subjects_tt
+			hidden_trigger = {
+				mgn_two_chinas_ritual_monarchies = yes
+				mgn_two_chinas_not_subjects_of_each_other = yes
+			}
+		}
+		custom_tooltip = {
+			text = mgn_tt_higher_rank_than_other_china_tt
+			hidden_trigger = { mgn_has_higher_rank_than_other_china = yes }
+		}
+		custom_tooltip = {
+			text = mgn_tt_no_brotherly_hierarchy_in_progress_tt
+			hidden_trigger = { NOT = { has_variable = mgn_brotherly_hierarchy_in_progress } }
+		}
+	}
+
+	effect = {
+		set_variable = { name = mgn_brotherly_hierarchy_in_progress days = 30 }
+		if = {
+			limit = { c:MGN ?= THIS }
+			c:CHI ?= { trigger_event = { id = mgn_route_events.110 popup = yes } }
+		}
+		else_if = {
+			limit = { c:CHI ?= THIS }
+			c:MGN ?= { trigger_event = { id = mgn_route_events.111 popup = yes } }
+		}
+	}
+
+	ai_chance = {
+		value = 5
+	}
+}
+
+button_mgn_launch_peaceful_unification = {
+	name = "button_mgn_launch_peaceful_unification"
+	desc = "button_mgn_launch_peaceful_unification_desc"
+
+	visible = {
+		mgn_is_two_chinas_participant = yes
+	}
+
+	possible = {
+		custom_tooltip = {
+			text = mgn_tt_two_chinas_peace_tt
+			hidden_trigger = { mgn_two_chinas_not_at_war = yes }
+		}
+		custom_tooltip = {
+			text = mgn_tt_two_chinas_no_truce_tt
+			hidden_trigger = { mgn_two_chinas_no_truce = yes }
+		}
+		custom_tooltip = {
+			text = mgn_tt_amicable_and_unifiable_government_tt
+			hidden_trigger = {
+				mgn_two_chinas_amicable = yes
+				mgn_two_chinas_same_unifiable_government = yes
+			}
+		}
+		custom_tooltip = {
+			text = mgn_tt_rank_or_five_year_subject_union_tt
+			hidden_trigger = {
+				OR = {
+					AND = {
+						mgn_two_chinas_not_subjects_of_each_other = yes
+						mgn_has_higher_rank_than_other_china = yes
+					}
+					mgn_other_china_subject_ready_for_union = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			text = mgn_tt_no_peaceful_unification_in_progress_tt
+			hidden_trigger = { NOT = { has_variable = mgn_peaceful_unification_in_progress } }
+		}
+	}
+
+	effect = {
+		set_variable = { name = mgn_peaceful_unification_in_progress days = 30 }
+		if = {
+			limit = { c:MGN ?= THIS }
+			c:CHI ?= { trigger_event = { id = mgn_route_events.100 popup = yes } }
+		}
+		else_if = {
+			limit = { c:CHI ?= THIS }
+			c:MGN ?= { trigger_event = { id = mgn_route_events.101 popup = yes } }
+		}
+	}
+
+	ai_chance = {
+		value = 10
+		modifier = {
+			trigger = { is_player = yes }
+			add = -10
+		}
+	}
+}
+
+button_mgn_request_open_migration = {
+	name = "button_mgn_request_open_migration"
+	desc = "button_mgn_request_open_migration_desc"
+
+	visible = {
+		mgn_is_two_chinas_participant = yes
+		has_law = law_type:law_no_migration_controls
+	}
+
+	possible = {
+		custom_tooltip = {
+			text = mgn_tt_two_chinas_peace_tt
+			hidden_trigger = { mgn_two_chinas_not_at_war = yes }
+		}
+		custom_tooltip = {
+			text = mgn_tt_two_chinas_no_truce_tt
+			hidden_trigger = { mgn_two_chinas_no_truce = yes }
+		}
+		custom_tooltip = {
+			text = mgn_tt_rank_or_overlord_for_migration_tt
+			hidden_trigger = {
+				OR = {
+					mgn_has_higher_rank_than_other_china = yes
+					mgn_is_two_chinas_leader = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			text = mgn_tt_migration_policy_differs_tt
+			hidden_trigger = {
+				OR = {
+					AND = {
+						c:MGN ?= THIS
+						c:CHI ?= { NOT = { mgn_has_same_migration_law_as = { COUNTRY = ROOT } } }
+					}
+					AND = {
+						c:CHI ?= THIS
+						c:MGN ?= { NOT = { mgn_has_same_migration_law_as = { COUNTRY = ROOT } } }
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			text = mgn_tt_no_migration_policy_alignment_in_progress_tt
+			hidden_trigger = { NOT = { has_variable = mgn_migration_policy_alignment_in_progress } }
+		}
+	}
+
+	effect = {
+		set_variable = { name = mgn_migration_policy_alignment_in_progress days = 30 }
+		if = {
+			limit = { c:MGN ?= THIS }
+			c:CHI ?= { trigger_event = { id = mgn_route_events.120 popup = yes } }
+		}
+		else_if = {
+			limit = { c:CHI ?= THIS }
+			c:MGN ?= { trigger_event = { id = mgn_route_events.121 popup = yes } }
+		}
+	}
+
+	ai_chance = {
+		value = 5
+	}
+}
+
+button_mgn_request_regulated_migration = {
+	name = "button_mgn_request_regulated_migration"
+	desc = "button_mgn_request_regulated_migration_desc"
+
+	visible = {
+		mgn_is_two_chinas_participant = yes
+		has_law = law_type:law_migration_controls
+	}
+
+	possible = {
+		custom_tooltip = {
+			text = mgn_tt_two_chinas_peace_tt
+			hidden_trigger = { mgn_two_chinas_not_at_war = yes }
+		}
+		custom_tooltip = {
+			text = mgn_tt_two_chinas_no_truce_tt
+			hidden_trigger = { mgn_two_chinas_no_truce = yes }
+		}
+		custom_tooltip = {
+			text = mgn_tt_rank_or_overlord_for_migration_tt
+			hidden_trigger = {
+				OR = {
+					mgn_has_higher_rank_than_other_china = yes
+					mgn_is_two_chinas_leader = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			text = mgn_tt_migration_policy_differs_tt
+			hidden_trigger = {
+				OR = {
+					AND = {
+						c:MGN ?= THIS
+						c:CHI ?= { NOT = { mgn_has_same_migration_law_as = { COUNTRY = ROOT } } }
+					}
+					AND = {
+						c:CHI ?= THIS
+						c:MGN ?= { NOT = { mgn_has_same_migration_law_as = { COUNTRY = ROOT } } }
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			text = mgn_tt_no_migration_policy_alignment_in_progress_tt
+			hidden_trigger = { NOT = { has_variable = mgn_migration_policy_alignment_in_progress } }
+		}
+	}
+
+	effect = {
+		set_variable = { name = mgn_migration_policy_alignment_in_progress days = 30 }
+		if = {
+			limit = { c:MGN ?= THIS }
+			c:CHI ?= { trigger_event = { id = mgn_route_events.120 popup = yes } }
+		}
+		else_if = {
+			limit = { c:CHI ?= THIS }
+			c:MGN ?= { trigger_event = { id = mgn_route_events.121 popup = yes } }
+		}
+	}
+
+	ai_chance = {
+		value = 5
+	}
+}
+
+button_mgn_request_closed_migration = {
+	name = "button_mgn_request_closed_migration"
+	desc = "button_mgn_request_closed_migration_desc"
+
+	visible = {
+		mgn_is_two_chinas_participant = yes
+		has_law = law_type:law_closed_borders
+	}
+
+	possible = {
+		custom_tooltip = {
+			text = mgn_tt_two_chinas_peace_tt
+			hidden_trigger = { mgn_two_chinas_not_at_war = yes }
+		}
+		custom_tooltip = {
+			text = mgn_tt_two_chinas_no_truce_tt
+			hidden_trigger = { mgn_two_chinas_no_truce = yes }
+		}
+		custom_tooltip = {
+			text = mgn_tt_rank_or_overlord_for_migration_tt
+			hidden_trigger = {
+				OR = {
+					mgn_has_higher_rank_than_other_china = yes
+					mgn_is_two_chinas_leader = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			text = mgn_tt_migration_policy_differs_tt
+			hidden_trigger = {
+				OR = {
+					AND = {
+						c:MGN ?= THIS
+						c:CHI ?= { NOT = { mgn_has_same_migration_law_as = { COUNTRY = ROOT } } }
+					}
+					AND = {
+						c:CHI ?= THIS
+						c:MGN ?= { NOT = { mgn_has_same_migration_law_as = { COUNTRY = ROOT } } }
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			text = mgn_tt_no_migration_policy_alignment_in_progress_tt
+			hidden_trigger = { NOT = { has_variable = mgn_migration_policy_alignment_in_progress } }
+		}
+	}
+
+	effect = {
+		set_variable = { name = mgn_migration_policy_alignment_in_progress days = 30 }
+		if = {
+			limit = { c:MGN ?= THIS }
+			c:CHI ?= { trigger_event = { id = mgn_route_events.120 popup = yes } }
+		}
+		else_if = {
+			limit = { c:CHI ?= THIS }
+			c:MGN ?= { trigger_event = { id = mgn_route_events.121 popup = yes } }
+		}
+	}
+
+	ai_chance = {
+		value = 5
+	}
+}
+
+button_mgn_request_independence = {
+	name = "button_mgn_request_independence"
+	desc = "button_mgn_request_independence_desc"
+
+	visible = {
+		mgn_is_two_chinas_subject = yes
+	}
+
+	possible = {
+		custom_tooltip = {
+			text = mgn_can_request_independence_from_other_china_tt
+			hidden_trigger = { mgn_can_request_independence_from_other_china = yes }
+		}
+	}
+
+	effect = {
+		set_variable = { name = mgn_independence_request_in_progress days = 30 }
+		if = {
+			limit = {
+				c:MGN ?= THIS
+				is_subject_of = c:CHI
+			}
+			create_diplomatic_play = {
+				name = mgn_independence_demand
+				type = dp_mgn_two_chinas_independence
+				target_country = c:CHI
+			}
+		}
+		else_if = {
+			limit = {
+				c:CHI ?= THIS
+				is_subject_of = c:MGN
+			}
+			create_diplomatic_play = {
+				name = mgn_independence_demand
+				type = dp_mgn_two_chinas_independence
+				target_country = c:MGN
+			}
+		}
+	}
+
+	ai_chance = {
+		value = 0
+	}
+}
+
+button_mgn_move_capital_beijing = {
+	name = "button_mgn_move_capital_beijing"
+	desc = "button_mgn_move_capital_beijing_desc"
+
+	visible = {
+		c:MGN ?= THIS
+		has_variable = mgn_rebuild_state_started
+		owns_entire_state_region = STATE_BEIJING
+		NOT = { has_variable = mgn_capital_moved_to_china }
+	}
+
+	possible = {
+		owns_entire_state_region = STATE_BEIJING
+	}
+
+	effect = {
+		mgn_move_capital_to_beijing = yes
+	}
+
+	ai_chance = { value = 0 }
+}
+
+button_mgn_move_capital_nanjing = {
+	name = "button_mgn_move_capital_nanjing"
+	desc = "button_mgn_move_capital_nanjing_desc"
+
+	visible = {
+		c:MGN ?= THIS
+		has_variable = mgn_rebuild_state_started
+		owns_entire_state_region = STATE_NANJING
+		NOT = { has_variable = mgn_capital_moved_to_china }
+	}
+
+	possible = {
+		owns_entire_state_region = STATE_NANJING
+	}
+
+	effect = {
+		mgn_move_capital_to_nanjing = yes
+	}
+
+	ai_chance = { value = 0 }
+}
+
+button_mgn_move_capital_yingtian = {
+	name = "button_mgn_move_capital_yingtian"
+	desc = "button_mgn_move_capital_yingtian_desc"
+
+	visible = {
+		c:MGN ?= THIS
+		has_variable = mgn_rebuild_state_started
+		owns_entire_state_region = STATE_LOWER_EGYPT
+		NOT = { has_variable = mgn_capital_moved_to_china }
+	}
+
+	possible = {
+		owns_entire_state_region = STATE_LOWER_EGYPT
+	}
+
+	effect = {
+		mgn_move_capital_to_yingtian = yes
+	}
+
+	ai_chance = { value = 0 }
+}
+
+button_mgn_restore_northeastern_border = {
+	name = "button_mgn_restore_northeastern_border"
+	desc = "button_mgn_restore_northeastern_border_desc"
+	visible = {
+		mgn_is_two_chinas_participant = yes
+		has_variable = mgn_rebuild_state_started
+	}
+	possible = { mgn_has_subject_land_on_northeastern_border = yes }
+	effect = {
+		custom_tooltip = mgn_restore_northeastern_border_effect_tt
+		hidden_effect = { mgn_restore_northeastern_border = yes }
+	}
+	ai_chance = { value = 100 }
+}
+
+button_mgn_restore_northwestern_border = {
+	name = "button_mgn_restore_northwestern_border"
+	desc = "button_mgn_restore_northwestern_border_desc"
+	visible = {
+		mgn_is_two_chinas_participant = yes
+		has_variable = mgn_rebuild_state_started
+	}
+	possible = { mgn_has_subject_land_on_northwestern_border = yes }
+	effect = {
+		custom_tooltip = mgn_restore_northwestern_border_effect_tt
+		hidden_effect = { mgn_restore_northwestern_border = yes }
+	}
+	ai_chance = { value = 100 }
+}
+
+button_mgn_establish_african_company_ming = {
+	name = "button_mgn_establish_african_company_ming"
+	desc = "button_mgn_establish_african_company_ming_desc"
+
+	visible = {
+		c:MGN ?= THIS
+		has_variable = mgn_rebuild_state_started
+	}
+
+	possible = {
+		NOT = { c:MCC ?= { is_country_alive = yes } }
+		custom_tooltip = {
+			text = mgn_capital_not_in_africa_tt
+			hidden_trigger = { mgn_capital_is_not_in_africa = yes }
+		}
+		custom_tooltip = {
+			text = mgn_has_african_company_land_tt
+			hidden_trigger = { mgn_has_african_company_land = yes }
+		}
+	}
+
+	effect = {
+		custom_tooltip = mgn_establish_african_company_effect_tt
+		hidden_effect = { mgn_finish_ming_rebuild_state = yes }
+	}
+
+	ai_chance = { value = 0 }
+}
+
+button_mgn_establish_mainland_company = {
+	name = "button_mgn_establish_mainland_company"
+	desc = "button_mgn_establish_mainland_company_desc"
+
+	visible = {
+		mgn_is_two_chinas_participant = yes
+		has_variable = mgn_rebuild_state_started
+	}
+
+	possible = {
+		NOT = { c:MDC ?= { is_country_alive = yes } }
+		custom_tooltip = {
+			text = mgn_capital_not_in_mainland_company_region_tt
+			hidden_trigger = { mgn_capital_is_not_in_mainland_company_region = yes }
+		}
+		custom_tooltip = {
+			text = mgn_has_mainland_company_land_tt
+			hidden_trigger = { mgn_has_mainland_company_land = yes }
+		}
+	}
+
+	effect = {
+		custom_tooltip = mgn_establish_mainland_company_effect_tt
+		hidden_effect = { mgn_finish_mainland_company = yes }
+	}
+
+	ai_chance = { value = 0 }
+}
+
+button_mgn_establish_korean_company = {
+	name = "button_mgn_establish_korean_company"
+	desc = "button_mgn_establish_korean_company_desc"
+
+	visible = {
+		mgn_is_two_chinas_participant = yes
+		has_variable = mgn_rebuild_state_started
+	}
+
+	possible = {
+		NOT = { c:MKC ?= { is_country_alive = yes } }
+		custom_tooltip = {
+			text = mgn_capital_not_in_korean_company_region_tt
+			hidden_trigger = { mgn_capital_is_not_in_korean_company_region = yes }
+		}
+		custom_tooltip = {
+			text = mgn_has_korean_company_land_tt
+			hidden_trigger = { mgn_has_korean_company_land = yes }
+		}
+	}
+
+	effect = {
+		custom_tooltip = mgn_establish_korean_company_effect_tt
+		hidden_effect = { mgn_finish_korean_company = yes }
+	}
+
+	ai_chance = { value = 0 }
+}
+
+button_mgn_establish_lanfang_company = {
+	name = "button_mgn_establish_lanfang_company"
+	desc = "button_mgn_establish_lanfang_company_desc"
+
+	visible = {
+		mgn_is_two_chinas_participant = yes
+		has_variable = mgn_rebuild_state_started
+	}
+
+	possible = {
+		NOT = { c:MLF ?= { is_country_alive = yes } }
+		custom_tooltip = {
+			text = mgn_capital_not_in_lanfang_company_region_tt
+			hidden_trigger = { mgn_capital_is_not_in_lanfang_company_region = yes }
+		}
+		custom_tooltip = {
+			text = mgn_has_lanfang_company_land_tt
+			hidden_trigger = { mgn_has_lanfang_company_land = yes }
+		}
+	}
+
+	effect = {
+		custom_tooltip = mgn_establish_lanfang_company_effect_tt
+		hidden_effect = { mgn_finish_lanfang_company = yes }
+	}
+
+	ai_chance = { value = 0 }
+}
+
+button_mgn_establish_siberian_company = {
+	name = "button_mgn_establish_siberian_company"
+	desc = "button_mgn_establish_siberian_company_desc"
+
+	visible = {
+		mgn_is_two_chinas_participant = yes
+		has_variable = mgn_rebuild_state_started
+	}
+
+	possible = {
+		NOT = { c:MSB ?= { is_country_alive = yes } }
+		custom_tooltip = {
+			text = mgn_capital_not_in_siberian_company_region_tt
+			hidden_trigger = { mgn_capital_is_not_in_siberian_company_region = yes }
+		}
+		custom_tooltip = {
+			text = mgn_has_siberian_company_land_tt
+			hidden_trigger = { mgn_has_siberian_company_land = yes }
+		}
+	}
+
+	effect = {
+		custom_tooltip = mgn_establish_siberian_company_effect_tt
+		hidden_effect = { mgn_finish_siberian_company = yes }
+	}
+
+	ai_chance = { value = 0 }
+}
+
+button_mgn_establish_central_asian_company = {
+	name = "button_mgn_establish_central_asian_company"
+	desc = "button_mgn_establish_central_asian_company_desc"
+
+	visible = {
+		mgn_is_two_chinas_participant = yes
+		has_variable = mgn_rebuild_state_started
+	}
+
+	possible = {
+		NOT = { c:MCA ?= { is_country_alive = yes } }
+		custom_tooltip = {
+			text = mgn_capital_not_in_central_asian_company_region_tt
+			hidden_trigger = { mgn_capital_is_not_in_central_asian_company_region = yes }
+		}
+		custom_tooltip = {
+			text = mgn_has_central_asian_company_land_tt
+			hidden_trigger = { mgn_has_central_asian_company_land = yes }
+		}
+	}
+
+	effect = {
+		custom_tooltip = mgn_establish_central_asian_company_effect_tt
+		hidden_effect = { mgn_finish_central_asian_company = yes }
+	}
+
+	ai_chance = { value = 0 }
+}
+
+button_mgn_establish_african_company_qing = {
+	name = "button_mgn_establish_african_company_qing"
+	desc = "button_mgn_establish_african_company_qing_desc"
+
+	visible = {
+		c:CHI ?= THIS
+		has_variable = mgn_rebuild_state_started
+	}
+
+	possible = {
+		NOT = { c:MCC ?= { is_country_alive = yes } }
+		custom_tooltip = {
+			text = mgn_capital_not_in_africa_tt
+			hidden_trigger = { mgn_capital_is_not_in_africa = yes }
+		}
+		custom_tooltip = {
+			text = mgn_has_african_company_land_tt
+			hidden_trigger = { mgn_has_african_company_land = yes }
+		}
+	}
+
+	effect = {
+		custom_tooltip = mgn_establish_african_company_effect_tt
+		hidden_effect = { mgn_finish_qing_rebuild_state = yes }
+	}
+
+	ai_chance = { value = 0 }
+}

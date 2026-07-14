@@ -1,0 +1,89 @@
+COUNTRIES = {
+	c:MGN ?= {
+		effect_starting_technology_tier_4_tech = yes
+		add_technology_researched = urban_planning
+		add_technology_researched = sericulture
+		add_technology_researched = academia
+		add_technology_researched = law_enforcement
+		add_technology_researched = colonization
+		add_technology_researched = international_trade
+		add_technology_researched = military_drill
+
+		set_market_capital = STATE_LOWER_EGYPT
+
+		s:STATE_LOWER_EGYPT = {
+			random_scope_state = {
+				set_hub_name = {
+					type = city
+					name = HUB_NAME_STATE_LOWER_EGYPT_city_mgn
+				}
+				set_hub_name = {
+					type = port
+					name = HUB_NAME_STATE_LOWER_EGYPT_port_mgn
+				}
+			}
+		}
+
+		activate_law = law_type:law_monarchy
+		activate_law = law_type:law_autocracy
+		activate_law = law_type:law_serfdom
+		activate_law = law_type:law_land_based_taxation
+		activate_law = law_type:law_appointed_bureaucrats
+		activate_law = law_type:law_mgn_heavenly_subjecthood
+		activate_law = law_type:law_traditionalism
+		activate_law = law_type:law_censorship
+		activate_law = law_type:law_no_migration_controls
+		activate_law = law_type:law_colonial_resettlement
+		activate_law = law_type:law_mercantilism
+		activate_law = law_type:law_freedom_of_conscience
+		activate_law = law_type:law_slave_trade
+		activate_law = law_type:law_professional_navy
+
+		set_tax_level = low
+
+		add_modifier = {
+			name = mgn_heavenly_court_in_africa
+			days = 7300
+			is_decaying = yes
+		}
+		add_modifier = {
+			name = mgn_southern_court_administration
+			days = 7300
+			is_decaying = yes
+		}
+
+		ig:ig_landowners ?= {
+			set_interest_group_name = ig_mgn_scholar_bureaucrats
+			remove_ideology = ideology_paternalistic
+			add_ideology = ideology_scholar_paternalistic
+			add_ruling_interest_group = yes
+		}
+		ig:ig_devout ?= {
+			set_interest_group_name = ig_mgn_confucian_scholars
+			add_ideology = ideology_mgn_tianxia_order
+			add_ruling_interest_group = yes
+		}
+		ig:ig_armed_forces ?= {
+			set_interest_group_name = ig_mgn_divine_engine_camp
+			add_ruling_interest_group = yes
+		}
+		ig:ig_intelligentsia ?= {
+			set_interest_group_name = ig_mgn_overseas_literati
+			add_ideology = ideology_mgn_overseas_reform
+		}
+		ig:ig_petty_bourgeoisie ?= {
+			set_interest_group_name = ig_mgn_guild_merchants
+			add_ideology = ideology_mgn_maritime_opening
+		}
+		ig:ig_industrialists ?= {
+			set_interest_group_name = ig_mgn_maritime_merchants
+			add_ideology = ideology_mgn_maritime_opening
+		}
+		ig:ig_rural_folk ?= {
+			set_interest_group_name = ig_mgn_lijia_peasantry
+		}
+		ig:ig_trade_unions ?= {
+			set_interest_group_name = ig_mgn_artisan_guilds
+		}
+	}
+}

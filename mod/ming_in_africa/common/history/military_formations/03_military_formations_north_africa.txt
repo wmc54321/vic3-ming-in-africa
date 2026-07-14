@@ -1,0 +1,98 @@
+MILITARY_FORMATIONS = {
+	c:MGN ?= {
+		create_military_formation = {
+			type = army
+			hq_region = sr:region_southern_africa
+			name = MGN_Southern_Garrison
+
+			combat_unit = {
+				type = unit_type:combat_unit_type_line_infantry
+				state_region = s:STATE_CAPE_COLONY
+				count = 12
+			}
+			combat_unit = {
+				type = unit_type:combat_unit_type_irregular_infantry
+				state_region = s:STATE_EASTERN_CAPE
+				count = 8
+			}
+			combat_unit = {
+				type = unit_type:combat_unit_type_cannon_artillery
+				state_region = s:STATE_CAPE_COLONY
+				count = 4
+			}
+		}
+
+		create_military_formation = {
+			type = army
+			hq_region = sr:region_nile_basin
+			name = MGN_Nile_Garrison
+
+			combat_unit = {
+				type = unit_type:combat_unit_type_line_infantry
+				state_region = s:STATE_LOWER_EGYPT
+				count = 10
+			}
+			combat_unit = {
+				type = unit_type:combat_unit_type_irregular_infantry
+				state_region = s:STATE_UPPER_EGYPT
+				count = 8
+			}
+			combat_unit = {
+				type = unit_type:combat_unit_type_hussars
+				state_region = s:STATE_DONGOLA
+				count = 4
+			}
+		}
+
+		create_military_formation = {
+			type = army
+			hq_region = sr:region_west_africa
+			name = MGN_Western_Garrison
+
+			combat_unit = {
+				type = unit_type:combat_unit_type_irregular_infantry
+				state_region = s:STATE_NIGER_DELTA
+				count = 8
+			}
+			combat_unit = {
+				type = unit_type:combat_unit_type_irregular_infantry
+				state_region = s:STATE_GOLD_COAST
+				count = 8
+			}
+		}
+
+		create_military_formation = {
+			type = army
+			hq_region = sr:region_east_africa
+			name = MGN_Eastern_Garrison
+
+			combat_unit = {
+				type = unit_type:combat_unit_type_irregular_infantry
+				state_region = s:STATE_ZANZIBAR
+				count = 6
+			}
+			combat_unit = {
+				type = unit_type:combat_unit_type_irregular_infantry
+				state_region = s:STATE_KENYA
+				count = 6
+			}
+		}
+
+		create_military_formation = {
+			type = fleet
+			hq_region = sr:region_southern_africa
+			name = MGN_Southern_Sea_Fleet
+
+			ship = {
+				type = ship_type:ship_type_frigate
+				state_region = s:STATE_CAPE_COLONY
+				count = 6
+			}
+			ship = {
+				type = ship_type:ship_type_ship_of_the_line
+				state_region = s:STATE_CAPE_COLONY
+				count = 2
+			}
+		}
+	}
+}
