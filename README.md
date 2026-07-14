@@ -4,6 +4,8 @@
 
 当前版本为 **0.1.0**，支持《Victoria 3》**1.13.x**。实际可加载文件位于 `mod/ming_in_africa`。
 
+**[Steam 创意工坊订阅](https://steamcommunity.com/sharedfiles/filedetails/?id=3764465525)** · **[GitHub Releases 手动下载](https://github.com/wmc54321/vic3-ming-in-africa/releases)**
+
 ## 主要内容
 
 - 1836 年从下埃及应天府开局的非洲大明。
@@ -21,7 +23,7 @@
 
 ## 安装
 
-Steam 用户建议通过创意工坊订阅。手动安装时，将发布包中的 `ming_in_africa` 文件夹和 `ming_in_africa.mod` 放入《Victoria 3》用户 mod 目录，再在 Paradox Launcher 中启用。
+Steam 用户建议直接从 [Steam 创意工坊](https://steamcommunity.com/sharedfiles/filedetails/?id=3764465525) 订阅。手动安装包可从 [GitHub Releases](https://github.com/wmc54321/vic3-ming-in-africa/releases) 下载；将其中的 `ming_in_africa` 文件夹和 `ming_in_africa.mod` 放入《Victoria 3》用户 mod 目录，再在 Paradox Launcher 中启用。
 
 从源码开发时，请复制 `.env.example` 为 `.env.local`，设置 `VICTORIA3_GAME_ROOT`，并运行 `tools/generate_initial_mod.ps1`。本机游戏路径不会写入公开文件。
 
