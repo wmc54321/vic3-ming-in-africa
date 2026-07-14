@@ -1,0 +1,1259 @@
+mgn_start_ming_rebuild_state = {
+	mgn_activate_ming_rebuild_state = yes
+	trigger_event = { id = mgn_route_events.10 popup = yes }
+}
+
+mgn_start_qing_rebuild_state = {
+	mgn_activate_qing_rebuild_state = yes
+	trigger_event = { id = mgn_route_events.20 popup = yes }
+}
+
+mgn_activate_ming_rebuild_state = {
+	set_variable = mgn_rebuild_state_started
+	add_modifier = {
+		name = mgn_chinese_unification_integration_drive
+		years = 10
+	}
+	if = {
+		limit = { NOT = { has_journal_entry = je_mgn_rebuild_state_ming } }
+		add_journal_entry = { type = je_mgn_rebuild_state_ming }
+	}
+}
+
+mgn_activate_qing_rebuild_state = {
+	set_variable = mgn_rebuild_state_started
+	add_modifier = {
+		name = mgn_chinese_unification_integration_drive
+		years = 10
+	}
+	if = {
+		limit = { NOT = { has_journal_entry = je_mgn_rebuild_state_qing } }
+		add_journal_entry = { type = je_mgn_rebuild_state_qing }
+	}
+}
+
+mgn_activate_bitter_peace = {
+	set_variable = mgn_bitter_peace_started
+	if = {
+		limit = { NOT = { exists = var:mgn_subject_to_other_china_days } }
+		set_variable = { name = mgn_subject_to_other_china_days value = 0 }
+	}
+	if = {
+		limit = { NOT = { has_journal_entry = je_mgn_bitter_peace } }
+		add_journal_entry = { type = je_mgn_bitter_peace }
+		trigger_event = { id = mgn_route_events.130 popup = yes }
+	}
+}
+
+mgn_restart_two_chinas_journal = {
+	if = {
+		limit = { NOT = { has_journal_entry = je_mgn_two_chinas } }
+		add_journal_entry = { type = je_mgn_two_chinas }
+	}
+}
+
+mgn_refresh_two_chinas_status = {
+	if = {
+		limit = { mgn_two_chinas_independent_rivals = yes }
+		mgn_restart_two_chinas_journal = yes
+	}
+	else_if = {
+		limit = { mgn_is_two_chinas_leader = yes }
+		if = {
+			limit = { c:MGN ?= THIS }
+			mgn_activate_ming_rebuild_state = yes
+		}
+		else_if = {
+			limit = { c:CHI ?= THIS }
+			mgn_activate_qing_rebuild_state = yes
+		}
+	}
+	else_if = {
+		limit = { mgn_is_two_chinas_subject = yes }
+		mgn_activate_bitter_peace = yes
+	}
+}
+
+mgn_move_capital_to_beijing = {
+	set_capital = STATE_BEIJING
+	set_market_capital = STATE_BEIJING
+	set_variable = mgn_capital_moved_to_china
+	trigger_event = { id = mgn_route_events.30 popup = yes }
+}
+
+mgn_move_capital_to_nanjing = {
+	set_capital = STATE_NANJING
+	set_market_capital = STATE_NANJING
+	set_variable = mgn_capital_moved_to_china
+	trigger_event = { id = mgn_route_events.31 popup = yes }
+}
+
+mgn_move_capital_to_yingtian = {
+	set_capital = STATE_LOWER_EGYPT
+	set_market_capital = STATE_LOWER_EGYPT
+	set_variable = mgn_capital_moved_to_china
+	trigger_event = { id = mgn_route_events.32 popup = yes }
+}
+
+mgn_make_brotherly_subject = {
+	if = {
+		limit = { $OVERLORD$ = { is_country_type = unrecognized } }
+		$OVERLORD$ = {
+			create_diplomatic_pact = {
+				country = $SUBJECT$
+				type = tributary
+			}
+		}
+	}
+	else_if = {
+		limit = { $SUBJECT$ = { is_country_type = unrecognized } }
+		$OVERLORD$ = {
+			create_diplomatic_pact = {
+				country = $SUBJECT$
+				type = protectorate
+			}
+		}
+	}
+	else = {
+		$OVERLORD$ = {
+			create_diplomatic_pact = {
+				country = $SUBJECT$
+				type = protectorate
+			}
+		}
+	}
+	mgn_on_two_chinas_subject_relation = { OVERLORD = $OVERLORD$ SUBJECT = $SUBJECT$ }
+}
+
+mgn_on_two_chinas_subject_relation = {
+	if = {
+		limit = {
+			OR = {
+				AND = {
+					$OVERLORD$ = { c:MGN ?= THIS }
+					$SUBJECT$ = { c:CHI ?= THIS }
+				}
+				AND = {
+					$OVERLORD$ = { c:CHI ?= THIS }
+					$SUBJECT$ = { c:MGN ?= THIS }
+				}
+			}
+		}
+		$SUBJECT$ = {
+			mgn_activate_bitter_peace = yes
+		}
+		$OVERLORD$ = {
+			if = {
+				limit = { c:MGN ?= THIS }
+				mgn_activate_ming_rebuild_state = yes
+			}
+			else_if = {
+				limit = { c:CHI ?= THIS }
+				mgn_activate_qing_rebuild_state = yes
+			}
+		}
+	}
+}
+
+mgn_adopt_migration_law_from = {
+	if = { limit = { $COUNTRY$ = { has_law = law_type:law_no_migration_controls } } activate_law = law_type:law_no_migration_controls }
+	if = { limit = { $COUNTRY$ = { has_law = law_type:law_migration_controls } } activate_law = law_type:law_migration_controls }
+	if = { limit = { $COUNTRY$ = { has_law = law_type:law_closed_borders } } activate_law = law_type:law_closed_borders }
+}
+
+mgn_create_migration_policy_dispute = {
+	if = {
+		limit = {
+			$INITIATOR$ = { has_law = law_type:law_no_migration_controls }
+			$TARGET$ = { has_law = law_type:law_migration_controls }
+		}
+		$INITIATOR$ = {
+			create_diplomatic_play = {
+				name = mgn_migration_policy_alignment_rejected
+				type = dp_mgn_two_chinas_open_migration
+				target_country = $TARGET$
+				add_war_goal = { holder = $TARGET$ target_country = $INITIATOR$ type = mgn_regulate_chinese_migration }
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			$INITIATOR$ = { has_law = law_type:law_no_migration_controls }
+			$TARGET$ = { has_law = law_type:law_closed_borders }
+		}
+		$INITIATOR$ = {
+			create_diplomatic_play = {
+				name = mgn_migration_policy_alignment_rejected
+				type = dp_mgn_two_chinas_open_migration
+				target_country = $TARGET$
+				add_war_goal = { holder = $TARGET$ target_country = $INITIATOR$ type = mgn_close_chinese_migration }
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			$INITIATOR$ = { has_law = law_type:law_migration_controls }
+			$TARGET$ = { has_law = law_type:law_no_migration_controls }
+		}
+		$INITIATOR$ = {
+			create_diplomatic_play = {
+				name = mgn_migration_policy_alignment_rejected
+				type = dp_mgn_two_chinas_regulated_migration
+				target_country = $TARGET$
+				add_war_goal = { holder = $TARGET$ target_country = $INITIATOR$ type = mgn_open_chinese_migration }
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			$INITIATOR$ = { has_law = law_type:law_migration_controls }
+			$TARGET$ = { has_law = law_type:law_closed_borders }
+		}
+		$INITIATOR$ = {
+			create_diplomatic_play = {
+				name = mgn_migration_policy_alignment_rejected
+				type = dp_mgn_two_chinas_regulated_migration
+				target_country = $TARGET$
+				add_war_goal = { holder = $TARGET$ target_country = $INITIATOR$ type = mgn_close_chinese_migration }
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			$INITIATOR$ = { has_law = law_type:law_closed_borders }
+			$TARGET$ = { has_law = law_type:law_no_migration_controls }
+		}
+		$INITIATOR$ = {
+			create_diplomatic_play = {
+				name = mgn_migration_policy_alignment_rejected
+				type = dp_mgn_two_chinas_closed_migration
+				target_country = $TARGET$
+				add_war_goal = { holder = $TARGET$ target_country = $INITIATOR$ type = mgn_open_chinese_migration }
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			$INITIATOR$ = { has_law = law_type:law_closed_borders }
+			$TARGET$ = { has_law = law_type:law_migration_controls }
+		}
+		$INITIATOR$ = {
+			create_diplomatic_play = {
+				name = mgn_migration_policy_alignment_rejected
+				type = dp_mgn_two_chinas_closed_migration
+				target_country = $TARGET$
+				add_war_goal = { holder = $TARGET$ target_country = $INITIATOR$ type = mgn_regulate_chinese_migration }
+			}
+		}
+	}
+}
+
+mgn_inherit_overlord_laws_except_company_specific = {
+	if = { limit = { $OVERLORD$ = { has_law_or_variant = law_type:law_monarchy } } activate_law = law_type:law_monarchy }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_social_monarchy } } activate_law = law_type:law_social_monarchy }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_presidential_republic } } activate_law = law_type:law_presidential_republic }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_parliamentary_republic } } activate_law = law_type:law_parliamentary_republic }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_council_republic } } activate_law = law_type:law_council_republic }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_corporate_state } } activate_law = law_type:law_corporate_state }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_theocracy } } activate_law = law_type:law_theocracy }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_chiefdom } } activate_law = law_type:law_chiefdom }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_colonial_administration } } activate_law = law_type:law_colonial_administration }
+
+	if = { limit = { $OVERLORD$ = { has_law_or_variant = law_type:law_autocracy } } activate_law = law_type:law_autocracy }
+	if = { limit = { $OVERLORD$ = { has_law_or_variant = law_type:law_oligarchy } } activate_law = law_type:law_oligarchy }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_landed_voting } } activate_law = law_type:law_landed_voting }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_wealth_voting } } activate_law = law_type:law_wealth_voting }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_census_voting } } activate_law = law_type:law_census_voting }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_universal_suffrage } } activate_law = law_type:law_universal_suffrage }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_single_party_state } } activate_law = law_type:law_single_party_state }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_technocracy } } activate_law = law_type:law_technocracy }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_elder_council } } activate_law = law_type:law_elder_council }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_anarchy } } activate_law = law_type:law_anarchy }
+
+	if = { limit = { $OVERLORD$ = { has_law_or_variant = law_type:law_hereditary_bureaucrats } } activate_law = law_type:law_hereditary_bureaucrats }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_appointed_bureaucrats } } activate_law = law_type:law_appointed_bureaucrats }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_elected_bureaucrats } } activate_law = law_type:law_elected_bureaucrats }
+
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_consumption_based_taxation } } activate_law = law_type:law_consumption_based_taxation }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_land_based_taxation } } activate_law = law_type:law_land_based_taxation }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_per_capita_based_taxation } } activate_law = law_type:law_per_capita_based_taxation }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_proportional_taxation } } activate_law = law_type:law_proportional_taxation }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_graduated_taxation } } activate_law = law_type:law_graduated_taxation }
+
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_traditionalism } } activate_law = law_type:law_traditionalism }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_interventionism } } activate_law = law_type:law_interventionism }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_agrarianism } } activate_law = law_type:law_agrarianism }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_industry_banned } } activate_law = law_type:law_industry_banned }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_laissez_faire } } activate_law = law_type:law_laissez_faire }
+	if = { limit = { $OVERLORD$ = { has_law_or_variant = law_type:law_cooperative_ownership } } activate_law = law_type:law_cooperative_ownership }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_command_economy } } activate_law = law_type:law_command_economy }
+
+	if = { limit = { $OVERLORD$ = { has_law_or_variant = law_type:law_serfdom } } activate_law = law_type:law_serfdom }
+	if = { limit = { $OVERLORD$ = { has_law_or_variant = law_type:law_tenant_farmers } } activate_law = law_type:law_tenant_farmers }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_commercialized_agriculture } } activate_law = law_type:law_commercialized_agriculture }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_homesteading } } activate_law = law_type:law_homesteading }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_collectivized_agriculture } } activate_law = law_type:law_collectivized_agriculture }
+
+	if = { limit = { $OVERLORD$ = { has_law_or_variant = law_type:law_peasant_levies } } activate_law = law_type:law_peasant_levies }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_national_militia } } activate_law = law_type:law_national_militia }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_mass_conscription } } activate_law = law_type:law_mass_conscription }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_professional_army } } activate_law = law_type:law_professional_army }
+
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_merchant_navy } } activate_law = law_type:law_merchant_navy }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_jeune_ecole } } activate_law = law_type:law_jeune_ecole }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_professional_navy } } activate_law = law_type:law_professional_navy }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_diplomatic_navy } } activate_law = law_type:law_diplomatic_navy }
+
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_mercantilism } } activate_law = law_type:law_mercantilism }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_protectionism } } activate_law = law_type:law_protectionism }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_free_trade } } activate_law = law_type:law_free_trade }
+	if = { limit = { $OVERLORD$ = { has_law_or_variant = law_type:law_isolationism } } activate_law = law_type:law_isolationism }
+
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_no_migration_controls } } activate_law = law_type:law_no_migration_controls }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_migration_controls } } activate_law = law_type:law_migration_controls }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_closed_borders } } activate_law = law_type:law_closed_borders }
+
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_no_colonial_affairs } } activate_law = law_type:law_no_colonial_affairs }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_colonial_resettlement } } activate_law = law_type:law_colonial_resettlement }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_colonial_exploitation } } activate_law = law_type:law_colonial_exploitation }
+
+	if = { limit = { $OVERLORD$ = { has_law_or_variant = law_type:law_state_religion } } activate_law = law_type:law_state_religion }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_freedom_of_conscience } } activate_law = law_type:law_freedom_of_conscience }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_total_separation } } activate_law = law_type:law_total_separation }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_state_atheism } } activate_law = law_type:law_state_atheism }
+
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_slavery_banned } } activate_law = law_type:law_slavery_banned }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_debt_slavery } } activate_law = law_type:law_debt_slavery }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_slave_trade } } activate_law = law_type:law_slave_trade }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_legacy_slavery } } activate_law = law_type:law_legacy_slavery }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_colonial_slavery } } activate_law = law_type:law_colonial_slavery }
+
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_outlawed_dissent } } activate_law = law_type:law_outlawed_dissent }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_censorship } } activate_law = law_type:law_censorship }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_right_of_assembly } } activate_law = law_type:law_right_of_assembly }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_protected_speech } } activate_law = law_type:law_protected_speech }
+
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_no_home_affairs } } activate_law = law_type:law_no_home_affairs }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_national_guard } } activate_law = law_type:law_national_guard }
+	if = { limit = { $OVERLORD$ = { has_law_or_variant = law_type:law_secret_police } } activate_law = law_type:law_secret_police }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_shinsengumi } } activate_law = law_type:law_shinsengumi }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_guaranteed_liberties } } activate_law = law_type:law_guaranteed_liberties }
+
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_no_police } } activate_law = law_type:law_no_police }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_local_police } } activate_law = law_type:law_local_police }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_dedicated_police } } activate_law = law_type:law_dedicated_police }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_militarized_police } } activate_law = law_type:law_militarized_police }
+
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_no_schools } } activate_law = law_type:law_no_schools }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_religious_schools } } activate_law = law_type:law_religious_schools }
+	if = { limit = { $OVERLORD$ = { has_law_or_variant = law_type:law_private_schools } } activate_law = law_type:law_private_schools }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_public_schools } } activate_law = law_type:law_public_schools }
+
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_no_health_system } } activate_law = law_type:law_no_health_system }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_charitable_health_system } } activate_law = law_type:law_charitable_health_system }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_private_health_insurance } } activate_law = law_type:law_private_health_insurance }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_public_health_insurance } } activate_law = law_type:law_public_health_insurance }
+
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_child_labor_allowed } } activate_law = law_type:law_child_labor_allowed }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_restricted_child_labor } } activate_law = law_type:law_restricted_child_labor }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_compulsory_primary_school } } activate_law = law_type:law_compulsory_primary_school }
+
+	if = { limit = { $OVERLORD$ = { has_law_or_variant = law_type:law_no_womens_rights } } activate_law = law_type:law_no_womens_rights }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_women_in_the_fields } } activate_law = law_type:law_women_in_the_fields }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_women_own_property } } activate_law = law_type:law_women_own_property }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_women_in_the_workplace } } activate_law = law_type:law_women_in_the_workplace }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_womens_suffrage } } activate_law = law_type:law_womens_suffrage }
+
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_no_workers_rights } } activate_law = law_type:law_no_workers_rights }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_regulatory_bodies } } activate_law = law_type:law_regulatory_bodies }
+	if = { limit = { $OVERLORD$ = { has_law = law_type:law_worker_protections } } activate_law = law_type:law_worker_protections }
+}
+
+mgn_transfer_subsubjects_of_african_company_donors = {
+	every_subject_or_below = {
+		limit = {
+			NOT = { is_country_type = company }
+			any_scope_state = { mgn_state_is_african_company_region = yes }
+		}
+		every_direct_subject = {
+			limit = { NOT = { is_direct_subject_of = ROOT } }
+			ROOT = { transfer_subject = prev }
+		}
+	}
+}
+
+mgn_transfer_subsubjects_of_mainland_company_donors = {
+	every_subject_or_below = {
+		limit = {
+			NOT = { is_country_type = company }
+			any_scope_state = { mgn_state_is_mainland_company_region = yes }
+		}
+		every_direct_subject = {
+			limit = { NOT = { is_direct_subject_of = ROOT } }
+			ROOT = { transfer_subject = prev }
+		}
+	}
+}
+
+mgn_transfer_subsubjects_of_korean_company_donors = {
+	every_subject_or_below = {
+		limit = {
+			NOT = { is_country_type = company }
+			any_scope_state = { mgn_state_is_korean_company_region = yes }
+		}
+		every_direct_subject = {
+			limit = { NOT = { is_direct_subject_of = ROOT } }
+			ROOT = { transfer_subject = prev }
+		}
+	}
+}
+
+mgn_transfer_subsubjects_of_lanfang_company_donors = {
+	every_subject_or_below = {
+		limit = {
+			NOT = { is_country_type = company }
+			any_scope_state = { mgn_state_is_lanfang_company_region = yes }
+		}
+		every_direct_subject = {
+			limit = { NOT = { is_direct_subject_of = ROOT } }
+			ROOT = { transfer_subject = prev }
+		}
+	}
+}
+
+mgn_transfer_subsubjects_of_siberian_company_donors = {
+	every_subject_or_below = {
+		limit = {
+			NOT = { is_country_type = company }
+			any_scope_state = { mgn_state_is_siberian_company_region = yes }
+		}
+		every_direct_subject = {
+			limit = { NOT = { is_direct_subject_of = ROOT } }
+			ROOT = { transfer_subject = prev }
+		}
+	}
+}
+
+mgn_transfer_subsubjects_of_central_asian_company_donors = {
+	every_subject_or_below = {
+		limit = {
+			NOT = { is_country_type = company }
+			any_scope_state = { mgn_state_is_central_asian_company_region = yes }
+		}
+		every_direct_subject = {
+			limit = { NOT = { is_direct_subject_of = ROOT } }
+			ROOT = { transfer_subject = prev }
+		}
+	}
+}
+
+mgn_create_african_chartered_company = {
+	if = {
+		limit = {
+			any_scope_state = {
+				state_region = s:STATE_LOWER_EGYPT
+			}
+		}
+		random_scope_state = {
+			limit = {
+				state_region = s:STATE_LOWER_EGYPT
+			}
+			save_scope_as = mgn_african_company_capital
+		}
+	}
+	else_if = {
+		limit = {
+			any_subject_or_below = {
+				NOT = { is_country_type = company }
+				any_scope_state = { state_region = s:STATE_LOWER_EGYPT }
+			}
+		}
+		random_subject_or_below = {
+			limit = {
+				NOT = { is_country_type = company }
+				any_scope_state = { state_region = s:STATE_LOWER_EGYPT }
+			}
+			random_scope_state = {
+				limit = { state_region = s:STATE_LOWER_EGYPT }
+				save_scope_as = mgn_african_company_capital
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			any_scope_state = {
+				mgn_state_is_african_company_region = yes
+			}
+		}
+		random_scope_state = {
+			limit = {
+				mgn_state_is_african_company_region = yes
+			}
+			save_scope_as = mgn_african_company_capital
+		}
+	}
+	else = {
+		random_subject_or_below = {
+			limit = {
+				NOT = { is_country_type = company }
+				any_scope_state = { mgn_state_is_african_company_region = yes }
+			}
+			random_scope_state = {
+				limit = { mgn_state_is_african_company_region = yes }
+				save_scope_as = mgn_african_company_capital
+			}
+		}
+	}
+
+	if = {
+		limit = { NOT = { c:MCC ?= { is_country_alive = yes } } }
+		create_country = {
+			tag = MCC
+			origin = ROOT
+			state = scope:mgn_african_company_capital
+			on_created = {
+				activate_law = law_type:law_mgn_heavenly_subjecthood
+				set_variable = mgn_company_cannot_form_china
+				add_primary_culture = cu:han
+				add_primary_culture = cu:african_han
+				add_primary_culture = cu:western_han
+			}
+		}
+	}
+
+	create_diplomatic_pact = {
+		country = c:MCC
+		type = chartered_company
+	}
+
+	mgn_transfer_subsubjects_of_african_company_donors = yes
+
+	every_scope_state = {
+		limit = {
+			mgn_state_is_african_company_region = yes
+		}
+		set_state_owner = c:MCC
+		set_state_type = incorporated
+	}
+	every_subject_or_below = {
+		limit = { NOT = { is_country_type = company } }
+		every_scope_state = {
+			limit = { mgn_state_is_african_company_region = yes }
+			set_state_owner = c:MCC
+			set_state_type = incorporated
+		}
+	}
+
+	c:MCC ?= {
+		every_scope_state = {
+			limit = {
+				owner = c:MCC
+				is_in_geographic_region = geographic_region_africa
+			}
+			set_state_type = incorporated
+		}
+		mgn_inherit_overlord_laws_except_company_specific = { OVERLORD = ROOT }
+		activate_law = law_type:law_colonial_administration
+		activate_law = law_type:law_mgn_heavenly_subjecthood
+		activate_law = law_type:law_extraction_economy
+		set_tax_level = low
+	}
+}
+
+mgn_create_mainland_chartered_company = {
+	if = {
+		limit = {
+			any_scope_state = {
+				state_region = s:STATE_BEIJING
+			}
+		}
+		random_scope_state = {
+			limit = {
+				state_region = s:STATE_BEIJING
+			}
+			save_scope_as = mgn_mainland_company_capital
+		}
+	}
+	else_if = {
+		limit = {
+			any_subject_or_below = {
+				NOT = { is_country_type = company }
+				any_scope_state = { state_region = s:STATE_BEIJING }
+			}
+		}
+		random_subject_or_below = {
+			limit = {
+				NOT = { is_country_type = company }
+				any_scope_state = { state_region = s:STATE_BEIJING }
+			}
+			random_scope_state = {
+				limit = { state_region = s:STATE_BEIJING }
+				save_scope_as = mgn_mainland_company_capital
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			any_scope_state = {
+				mgn_state_is_mainland_company_region = yes
+			}
+		}
+		random_scope_state = {
+			limit = {
+				mgn_state_is_mainland_company_region = yes
+			}
+			save_scope_as = mgn_mainland_company_capital
+		}
+	}
+	else = {
+		random_subject_or_below = {
+			limit = {
+				NOT = { is_country_type = company }
+				any_scope_state = { mgn_state_is_mainland_company_region = yes }
+			}
+			random_scope_state = {
+				limit = { mgn_state_is_mainland_company_region = yes }
+				save_scope_as = mgn_mainland_company_capital
+			}
+		}
+	}
+
+	if = {
+		limit = { NOT = { c:MDC ?= { is_country_alive = yes } } }
+		create_country = {
+			tag = MDC
+			origin = ROOT
+			state = scope:mgn_mainland_company_capital
+			on_created = {
+				activate_law = law_type:law_mgn_heavenly_subjecthood
+				set_variable = mgn_company_cannot_form_china
+				add_primary_culture = cu:han
+			}
+		}
+	}
+
+	create_diplomatic_pact = {
+		country = c:MDC
+		type = chartered_company
+	}
+
+	mgn_transfer_subsubjects_of_mainland_company_donors = yes
+
+	every_scope_state = {
+		limit = {
+			mgn_state_is_mainland_company_region = yes
+		}
+		set_state_owner = c:MDC
+		set_state_type = incorporated
+	}
+	every_subject_or_below = {
+		limit = { NOT = { is_country_type = company } }
+		every_scope_state = {
+			limit = { mgn_state_is_mainland_company_region = yes }
+			set_state_owner = c:MDC
+			set_state_type = incorporated
+		}
+	}
+
+	c:MDC ?= {
+		every_scope_state = {
+			limit = { owner = c:MDC }
+			set_state_type = incorporated
+		}
+		mgn_inherit_overlord_laws_except_company_specific = { OVERLORD = ROOT }
+		activate_law = law_type:law_colonial_administration
+		activate_law = law_type:law_mgn_heavenly_subjecthood
+		activate_law = law_type:law_extraction_economy
+		set_tax_level = low
+	}
+}
+
+mgn_create_korean_chartered_company = {
+	if = {
+		limit = {
+			any_scope_state = {
+				state_region = s:STATE_SEOUL
+			}
+		}
+		random_scope_state = {
+			limit = {
+				state_region = s:STATE_SEOUL
+			}
+			save_scope_as = mgn_korean_company_capital
+		}
+	}
+	else_if = {
+		limit = {
+			any_subject_or_below = {
+				NOT = { is_country_type = company }
+				any_scope_state = { state_region = s:STATE_SEOUL }
+			}
+		}
+		random_subject_or_below = {
+			limit = {
+				NOT = { is_country_type = company }
+				any_scope_state = { state_region = s:STATE_SEOUL }
+			}
+			random_scope_state = {
+				limit = { state_region = s:STATE_SEOUL }
+				save_scope_as = mgn_korean_company_capital
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			any_scope_state = {
+				mgn_state_is_korean_company_region = yes
+			}
+		}
+		random_scope_state = {
+			limit = {
+				mgn_state_is_korean_company_region = yes
+			}
+			save_scope_as = mgn_korean_company_capital
+		}
+	}
+	else = {
+		random_subject_or_below = {
+			limit = {
+				NOT = { is_country_type = company }
+				any_scope_state = { mgn_state_is_korean_company_region = yes }
+			}
+			random_scope_state = {
+				limit = { mgn_state_is_korean_company_region = yes }
+				save_scope_as = mgn_korean_company_capital
+			}
+		}
+	}
+
+	if = {
+		limit = { NOT = { c:MKC ?= { is_country_alive = yes } } }
+		create_country = {
+			tag = MKC
+			origin = ROOT
+			state = scope:mgn_korean_company_capital
+			on_created = {
+				activate_law = law_type:law_mgn_heavenly_subjecthood
+				set_variable = mgn_company_cannot_form_china
+				add_primary_culture = cu:han
+				add_primary_culture = cu:manchu
+			}
+		}
+	}
+
+	create_diplomatic_pact = {
+		country = c:MKC
+		type = chartered_company
+	}
+
+	mgn_transfer_subsubjects_of_korean_company_donors = yes
+
+	every_scope_state = {
+		limit = {
+			mgn_state_is_korean_company_region = yes
+		}
+		set_state_owner = c:MKC
+		set_state_type = incorporated
+	}
+	every_subject_or_below = {
+		limit = { NOT = { is_country_type = company } }
+		every_scope_state = {
+			limit = { mgn_state_is_korean_company_region = yes }
+			set_state_owner = c:MKC
+			set_state_type = incorporated
+		}
+	}
+
+	c:MKC ?= {
+		every_scope_state = {
+			limit = { owner = c:MKC }
+			set_state_type = incorporated
+		}
+		mgn_inherit_overlord_laws_except_company_specific = { OVERLORD = ROOT }
+		activate_law = law_type:law_colonial_administration
+		activate_law = law_type:law_mgn_heavenly_subjecthood
+		activate_law = law_type:law_extraction_economy
+		set_tax_level = low
+	}
+}
+
+mgn_create_lanfang_chartered_company = {
+	if = {
+		limit = {
+			any_scope_state = {
+				state_region = s:STATE_WEST_BORNEO
+			}
+		}
+		random_scope_state = {
+			limit = {
+				state_region = s:STATE_WEST_BORNEO
+			}
+			save_scope_as = mgn_lanfang_company_capital
+		}
+	}
+	else_if = {
+		limit = {
+			any_subject_or_below = {
+				NOT = { is_country_type = company }
+				any_scope_state = { state_region = s:STATE_WEST_BORNEO }
+			}
+		}
+		random_subject_or_below = {
+			limit = {
+				NOT = { is_country_type = company }
+				any_scope_state = { state_region = s:STATE_WEST_BORNEO }
+			}
+			random_scope_state = {
+				limit = { state_region = s:STATE_WEST_BORNEO }
+				save_scope_as = mgn_lanfang_company_capital
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			any_scope_state = {
+				mgn_state_is_lanfang_company_region = yes
+			}
+		}
+		random_scope_state = {
+			limit = {
+				mgn_state_is_lanfang_company_region = yes
+			}
+			save_scope_as = mgn_lanfang_company_capital
+		}
+	}
+	else = {
+		random_subject_or_below = {
+			limit = {
+				NOT = { is_country_type = company }
+				any_scope_state = { mgn_state_is_lanfang_company_region = yes }
+			}
+			random_scope_state = {
+				limit = { mgn_state_is_lanfang_company_region = yes }
+				save_scope_as = mgn_lanfang_company_capital
+			}
+		}
+	}
+
+	if = {
+		limit = { NOT = { c:MLF ?= { is_country_alive = yes } } }
+		create_country = {
+			tag = MLF
+			origin = ROOT
+			state = scope:mgn_lanfang_company_capital
+			on_created = {
+				activate_law = law_type:law_mgn_heavenly_subjecthood
+				set_variable = mgn_company_cannot_form_china
+				add_primary_culture = cu:han
+				add_primary_culture = cu:hakka
+				add_primary_culture = cu:yue
+			}
+		}
+	}
+
+	create_diplomatic_pact = {
+		country = c:MLF
+		type = chartered_company
+	}
+
+	mgn_transfer_subsubjects_of_lanfang_company_donors = yes
+
+	every_scope_state = {
+		limit = {
+			mgn_state_is_lanfang_company_region = yes
+		}
+		set_state_owner = c:MLF
+		set_state_type = incorporated
+	}
+	every_subject_or_below = {
+		limit = { NOT = { is_country_type = company } }
+		every_scope_state = {
+			limit = { mgn_state_is_lanfang_company_region = yes }
+			set_state_owner = c:MLF
+			set_state_type = incorporated
+		}
+	}
+
+	c:MLF ?= {
+		every_scope_state = {
+			limit = { owner = c:MLF }
+			set_state_type = incorporated
+		}
+		mgn_inherit_overlord_laws_except_company_specific = { OVERLORD = ROOT }
+		activate_law = law_type:law_colonial_administration
+		activate_law = law_type:law_mgn_heavenly_subjecthood
+		activate_law = law_type:law_extraction_economy
+		set_tax_level = low
+	}
+}
+
+mgn_create_siberian_chartered_company = {
+	if = {
+		limit = {
+			any_scope_state = {
+				state_region = s:STATE_IRKUTSK
+			}
+		}
+		random_scope_state = {
+			limit = {
+				state_region = s:STATE_IRKUTSK
+			}
+			save_scope_as = mgn_siberian_company_capital
+		}
+	}
+	else_if = {
+		limit = {
+			any_subject_or_below = {
+				NOT = { is_country_type = company }
+				any_scope_state = { state_region = s:STATE_IRKUTSK }
+			}
+		}
+		random_subject_or_below = {
+			limit = {
+				NOT = { is_country_type = company }
+				any_scope_state = { state_region = s:STATE_IRKUTSK }
+			}
+			random_scope_state = {
+				limit = { state_region = s:STATE_IRKUTSK }
+				save_scope_as = mgn_siberian_company_capital
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			any_scope_state = {
+				mgn_state_is_siberian_company_region = yes
+			}
+		}
+		random_scope_state = {
+			limit = {
+				mgn_state_is_siberian_company_region = yes
+			}
+			save_scope_as = mgn_siberian_company_capital
+		}
+	}
+	else = {
+		random_subject_or_below = {
+			limit = {
+				NOT = { is_country_type = company }
+				any_scope_state = { mgn_state_is_siberian_company_region = yes }
+			}
+			random_scope_state = {
+				limit = { mgn_state_is_siberian_company_region = yes }
+				save_scope_as = mgn_siberian_company_capital
+			}
+		}
+	}
+
+	if = {
+		limit = { NOT = { c:MSB ?= { is_country_alive = yes } } }
+		create_country = {
+			tag = MSB
+			origin = ROOT
+			state = scope:mgn_siberian_company_capital
+			on_created = {
+				activate_law = law_type:law_mgn_heavenly_subjecthood
+				set_variable = mgn_company_cannot_form_china
+				add_primary_culture = cu:han
+				add_primary_culture = cu:western_han
+				add_primary_culture = cu:manchu
+			}
+		}
+	}
+
+	create_diplomatic_pact = {
+		country = c:MSB
+		type = chartered_company
+	}
+
+	mgn_transfer_subsubjects_of_siberian_company_donors = yes
+
+	every_scope_state = {
+		limit = {
+			mgn_state_is_siberian_company_region = yes
+		}
+		set_state_owner = c:MSB
+		set_state_type = incorporated
+	}
+	every_subject_or_below = {
+		limit = { NOT = { is_country_type = company } }
+		every_scope_state = {
+			limit = { mgn_state_is_siberian_company_region = yes }
+			set_state_owner = c:MSB
+			set_state_type = incorporated
+		}
+	}
+
+	c:MSB ?= {
+		every_scope_state = {
+			limit = { owner = c:MSB }
+			set_state_type = incorporated
+		}
+		mgn_inherit_overlord_laws_except_company_specific = { OVERLORD = ROOT }
+		activate_law = law_type:law_colonial_administration
+		activate_law = law_type:law_mgn_heavenly_subjecthood
+		activate_law = law_type:law_extraction_economy
+		activate_law = law_type:law_state_religion
+		set_tax_level = low
+	}
+}
+
+mgn_create_central_asian_chartered_company = {
+	if = {
+		limit = {
+			any_scope_state = {
+				state_region = s:STATE_MERZ
+			}
+		}
+		random_scope_state = {
+			limit = {
+				state_region = s:STATE_MERZ
+			}
+			save_scope_as = mgn_central_asian_company_capital
+		}
+	}
+	else_if = {
+		limit = {
+			any_subject_or_below = {
+				NOT = { is_country_type = company }
+				any_scope_state = { state_region = s:STATE_MERZ }
+			}
+		}
+		random_subject_or_below = {
+			limit = {
+				NOT = { is_country_type = company }
+				any_scope_state = { state_region = s:STATE_MERZ }
+			}
+			random_scope_state = {
+				limit = { state_region = s:STATE_MERZ }
+				save_scope_as = mgn_central_asian_company_capital
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			any_scope_state = {
+				mgn_state_is_central_asian_company_region = yes
+			}
+		}
+		random_scope_state = {
+			limit = {
+				mgn_state_is_central_asian_company_region = yes
+			}
+			save_scope_as = mgn_central_asian_company_capital
+		}
+	}
+	else = {
+		random_subject_or_below = {
+			limit = {
+				NOT = { is_country_type = company }
+				any_scope_state = { mgn_state_is_central_asian_company_region = yes }
+			}
+			random_scope_state = {
+				limit = { mgn_state_is_central_asian_company_region = yes }
+				save_scope_as = mgn_central_asian_company_capital
+			}
+		}
+	}
+
+	if = {
+		limit = { NOT = { c:MCA ?= { is_country_alive = yes } } }
+		create_country = {
+			tag = MCA
+			origin = ROOT
+			state = scope:mgn_central_asian_company_capital
+			on_created = {
+				activate_law = law_type:law_mgn_heavenly_subjecthood
+				set_variable = mgn_company_cannot_form_china
+				add_primary_culture = cu:han
+				add_primary_culture = cu:western_han
+				add_primary_culture = cu:manchu
+			}
+		}
+	}
+
+	create_diplomatic_pact = {
+		country = c:MCA
+		type = chartered_company
+	}
+
+	mgn_transfer_subsubjects_of_central_asian_company_donors = yes
+
+	every_scope_state = {
+		limit = {
+			mgn_state_is_central_asian_company_region = yes
+		}
+		set_state_owner = c:MCA
+		set_state_type = incorporated
+	}
+	every_subject_or_below = {
+		limit = { NOT = { is_country_type = company } }
+		every_scope_state = {
+			limit = { mgn_state_is_central_asian_company_region = yes }
+			set_state_owner = c:MCA
+			set_state_type = incorporated
+		}
+	}
+
+	c:MCA ?= {
+		every_scope_state = {
+			limit = { owner = c:MCA }
+			set_state_type = incorporated
+		}
+		mgn_inherit_overlord_laws_except_company_specific = { OVERLORD = ROOT }
+		activate_law = law_type:law_colonial_administration
+		activate_law = law_type:law_mgn_heavenly_subjecthood
+		activate_law = law_type:law_extraction_economy
+		activate_law = law_type:law_state_religion
+		set_tax_level = low
+	}
+}
+
+mgn_integrate_company_target_states = {
+	if = {
+		limit = { c:MCC ?= THIS }
+		every_scope_state = {
+			limit = { mgn_state_is_african_company_region = yes }
+			set_state_type = incorporated
+		}
+	}
+	if = {
+		limit = { c:MDC ?= THIS }
+		every_scope_state = {
+			limit = { mgn_state_is_mainland_company_region = yes }
+			set_state_type = incorporated
+		}
+	}
+	if = {
+		limit = { c:MKC ?= THIS }
+		every_scope_state = {
+			limit = { mgn_state_is_korean_company_region = yes }
+			set_state_type = incorporated
+		}
+	}
+	if = {
+		limit = { c:MLF ?= THIS }
+		every_scope_state = {
+			limit = { mgn_state_is_lanfang_company_region = yes }
+			set_state_type = incorporated
+		}
+	}
+	if = {
+		limit = { c:MSB ?= THIS }
+		every_scope_state = {
+			limit = { mgn_state_is_siberian_company_region = yes }
+			set_state_type = incorporated
+		}
+	}
+	if = {
+		limit = { c:MCA ?= THIS }
+		every_scope_state = {
+			limit = { mgn_state_is_central_asian_company_region = yes }
+			set_state_type = incorporated
+		}
+	}
+}
+
+mgn_finish_ming_rebuild_state = {
+	mgn_create_african_chartered_company = yes
+	remove_primary_culture = cu:african_han
+	remove_primary_culture = cu:western_han
+	trigger_event = { id = mgn_route_events.40 popup = yes }
+}
+
+mgn_restore_northeastern_border = {
+	if = {
+		limit = { c:MDC ?= { is_country_alive = yes } }
+		mgn_restore_northeastern_border_to = { TAKER = c:MDC }
+	}
+	else = {
+		mgn_restore_northeastern_border_to = { TAKER = ROOT }
+	}
+}
+
+mgn_restore_northeastern_border_to = {
+	every_subject_or_below = {
+		every_scope_state = {
+			limit = {
+				OR = {
+					state_region = s:STATE_OUTER_MANCHURIA
+					state_region = s:STATE_AMUR
+				}
+			}
+			set_state_owner = $TAKER$
+		}
+	}
+}
+
+mgn_restore_northwestern_border = {
+	if = {
+		limit = { c:MDC ?= { is_country_alive = yes } }
+		mgn_restore_northwestern_border_to = { TAKER = c:MDC }
+	}
+	else = {
+		mgn_restore_northwestern_border_to = { TAKER = ROOT }
+	}
+}
+
+mgn_restore_northwestern_border_to = {
+	every_subject_or_below = {
+		every_scope_state = {
+			limit = {
+				OR = {
+					state_region = s:STATE_ALTAI
+					state_region = s:STATE_TUVA
+					state_region = s:STATE_DZUNGARIA
+					state_region = s:STATE_TIANSHAN
+					state_region = s:STATE_JETISY
+					state_region = s:STATE_URGA
+					state_region = s:STATE_ULIASTAI
+				}
+			}
+			set_state_owner = $TAKER$
+		}
+	}
+	if = {
+		limit = { mgn_has_subject_land_in_kirghizia = yes }
+		s:STATE_KIRGHIZIA = {
+			set_owner_of_provinces = {
+				country = $TAKER$
+				provinces = {
+					x01387D x080348 x0B0E9E x0BD6F5 x0FEA61 x1AF55D x36EF23
+					x384DCD x3F077A x41EF15 x5BFB6D x70C74E x71586F x7C21B1
+					x7E2912 x999094 xA20332 xA2A052 xA553A3 xB7562E xC45955
+					xC8CDED xD0F675 xED1DFF xF15FB9 xF20193 xF5C441
+				}
+			}
+		}
+	}
+}
+
+mgn_finish_qing_rebuild_state = {
+	mgn_create_african_chartered_company = yes
+	trigger_event = { id = mgn_route_events.50 popup = yes }
+}
+
+mgn_finish_mainland_company = {
+	mgn_create_mainland_chartered_company = yes
+	trigger_event = { id = mgn_route_events.140 popup = yes }
+}
+
+mgn_finish_korean_company = {
+	mgn_create_korean_chartered_company = yes
+	trigger_event = { id = mgn_route_events.141 popup = yes }
+}
+
+mgn_finish_lanfang_company = {
+	mgn_create_lanfang_chartered_company = yes
+	trigger_event = { id = mgn_route_events.144 popup = yes }
+}
+
+mgn_finish_siberian_company = {
+	mgn_create_siberian_chartered_company = yes
+	trigger_event = { id = mgn_route_events.142 popup = yes }
+}
+
+mgn_finish_central_asian_company = {
+	mgn_create_central_asian_chartered_company = yes
+	trigger_event = { id = mgn_route_events.143 popup = yes }
+}

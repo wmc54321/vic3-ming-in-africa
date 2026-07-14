@@ -2,9 +2,9 @@
 
 ## 目标
 
-给《维多利亚 3》做一个开局剧本式 mod：非洲大陆统一为一个新国家“大明”，首版主流文化采用 `han african_han western_han`，法律大体沿用大清但保留奴隶贸易、无移民控制和殖民安置；原有非洲国家开局不应存在；大明和大清、其他中国分裂国家之间应能互相打“统一中国”，且大清与大明之间无视国家地位限制，互相可用要求成为朝贡国/附庸国类战争目标。大明还应能对其他中华国家发起“开放迁徙”类战争目标，强制目标改为无移民控制。
+给《维多利亚 3》做一个开局剧本式 mod：非洲大陆统一为一个新国家“大明”，首版主流文化采用 `han african_han western_han`，法律大体沿用大清但保留奴隶贸易、无移民控制和殖民安置；原有非洲国家开局不应存在；大明和大清、其他中国分裂国家之间应能互相打“统一中国”，且大清与大明之间无视国家地位限制，互相可用要求成为朝贡国/附庸国类战争目标。中华国家还应能使用移民政策类战争目标，按发起方现行移民法要求目标弛禁迁徙、厘定迁徙章程或闭关封境。
 
-本方案按当前本机游戏目录 `D:\SteamLibrary\steamapps\common\Victoria 3` 调研，关键原版文件包括：
+本方案基于本机 Victoria 3 原版文件调研；具体安装路径写入仓库根目录的 `.env.local`，由 `VICTORIA3_GAME_ROOT` 提供。关键原版文件包括：
 
 - `game/common/country_definitions/00_countries.txt`
 - `game/common/history/countries/chi - china.txt`
@@ -30,6 +30,7 @@
 - `han`：保留正统汉文化，保证原版中国统一相关脚本天然识别大明为中国圈国家。
 - `african_han` / “非洲中华”：覆盖撒哈拉以南非洲 heritage group。
 - `western_han` / “西域中华”：覆盖北非、中东 heritage group，用来照顾埃及、马格里布、阿拉伯化北非等文化。
+- 两种桥梁文化在各自覆盖区也是本土文化：生成工具为撒哈拉以南各州添加“非洲中华”本土，为北非与中东各州添加“西域中华”本土。这样当地长期形成的中华人口不会承受非本土人口的疟疾死亡率；普通汉文化仍保持非本土，后来迁入的内地移民不会获得同样的环境适应。
 
 旧方案“主流文化仅 `han`，通过隐藏接受度修正让非洲文化达到二等公民”仍保留在本文后文作为备选方案。新推荐方案更有设定解释力，也减少全局改写所有非洲文化的需要；代价是它不再满足最初“主流文化有且仅有汉”的严格条件。
 
@@ -45,13 +46,13 @@
 - 开局不添加汉文化移民人口，不改非洲本地 pop culture，不删除非洲 homeland。
 - 添加 20 年衰减的“天朝在非洲”修正，但移除其中行政力惩罚，改为建设效率、权威、机构成本/税收能力等统治摩擦惩罚。
 - 添加 20 年衰减的强力行政正面修正“南都行台”，开局至少 `+1250%` 行政力，保证统一非洲后可玩。
-- 新增下埃及可建造的大明版紫禁城奇观“南都紫禁城”，图标、生产方式和效果复用北京紫禁城。
+- 新增下埃及可建造的大明版紫禁城奇观“应天府紫禁城”，图标、生产方式和效果复用北京紫禁城；统一后迁都南京时另有“南京紫禁城”可由玩家自行建造。
 - 新增两条大明专用公民权变体法律：开局采用“天朝万民”（`law_subjecthood` 变体，等级化帝国臣民秩序，额外加同化）；后续可改革为“华夷一统”（`law_multicultural` 变体，文化多元式接受度，额外加同化，并允许使用“弘扬国家价值”法令）。
 - 不添加“海外大明”日志，不添加二期事件包。
 - 国号/旗帜先实现动态国名和可用旗帜；默认、君主制、普通共和、军政府/独裁、法团/法西斯、神权、委员会共和和属国 canton 均已使用大明专属朱红金黄体系旗帜。
 - 非洲州、建筑、军队归属优先保证 1836 开局无错误；数值平衡留到第一轮实测后调整。
 - 埃及是非洲开局国家，但原版还持有黎凡特领土；初版将埃及在非洲外的残余领土和建筑归属转给奥斯曼，避免 `EGY` 作为开局国家残留。
-- “开放中华迁徙”战争目标允许叠加到其他外交博弈/战争目标上，以便目标更容易在战前退让。
+- 移民政策战争目标允许叠加到其他外交博弈/战争目标上；它类似移民制度版“要求政权更迭”，战败方采用战争目标持有方对应的移民政策。
 - “中华臣服”战争目标恶名上调到仍低于常规附庸化、但不至于无代价扩张的水平；首版建议固定 `8`。
 
 ## 文件结构建议
@@ -737,21 +738,22 @@ mgn_is_chinese_subjugation_country = {
 
 因此首版建议优先做 `kind = custom` 的专用中华臣服战争目标；若测试发现 custom war goal 的 AI 或结算兼容性不足，再退回复制原版外交博弈的备选方案。
 
-### 8.4 大明专用“开放中华迁徙”战争目标
+### 8.4 移民政策战争目标
 
-新增一个大明专用战争目标，让大明可以对所有其他中华国家强制执行 `law_no_migration_controls`。这相当于温和版“政权更迭”：不改目标国家政府形态、不吞地、不变成臣属，只强迫对方开放人口流动。
+新增一个中华国家间可用的移民制度版“要求政权更迭”战争目标。它不改目标国家政府形态、不吞地、不变成臣属，只强迫目标国家采用战争目标持有国当前的移民政策，即在 `law_no_migration_controls`、`law_migration_controls`、`law_closed_borders` 之间对齐。
 
 推荐命名：
 
-- 外交博弈：`dp_mgn_open_chinese_migration`
-- 战争目标：`mgn_open_chinese_migration`
-- 本地化：`开放中华迁徙` 或 `强制开放迁徙`
+- 外交博弈：`dp_mgn_open_chinese_migration` / `dp_mgn_regulate_chinese_migration` / `dp_mgn_close_chinese_migration`
+- 战争目标：`mgn_open_chinese_migration` / `mgn_regulate_chinese_migration` / `mgn_close_chinese_migration`
+- 本地化：`要求弛禁迁徙`、`要求厘定迁徙章程`、`要求闭关封境`
 
 适用范围：
 
-- 发起者必须是 `c:MGN`。
-- 目标必须是其他中华国家：大清、太平天国、中国分裂国家，或前文 `mgn_is_chinese_subjugation_country` 触发器识别到的国家。
-- 目标当前不能已经拥有 `law_no_migration_controls`。
+- 发起者必须是中华国家。
+- 目标必须是其他中华国家：大清、大明、太平天国、中国分裂国家，或前文 `mgn_is_chinese_country` 触发器识别到的国家。
+- 目标当前移民政策必须不同于发起者。
+- 大明/大清事件组另有事件专用博弈 `dp_mgn_two_chinas_open_migration` / `dp_mgn_two_chinas_regulated_migration` / `dp_mgn_two_chinas_closed_migration`，用于玩家拒绝要求后给双方添加符合各自移民政策的战争目标，且初始战争目标不产生恶名。
 
 外交博弈建议：
 
@@ -761,13 +763,13 @@ dp_mgn_open_chinese_migration = {
     texture = "gfx/interface/icons/war_goals/regime_change.dds"
 
     possible = {
-        c:MGN ?= THIS
+        mgn_is_chinese_country = yes
         aggressive_diplomatic_plays_permitted = yes
         scope:target_country = {
-            mgn_is_chinese_subjugation_country = yes
-            NOT = { c:MGN ?= THIS }
+            mgn_is_chinese_country = yes
+            NOT = { this = root }
             NOT = { is_country_type = decentralized }
-            NOT = { has_law_or_variant = law_type:law_no_migration_controls }
+            NOT = { mgn_has_same_migration_law_as = { COUNTRY = ROOT } }
         }
     }
 
@@ -793,28 +795,30 @@ mgn_open_chinese_migration = {
 
     settings = {
         require_target_be_part_of_war
+        can_add_for_other_country
         requires_interest
     }
 
     execution_priority = 20
 
-    # 比政权更迭更容易打成；不要求占领首都。
-    contestion_type = control_any_target_country_state
+    # 类似要求政权更迭，要求控制目标首都。
+    contestion_type = control_target_country_capital
     target_type = country
 
     possible = {
-        c:MGN ?= THIS
+        mgn_is_chinese_country = yes
+        has_law_or_variant = law_type:law_no_migration_controls # 另两类战争目标分别检查 law_migration_controls / law_closed_borders
         scope:target_country = {
-            mgn_is_chinese_subjugation_country = yes
-            NOT = { c:MGN ?= THIS }
-            NOT = { has_law_or_variant = law_type:law_no_migration_controls }
+            mgn_is_chinese_country = yes
+            NOT = { this = root }
+            NOT = { mgn_has_same_migration_law_as = { COUNTRY = ROOT } }
         }
     }
 
     valid = {
         scope:target_country ?= {
             NOT = { is_country_type = decentralized }
-            NOT = { has_law_or_variant = law_type:law_no_migration_controls }
+            NOT = { mgn_has_same_migration_law_as = { COUNTRY = ROOT } }
         }
     }
 
@@ -828,7 +832,7 @@ mgn_open_chinese_migration = {
 
     on_enforced = {
         scope:target_country = {
-            activate_law = law_type:law_no_migration_controls
+            activate_law = law_type:law_no_migration_controls # 另两类战争目标分别激活 law_migration_controls / law_closed_borders
         }
     }
 
@@ -842,11 +846,11 @@ mgn_open_chinese_migration = {
 
 - `ai_acceptance_max = 100`：允许 AI 在条件合适时接受外交要求。
 - `is_significant_demand = no`：让 AI 把它视为低烈度要求。
-- `maneuvers = { value = 3 }`、`infamy = { value = 1 }`：成本和威胁感低于政权更迭。
+- `maneuvers = { value = 3 }`、`infamy = { value = 1 }`：公开外交博弈仍保持低烈度；大清/大明事件拒绝后的事件专用博弈则不收初始战争目标恶名。
 - 该战争目标不使用 `validate_conflicts_war_goals_all`，允许叠加到“统一中国”“中华臣服”等更大目标上，作为低烈度附加要求。
-- `contestion_type = control_any_target_country_state`：如果真的开战，不必攻占北京或目标首都，达成难度比 `control_target_country_capital` 低。
+- `contestion_type = control_target_country_capital`：与“要求政权更迭”相同，真正开战后需要压服目标首都。
 
-如果测试发现固定 `infamy = 1` 太低，可改成 `0.5-2` 的固定值；不建议使用人口缩放，否则对大清会因为人口巨大而变得不像“轻量开放迁徙”要求。
+如果测试发现公开外交博弈的固定 `infamy = 1` 太低，可改成 `0.5-2` 的固定值；不建议使用人口缩放，否则对大清会因为人口巨大而变得不像“移民政策对齐”要求。
 
 ## 9. 势力与人物
 
@@ -985,7 +989,7 @@ c:MGN ?= {
 - 大明拥有所有 `geographic_region_africa` 陆地州。
 - 大明首都和市场首都都是 `STATE_LOWER_EGYPT`。
 - 下埃及首都城市 hub 显示为“应天府”，港口 hub 显示为“靖海港”。
-- 首都州可建造“南都紫禁城”，其效果应等同北京紫禁城；开局不直接建成。
+- 下埃及首都可建造“应天府紫禁城”，其效果应等同北京紫禁城；开局不直接建成。若后续迁都南京，南京可建造“南京紫禁城”，但不自动落成。
 - 非洲没有原有开局国家，包括集中化和非集中化国家。
 - 大明所有非洲州都是 incorporated。
 - 初版路线：大明主流文化为汉、非洲中华、西域中华；“主流文化只有汉”的旧方案只作为备选记录，不纳入初版验收。
@@ -996,7 +1000,7 @@ c:MGN ?= {
 - 大明开局利益集团显示为士绅官僚、儒学士、神机营、海外文人等自定义名称；皇帝和主要 IG 领袖不是大清原版人物。
 - 大清能对大明使用“统一中国”；大明能对大清和中国分裂国家使用“统一中国”。
 - 大清、大明和中华分裂国家之间能发起专用“中华臣服”外交博弈；结算时能按目标国家地位变成朝贡、附庸、傀儡或自治领。
-- 大明能对大清和其他中华分裂国家使用“开放中华迁徙”外交博弈；该战争目标可叠加到其他战争目标上，目标退让或战败后变为 `law_no_migration_controls`。
+- 中华国家能使用移民政策外交博弈；该战争目标可叠加到其他战争目标上，目标退让或战败后采用战争目标持有国对应的移民政策。
 - “中华臣服”恶名不应过低；初版建议固定为 `8`。
 - 开局公民权法律为大明专用“天朝万民”；后续可改革到大明专用“华夷一统”。两者均不与奴隶制互斥，前者偏臣民制度并加同化，后者偏文化多元并加同化、允许弘扬国家价值法令。
 - 非洲主流人口的文化接纳状态至少达到“二等公民”；若宗教导致总接纳偏低，调高隐藏修正。
@@ -1015,8 +1019,9 @@ c:MGN ?= {
 
 - 首都和市场首都从 `STATE_CAPE_COLONY` 改为 `STATE_LOWER_EGYPT`，理由是开普首都利益扩散过慢，影响大明与大清/中华国家互动。
 - 大明拥有下埃及时，下埃及城市 hub 使用专属名“应天府”，港口 hub 使用“靖海港”。实现上优先在 `history/countries/mgn - ming.txt` 中用 `set_hub_name` 设置；若测试发现历史效果不稳定，再改为国家/文化条件动态地名。
-- 新增 `building_mgn_forbidden_city`，本地化名“南都紫禁城”。它应在大明首都州可建造，图标、生产方式组和效果复用原版 `building_forbidden_city`，但不要复用原版建筑键，避免与北京紫禁城的 `unique = yes` 互斥或覆盖原版。
-- 初版不再开局直接放置“南都紫禁城”，只作为首都可建造奇观。这样既保留目标感，也避免开局额外白送权威/正统性/威望。
+- 新增 `building_mgn_forbidden_city`，本地化名“应天府紫禁城”。它限定在大明首都为下埃及/应天府时可建造，图标、生产方式组和效果复用原版 `building_forbidden_city`，但不要复用原版建筑键，避免与北京紫禁城的 `unique = yes` 互斥或覆盖原版。
+- 新增 `building_mgn_nanjing_forbidden_city`，本地化名“南京紫禁城”。它限定在大明首都为南京时可建造，不随迁都自动落成，必须由玩家自行建设。
+- 初版不再开局直接放置“应天府紫禁城”，只作为首都可建造奇观。这样既保留目标感，也避免开局额外白送权威/正统性/威望。
 
 ### B. 开局法律
 
@@ -1077,7 +1082,7 @@ c:MGN ?= {
 
 ### E. 战争目标平衡
 
-- “开放中华迁徙”战争目标应允许叠加到其他战争目标上。实现上去掉 `validate_conflicts_war_goals_all`，保留基本合法性检查，避免它只能单独开博弈导致目标不愿退让。
+- 移民政策战争目标应允许叠加到其他战争目标上。实现上去掉 `validate_conflicts_war_goals_all`，保留基本合法性检查，避免它只能单独开博弈导致目标不愿退让。
 - “中华臣服”恶名从 `2` 上调。首版建议固定 `8`，比正常附庸/朝贡更便宜，但不再接近免费。
 
 ### F. 动态国名实测修正
@@ -1223,6 +1228,27 @@ mgn_overseas_mandate_consolidated = {
 ```
 
 不建议日志奖励直接给移民吸引力、科技扩散或大量威望。大明已经有整合非洲的巨大底盘，奖励只需要让玩家觉得“朝廷理顺了”，不需要变成超级国家按钮。
+
+#### 12.4.1 二期日志子 plan：中明路线与重建国家
+
+新增独立设计文档 `docs/route-journal-design.md`，记录“大明/大清路线导航 + 统一后重建国家”日志链。该链条建议拆成常驻路线导航日志“两个中华”与结局后重建日志两层：
+
+- 路线导航包含独立自主、大明反攻大陆、大清武力统一、兄弟皇谊、和平统一五条方向；反攻大陆/武力统一是主动开战路线，不是夺取首都后的“宣告”按钮。
+- 大明版“重建国家”包含拥有北京、南京或下埃及/应天府后的三都迁都按钮，以及首都离开非洲后的非洲特许公司附庸国按钮。
+- 大清版“重建国家”包含统一大明后的非洲特许公司附庸国按钮。
+- 反攻大陆/武力统一路线要求发起方国际地位更高、双方无战争且无停战协议；点击后发起专用两中华统一战争，双方初始都有吞并对方的统一战争目标且不加恶名；当对方国家不存在后，再触发对应版本“海内一统/重建国家”。
+- 兄弟皇谊路线要求双方均为君主制、神权制或社会君主制之一，不要求相同政体；由国际地位更高一方点击日志按钮向对方提议附庸化，AI 默认接受，玩家可拒绝并触发附庸战争。
+- 战争/提议类按钮要求双方均不在战争中且不在外交博弈中；若双方已经直接存在臣属关系，禁用兄弟皇谊提议。
+- 移民政策要求发起方国际地位更高、双方无战争且无外交博弈、无停战协议、移民政策不同；按发起方法律显示为“要求弛禁迁徙”“要求厘定迁徙章程”或“要求闭关封境”。AI 目标国默认接受并采用发起方移民政策，玩家拒绝时触发双方互相要求采用各自移民政策的战争。
+- 和平统一路线要求双方政体同属总统共和、议会共和、委员会共和或法团国家，关系达到友善，且双方没有停战协议；由国际地位更高一方点击日志按钮发起，AI 目标国默认同意，玩家目标国可拒绝并触发双方均有统一战争目标的战争。
+- 玩家引导选项优先做成日志按钮/决议按钮，不做被动触发；纯新闻型事件或小 buff 可以例外。
+- 已调查原版“脆弱的统一”：`je_warlord_china` 失败后触发 `warlord_china_events.100`，设置 `china_shatters`，并把 `global_var:chinese_central_government` 改到 `c:BEI`；北洋动态国名也依赖 `china_shatters` 与中央政府变量。因此 `mgn_qing_counterpart_exists` 要求 `c:CHI` 存在、未 `china_shatters`、非军阀，并优先检查中央政府变量仍指向 `c:CHI`；不要要求君主制或满文化主流，否则会阻断共和/法团/移除满文化后的路线日志。
+- 非洲特许公司成立时首都优先选择宗主国拥有的下埃及/应天府；若不可用，再从宗主国实际拥有的非洲州中选择首都，不硬写下埃及作用域；`MCC` 使用 `country_type = company` 以匹配 `subject_type_chartered_company`，并覆盖原版该 subject type 以允许未认可大明/大清作为宗主；成立后拥有宗主国持有的全非洲州且全部已整合；初始固定采用殖民政府、 “天朝万民”和 `law_extraction_economy`（盘剥经济制度），除特许公司专属覆盖法律外，其他法律继承宗主国当前法律；特许公司国号采用“大明/大清非洲榷务公司”，非特许附庸改称“非洲都护府”，独立后按政体切换国号；旗帜区分特许公司章旗与独立/普通附庸旗；统一胜利方进入“重建国家”时获得 10 年 `mgn_chinese_unification_integration_drive`，提供 `state_incorporation_speed_mult = 0.25`。
+- 当前实装修订：`MCC` 已补殖民政府/主要政体旗帜覆盖，并把专属优先级提高到原版 `DEFAULT` 通用特许公司旗帜之上；基础象旗改为高对比黑金大象；“兄弟皇谊”接受事件调用统一臣属 effect，战争目标改用原生 `kind = make_tributary` 结算，并放宽普通附庸外交的目标等级验证；移民政策战争目标改为移民制度版“要求政权更迭”，按发起方法律拆成弛禁迁徙、厘定迁徙章程、闭关封境三类；“海内一统”从日志按钮移除，改为日志创建/每周自动检查触发；重建国家日志已扩展为北京、南京、北非埃及应天府三都选择，以及非洲、内地、东藩、兰芳、西伯利亚、中亚六类特许公司；西伯利亚公司范围明确排除图瓦；路线事件已统一补充有效原版 `event_icons` 与 `event_image` 背景，国家修正已补充有效 `timed_modifier_icons`，避免默认占位圆脸；并通过同名覆盖 `00_formable_countries.txt` 防止中华属特许公司成立中国。
+- 统一胜利方新增经济制度变体 `law_mgn_overseas_cooperative_ownership`，中文名定为“人民资本合作制”：前序与原版 `law_cooperative_ownership` 保持一致（无科技前提；要求委员会共和国或法团国家；排斥农奴制与妇女下田），但额外要求大明/大清胜利者本体；国内效果等同合作社所有制，移除原版 `country_foreign_collectivization_bool`，使海外投资不被合作社化。公司不自动继承该变体，宗主采用该变体时公司继承普通 `law_cooperative_ownership`。为让 UI 与实际规则完整等同普通合作社所有制，额外覆盖了原版反向引用：`law_anarchy`、`law_collectivized_agriculture` 的 `unlocking_laws`，以及城市中心艺术赞助和公司总部所有权生产方式的 `unlocking_laws` / `disallowing_laws`，均加入该变体法律。`law_collectivized_agriculture` 还额外在 `requires_law_or` 和 `can_enact` 显式承认该变体，避免人民资本合作制已经制订、且已研究 `socialism` 后仍不能制定集体化农业。备选名记录：“特色合作社所有制”“人民资本合作制”“社会主义市场合作制”“有特色的合作社所有制”“一国两制所有制”“内公外私”“内公外商”“海内合作制”“外洋通商合作制”；最终选择“人民资本合作制”，因为它兼具末期现代政治经济学感、梗味和机制暗示。
+- 人民资本合作制数值采用“有味道版”：在合作社所有制国内集体化、店主/农民投资效率、公司劳工分红基础上，加入较克制的自由放任元素：免费公司特许 `country_free_charters_add = 2`、资本家投资池效率 `state_capitalists_investment_pool_efficiency_mult = 0.25`、贷款利率 `country_loan_interest_rate_mult = -0.10`。这样表达“国内合作化 + 人民资本市场 + 外洋特许公司”，但不照搬自由放任的 `-0.25` 贷款利率，也不加入 `country_force_privatization_bool` / `country_forbid_monopoly_bool`，避免成为同时吃满合作社社会化红利和自由放任私人扩张红利的终局神法。废案记录：最低风险版仅把免费特许从 1 提到 2；完整自由放任缝合版（+2 特许、资本家 +25%、贷款 -25%、强制私有化、禁止垄断）因过强且与合作制语义冲突而放弃。
+- 具体实施 plan 已在 `docs/route-journal-design.md` 细化为触发器、脚本效果、日志条目、按钮、事件、特许公司国家、本地化和测试矩阵七步。
+- 该日志链暂列二期内容，不纳入首版实现范围。
 
 ### 12.5 二期事件与人物包
 

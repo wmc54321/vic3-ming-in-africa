@@ -46,6 +46,7 @@ STATES = {
 	}
 
 	add_homeland = cu:misri
+	add_homeland = cu:western_han
 }
 	s:STATE_HOME_COUNTIES = {
 		create_state = {
@@ -153,6 +154,7 @@ STATES = {
 
 		add_homeland = cu:mashriqi
 		add_homeland = cu:bedouin
+	add_homeland = cu:western_han
 	}
 	s:STATE_EASTERN_THRACE = {
 		create_state = {
@@ -1789,6 +1791,7 @@ STATES = {
 		}
 
 		add_homeland = cu:bedouin
+	add_homeland = cu:western_han
 	}
 	s:STATE_ABU_DHABI = {
 		create_state = {
@@ -1805,6 +1808,7 @@ STATES = {
 		}
 
 		add_homeland = cu:bedouin
+	add_homeland = cu:western_han
 	}
 	s:STATE_YEMEN = {
 		create_state = {
@@ -1830,6 +1834,7 @@ STATES = {
 
 		add_homeland = cu:bedouin
 		add_homeland = cu:yemenite
+	add_homeland = cu:western_han
 	}
 	s:STATE_HEDJAZ = {
 		create_state = {
@@ -1839,6 +1844,7 @@ STATES = {
 
 		add_homeland = cu:bedouin
 		add_homeland = cu:mashriqi
+	add_homeland = cu:western_han
 	}
 	s:STATE_TUNISIA = {
 	create_state = {
@@ -1848,6 +1854,7 @@ STATES = {
 
 	add_homeland = cu:maghrebi
 	add_homeland = cu:berber
+	add_homeland = cu:western_han
 }
 	s:STATE_GUINEA = {
 	create_state = {
@@ -1859,6 +1866,7 @@ STATES = {
 	add_homeland = cu:mande
 	add_homeland = cu:dyula
 	add_homeland = cu:kissi
+	add_homeland = cu:african_han
 }
 	s:STATE_GOLD_COAST = {
 	create_state = {
@@ -1869,6 +1877,7 @@ STATES = {
 	add_homeland = cu:akan
 	add_homeland = cu:mossi
 	add_homeland = cu:ewe
+	add_homeland = cu:african_han
 }
 	s:STATE_TOGO = {
 	create_state = {
@@ -1880,6 +1889,7 @@ STATES = {
 	add_homeland = cu:akan
 	add_homeland = cu:fon
 	add_homeland = cu:mossi
+	add_homeland = cu:african_han
 }
 	s:STATE_DAHOMEY = {
 	create_state = {
@@ -1892,6 +1902,7 @@ STATES = {
 	add_homeland = cu:fulbe
 	add_homeland = cu:akan
 	add_homeland = cu:songhai
+	add_homeland = cu:african_han
 }
 	s:STATE_GABON = {
 	create_state = {
@@ -1902,6 +1913,7 @@ STATES = {
 	add_homeland = cu:fang
 	add_homeland = cu:equatorial_bantu
 	add_homeland = cu:bakongo
+	add_homeland = cu:african_han
 }
 
 	s:STATE_BOTSWANA = {
@@ -1914,6 +1926,7 @@ STATES = {
 	add_homeland = cu:herero
 	add_homeland = cu:khoisan
 	add_homeland = cu:nguni
+	add_homeland = cu:african_han
 }
 	s:STATE_ZAMBIA = {
 	create_state = {
@@ -1924,6 +1937,7 @@ STATES = {
 	add_homeland = cu:kavango_bantu
 	add_homeland = cu:lunda
 	add_homeland = cu:chewa
+	add_homeland = cu:african_han
 }
 	s:STATE_CAMBODIA = {
 		create_state = {
@@ -1964,6 +1978,7 @@ STATES = {
 	add_homeland = cu:bassa
 	add_homeland = cu:kissi
 	add_homeland = cu:afro_american # TEMPORARY CIRCA 2022
+	add_homeland = cu:african_han
 }
 	s:STATE_EMILIA = {
 		create_state = {
@@ -2907,6 +2922,7 @@ STATES = {
 	add_homeland = cu:berber
 	add_homeland = cu:bidan
 	add_homeland = cu:haratin
+	add_homeland = cu:western_han
 }
 	s:STATE_MARRAKECH = {
 	create_state = {
@@ -2916,6 +2932,7 @@ STATES = {
 
 	add_homeland = cu:maghrebi
 	add_homeland = cu:berber
+	add_homeland = cu:western_han
 }
 	s:STATE_FEZ = {
 	create_state = {
@@ -2925,6 +2942,7 @@ STATES = {
 
 	add_homeland = cu:maghrebi
 	add_homeland = cu:berber
+	add_homeland = cu:western_han
 }
 	s:STATE_AL_RIF = {
 	create_state = {
@@ -2934,6 +2952,7 @@ STATES = {
 
 	add_homeland = cu:maghrebi
 	add_homeland = cu:berber
+	add_homeland = cu:western_han
 }
 	s:STATE_INNER_MOROCCO = {
 	create_state = {
@@ -2943,6 +2962,7 @@ STATES = {
 
 	add_homeland = cu:maghrebi
 	add_homeland = cu:berber
+	add_homeland = cu:western_han
 }
 	s:STATE_ORAN = {
 	create_state = {
@@ -2952,6 +2972,7 @@ STATES = {
 
 	add_homeland = cu:maghrebi
 	add_homeland = cu:berber
+	add_homeland = cu:western_han
 }
 	s:STATE_SAHARA = {
 	create_state = {
@@ -2961,6 +2982,7 @@ STATES = {
 
 	add_homeland = cu:berber
 	add_homeland = cu:tuareg
+	add_homeland = cu:western_han
 }
 	s:STATE_EAST_SAHARA = {
 	create_state = {
@@ -2970,6 +2992,7 @@ STATES = {
 
 	add_homeland = cu:tuareg
 	add_homeland = cu:berber
+	add_homeland = cu:western_han
 }
 	s:STATE_ALGIERS = {
 	create_state = {
@@ -2979,6 +3002,7 @@ STATES = {
 
 	add_homeland = cu:maghrebi
 	add_homeland = cu:berber
+	add_homeland = cu:western_han
 }
 	s:STATE_CONSTANTINE = {
 	create_state = {
@@ -2988,6 +3012,7 @@ STATES = {
 
 	add_homeland = cu:maghrebi
 	add_homeland = cu:berber
+	add_homeland = cu:western_han
 }
 	s:STATE_TRIPOLI = {
 	create_state = {
@@ -2998,6 +3023,7 @@ STATES = {
 	add_homeland = cu:maghrebi
 	add_homeland = cu:bedouin
 	add_homeland = cu:berber
+	add_homeland = cu:western_han
 }
 	s:STATE_LIBYAN_DESERT = {
 	create_state = {
@@ -3008,6 +3034,7 @@ STATES = {
 	add_homeland = cu:teda
 	add_homeland = cu:tuareg
 	add_homeland = cu:bedouin
+	add_homeland = cu:western_han
 }
 	s:STATE_LIBYA = {
 	create_state = {
@@ -3018,6 +3045,7 @@ STATES = {
 	add_homeland = cu:maghrebi
 	add_homeland = cu:bedouin
 	add_homeland = cu:teda
+	add_homeland = cu:western_han
 }
 	s:STATE_UPPER_EGYPT = {
 	create_state = {
@@ -3028,6 +3056,7 @@ STATES = {
 	add_homeland = cu:misri
 	add_homeland = cu:bedouin
 	add_homeland = cu:beja
+	add_homeland = cu:western_han
 }
 	s:STATE_EGYPTIAN_DESERT = {
 	create_state = {
@@ -3037,6 +3066,7 @@ STATES = {
 
 	add_homeland = cu:misri
 	add_homeland = cu:bedouin
+	add_homeland = cu:western_han
 }
 	s:STATE_MIDDLE_EGYPT = {
 	create_state = {
@@ -3045,6 +3075,7 @@ STATES = {
 	}
 
 	add_homeland = cu:misri
+	add_homeland = cu:western_han
 }
 	s:STATE_MATRUH = {
 	create_state = {
@@ -3055,6 +3086,7 @@ STATES = {
 	add_homeland = cu:misri
 	add_homeland = cu:bedouin
 	add_homeland = cu:berber
+	add_homeland = cu:western_han
 }
 	s:STATE_SINAI = {
 	create_state = {
@@ -3063,6 +3095,7 @@ STATES = {
 	}
 
 	add_homeland = cu:misri
+	add_homeland = cu:western_han
 }
 	s:STATE_DONGOLA = {
 	create_state = {
@@ -3073,6 +3106,7 @@ STATES = {
 	add_homeland = cu:bedouin
 	add_homeland = cu:sudanese
 	add_homeland = cu:beja
+	add_homeland = cu:western_han
 }
 	s:STATE_KORDOFAN = {
 	create_state = {
@@ -3084,6 +3118,7 @@ STATES = {
 	add_homeland = cu:sudanese
 	add_homeland = cu:dinka
 	add_homeland = cu:nuba
+	add_homeland = cu:western_han
 }
 	s:STATE_DARFUR = {
 	create_state = {
@@ -3093,6 +3128,7 @@ STATES = {
 
 	add_homeland = cu:fur
 	add_homeland = cu:dinka
+	add_homeland = cu:western_han
 }
 	s:STATE_BLUE_NILE = {
 	create_state = {
@@ -3105,6 +3141,7 @@ STATES = {
 	add_homeland = cu:dinka
 	add_homeland = cu:nuer
 	add_homeland = cu:nuba
+	add_homeland = cu:western_han
 }
 	s:STATE_NEW_BRUNSWICK = {
 		create_state = {
@@ -3130,6 +3167,7 @@ STATES = {
 
 	add_homeland = cu:bakongo
 	add_homeland = cu:kavango_bantu
+	add_homeland = cu:african_han
 }
 	s:STATE_SOUTH_ANGOLA = {
 	create_state = {
@@ -3139,6 +3177,7 @@ STATES = {
 
 	add_homeland = cu:ovimbundu
 	add_homeland = cu:kavango_bantu
+	add_homeland = cu:african_han
 }
 	s:STATE_EAST_ANGOLA = {
 	create_state = {
@@ -3149,6 +3188,7 @@ STATES = {
 	add_homeland = cu:ovimbundu
 	add_homeland = cu:lunda
 	add_homeland = cu:kavango_bantu
+	add_homeland = cu:african_han
 }
 	s:STATE_INDIAN_OCEAN_TERRITORY = {
 		create_state = {
@@ -3173,6 +3213,7 @@ STATES = {
 	add_homeland = cu:tonga
 	add_homeland = cu:nguni
 	add_homeland = cu:shona
+	add_homeland = cu:african_han
 }
 	s:STATE_MOCAMBIQUE = {
 	create_state = {
@@ -3186,6 +3227,7 @@ STATES = {
 	add_homeland = cu:yao
 	add_homeland = cu:lomwe
 	add_homeland = cu:lacustrine_bantu
+	add_homeland = cu:african_han
 }
 	s:STATE_ZAMBEZIA = {
 	create_state = {
@@ -3196,6 +3238,7 @@ STATES = {
 	add_homeland = cu:sena
 	add_homeland = cu:shona
 	add_homeland = cu:lacustrine_bantu
+	add_homeland = cu:african_han
 }
 	s:STATE_EASTERN_CAPE = {
 	create_state = {
@@ -3205,6 +3248,7 @@ STATES = {
 
 	add_homeland = cu:xhosa
 	add_homeland = cu:khoisan
+	add_homeland = cu:african_han
 }
 	s:STATE_CAPE_COLONY = {
 	create_state = {
@@ -3215,6 +3259,7 @@ STATES = {
 	add_homeland = cu:boer
 	add_homeland = cu:sotho
 	add_homeland = cu:khoisan
+	add_homeland = cu:african_han
 }
 	s:STATE_NORTHERN_CAPE = {
 	create_state = {
@@ -3227,6 +3272,7 @@ STATES = {
 	add_homeland = cu:sotho
 	add_homeland = cu:khoisan
 	add_homeland = cu:tswana
+	add_homeland = cu:african_han
 }
 	s:STATE_WALES = {
 		create_state = {
@@ -4550,6 +4596,7 @@ STATES = {
 	}
 
 	add_homeland = cu:malagasy
+	add_homeland = cu:african_han
 }
 	s:STATE_NORTH_MADAGASCAR = {
 	create_state = {
@@ -4558,6 +4605,7 @@ STATES = {
 	}
 
 	add_homeland = cu:malagasy
+	add_homeland = cu:african_han
 }
 	s:STATE_OROMIA = {
 	create_state = {
@@ -4568,6 +4616,7 @@ STATES = {
 	add_homeland = cu:oromo
 	add_homeland = cu:amhara
 	add_homeland = cu:somali
+	add_homeland = cu:african_han
 }
 	s:STATE_AMHARA = {
 	create_state = {
@@ -4578,6 +4627,7 @@ STATES = {
 	add_homeland = cu:oromo
 	add_homeland = cu:amhara
 	add_homeland = cu:sidama
+	add_homeland = cu:african_han
 }
 	s:STATE_GONDER = {
 	create_state = {
@@ -4589,6 +4639,7 @@ STATES = {
 	add_homeland = cu:amhara
 	add_homeland = cu:tigray
 	add_homeland = cu:afar
+	add_homeland = cu:african_han
 }
 	s:STATE_KAZEMBE = {
 	create_state = {
@@ -4599,6 +4650,7 @@ STATES = {
 	add_homeland = cu:lunda
 	add_homeland = cu:chewa
 	add_homeland = cu:lacustrine_bantu
+	add_homeland = cu:african_han
 }
 	s:STATE_ERITREA = {
 	create_state = {
@@ -4608,6 +4660,7 @@ STATES = {
 
 	add_homeland = cu:tigray
 	add_homeland = cu:afar
+	add_homeland = cu:western_han
 }
 	s:STATE_SOMALILAND = {
 	create_state = {
@@ -4616,6 +4669,7 @@ STATES = {
 	}
 
 	add_homeland = cu:somali
+	add_homeland = cu:african_han
 }
 	s:STATE_NAMAQUALAND = {
 	create_state = {
@@ -4625,6 +4679,7 @@ STATES = {
 
 	add_homeland = cu:khoisan
 	add_homeland = cu:tswana
+	add_homeland = cu:african_han
 }
 	s:STATE_HEREROLAND = {
 	create_state = {
@@ -4635,6 +4690,7 @@ STATES = {
 	add_homeland = cu:herero
 	add_homeland = cu:khoisan
 	add_homeland = cu:kavango_bantu
+	add_homeland = cu:african_han
 }
 	s:STATE_ZAMBEZI = {
 	create_state = {
@@ -4645,6 +4701,7 @@ STATES = {
 	add_homeland = cu:shona
 	add_homeland = cu:nguni
 	add_homeland = cu:lacustrine_bantu
+	add_homeland = cu:african_han
 }
 	s:STATE_KENYA = {
 	create_state = {
@@ -4657,6 +4714,7 @@ STATES = {
 	add_homeland = cu:lacustrine_bantu
 	add_homeland = cu:swahili
 	add_homeland = cu:maasai
+	add_homeland = cu:african_han
 }
 	s:STATE_RIFT_VALLEY = {
 	create_state = {
@@ -4668,6 +4726,7 @@ STATES = {
 	add_homeland = cu:nilotic
 	add_homeland = cu:maasai
 	add_homeland = cu:kikuyu
+	add_homeland = cu:african_han
 }
 	s:STATE_CHAD = {
 	create_state = {
@@ -4679,6 +4738,7 @@ STATES = {
 	add_homeland = cu:bedouin
 	add_homeland = cu:fur
 	add_homeland = cu:equatorial_bantu
+	add_homeland = cu:western_han
 }
 	s:STATE_WADDAI = {
 	create_state = {
@@ -4690,6 +4750,7 @@ STATES = {
 	add_homeland = cu:sara
 	add_homeland = cu:baguirmi
 	add_homeland = cu:equatorial_bantu
+	add_homeland = cu:african_han
 }
 	s:STATE_LINDI = {
 	create_state = {
@@ -4702,6 +4763,7 @@ STATES = {
 	add_homeland = cu:nyamwezi
 	add_homeland = cu:lacustrine_bantu
 	add_homeland = cu:chewa
+	add_homeland = cu:african_han
 }
 	s:STATE_ZANZIBAR = {
 	create_state = {
@@ -4712,6 +4774,7 @@ STATES = {
 	add_homeland = cu:lacustrine_bantu
 	add_homeland = cu:swahili
 	add_homeland = cu:sukuma
+	add_homeland = cu:african_han
 }
 	s:STATE_TANGANYIKA = {
 	create_state = {
@@ -4726,6 +4789,7 @@ STATES = {
 	add_homeland = cu:sukuma
 	add_homeland = cu:maasai
 	add_homeland = cu:luo
+	add_homeland = cu:african_han
 }
 	s:STATE_MAURITANIA = {
 	create_state = {
@@ -4735,6 +4799,7 @@ STATES = {
 
 	add_homeland = cu:bidan
 	add_homeland = cu:haratin
+	add_homeland = cu:western_han
 }
 	s:STATE_INNER_MAURITANIA = {
 	create_state = {
@@ -4745,6 +4810,7 @@ STATES = {
 	add_homeland = cu:bidan
 	add_homeland = cu:mande
 	add_homeland = cu:haratin
+	add_homeland = cu:western_han
 }
 	s:STATE_EASTERN_MALI = {
 	create_state = {
@@ -4756,6 +4822,7 @@ STATES = {
 	add_homeland = cu:fulbe
 	add_homeland = cu:mande
 	add_homeland = cu:senufo
+	add_homeland = cu:western_han
 }
 	s:STATE_WESTERN_MALI = {
 	create_state = {
@@ -4766,6 +4833,7 @@ STATES = {
 	add_homeland = cu:bambara
 	add_homeland = cu:fulbe
 	add_homeland = cu:mande
+	add_homeland = cu:western_han
 }
 	s:STATE_TIMBUKTU = {
 	create_state = {
@@ -4777,6 +4845,7 @@ STATES = {
 	add_homeland = cu:songhai
 	add_homeland = cu:fulbe
 	add_homeland = cu:mande
+	add_homeland = cu:western_han
 }
 	s:STATE_HAUSALAND = {
 	create_state = {
@@ -4789,6 +4858,7 @@ STATES = {
 	add_homeland = cu:yoruba
 	add_homeland = cu:equatorial_bantu
 	add_homeland = cu:songhai
+	add_homeland = cu:african_han
 }
 	s:STATE_BENIN = {
 	create_state = {
@@ -4801,6 +4871,7 @@ STATES = {
 	add_homeland = cu:ibo
 	add_homeland = cu:edo
 	add_homeland = cu:fulbe
+	add_homeland = cu:african_han
 }
 	s:STATE_YORUBA_STATES = {
 	create_state = {
@@ -4810,6 +4881,7 @@ STATES = {
 
 	add_homeland = cu:yoruba
 	add_homeland = cu:fon
+	add_homeland = cu:african_han
 }
 	s:STATE_NIGER_DELTA = {
 	create_state = {
@@ -4820,6 +4892,7 @@ STATES = {
 	add_homeland = cu:ibo
 	add_homeland = cu:ibibio
 	add_homeland = cu:equatorial_bantu
+	add_homeland = cu:african_han
 }
 	s:STATE_OUTER_HAUSALAND = {
 	create_state = {
@@ -4834,6 +4907,7 @@ STATES = {
 	add_homeland = cu:tuareg
 	add_homeland = cu:dyula
 	add_homeland = cu:songhai
+	add_homeland = cu:african_han
 }
 	s:STATE_NIGER = {
 	create_state = {
@@ -4844,6 +4918,7 @@ STATES = {
 	add_homeland = cu:hausa
 	add_homeland = cu:tuareg
 	add_homeland = cu:fulbe
+	add_homeland = cu:western_han
 }
 	s:STATE_BORNU = {
 	create_state = {
@@ -4853,6 +4928,7 @@ STATES = {
 
 	add_homeland = cu:kanuri
 	add_homeland = cu:fulbe
+	add_homeland = cu:african_han
 }
 	s:STATE_NIGERIA = {
 	create_state = {
@@ -4864,6 +4940,7 @@ STATES = {
 	add_homeland = cu:tiv
 	add_homeland = cu:equatorial_bantu
 	add_homeland = cu:fulbe
+	add_homeland = cu:african_han
 }
 	s:STATE_EAST_HAUSALAND = {
 	create_state = {
@@ -4873,6 +4950,7 @@ STATES = {
 
 	add_homeland = cu:hausa
 	add_homeland = cu:fulbe
+	add_homeland = cu:african_han
 }
 	s:STATE_KATANGA = {
 	create_state = {
@@ -4883,6 +4961,7 @@ STATES = {
 	add_homeland = cu:lunda
 	add_homeland = cu:luba
 	add_homeland = cu:fluvian_bantu
+	add_homeland = cu:african_han
 }
 	s:STATE_CONGO_ORIENTALE = {
 	create_state = {
@@ -4893,6 +4972,7 @@ STATES = {
 	add_homeland = cu:azande
 	add_homeland = cu:luba
 	add_homeland = cu:fluvian_bantu
+	add_homeland = cu:african_han
 }
 	s:STATE_KASAI = {
 	create_state = {
@@ -4902,6 +4982,7 @@ STATES = {
 
 	add_homeland = cu:luba
 	add_homeland = cu:fluvian_bantu
+	add_homeland = cu:african_han
 }
 	s:STATE_BAS_CONGO = {
 	create_state = {
@@ -4912,6 +4993,7 @@ STATES = {
 	add_homeland = cu:bakongo
 	add_homeland = cu:lunda
 	add_homeland = cu:fluvian_bantu
+	add_homeland = cu:african_han
 }
 	s:STATE_EQUATEUR = {
 	create_state = {
@@ -4921,6 +5003,7 @@ STATES = {
 
 	add_homeland = cu:mongo
 	add_homeland = cu:fluvian_bantu
+	add_homeland = cu:african_han
 }
 	s:STATE_UGANDA = {
 	create_state = {
@@ -4931,6 +5014,7 @@ STATES = {
 	add_homeland = cu:baganda
 	add_homeland = cu:lacustrine_bantu
 	add_homeland = cu:luo
+	add_homeland = cu:african_han
 }
 	s:STATE_EQUATORIA = {
 	create_state = {
@@ -4945,6 +5029,7 @@ STATES = {
 	add_homeland = cu:nilotic
 	add_homeland = cu:fur
 	add_homeland = cu:nuba
+	add_homeland = cu:african_han
 }
 	s:STATE_VOLTA = {
 	create_state = {
@@ -4957,6 +5042,7 @@ STATES = {
 	add_homeland = cu:bambara
 	add_homeland = cu:mande
 	add_homeland = cu:dyula
+	add_homeland = cu:african_han
 }
 	s:STATE_NORTH_CAMEROON = {
 	create_state = {
@@ -4966,6 +5052,7 @@ STATES = {
 
 	add_homeland = cu:fulbe
 	add_homeland = cu:equatorial_bantu
+	add_homeland = cu:african_han
 }
 	s:STATE_SOUTH_CAMEROON = {
 	create_state = {
@@ -4975,6 +5062,7 @@ STATES = {
 
 	add_homeland = cu:fang
 	add_homeland = cu:equatorial_bantu
+	add_homeland = cu:african_han
 }
 	s:STATE_UBANGI_SHARI = {
 	create_state = {
@@ -4985,6 +5073,7 @@ STATES = {
 	add_homeland = cu:azande
 	add_homeland = cu:sara
 	add_homeland = cu:equatorial_bantu
+	add_homeland = cu:african_han
 }
 	s:STATE_CONGO = {
 	create_state = {
@@ -4994,6 +5083,7 @@ STATES = {
 
 	add_homeland = cu:bakongo
 	add_homeland = cu:fluvian_bantu
+	add_homeland = cu:african_han
 }
 	s:STATE_IVORY_COAST = {
 	create_state = {
@@ -5004,6 +5094,7 @@ STATES = {
 	add_homeland = cu:akan
 	add_homeland = cu:senufo
 	add_homeland = cu:dyula
+	add_homeland = cu:african_han
 }
 	s:STATE_WINDWARD_COAST = {
 	create_state = {
@@ -5015,6 +5106,7 @@ STATES = {
 	add_homeland = cu:mande
 	add_homeland = cu:akan
 	add_homeland = cu:dyula
+	add_homeland = cu:african_han
 }
 	s:STATE_SENEGAL = {
 	create_state = {
@@ -5026,6 +5118,7 @@ STATES = {
 	add_homeland = cu:wolof
 	add_homeland = cu:mande
 	add_homeland = cu:dyula
+	add_homeland = cu:african_han
 }
 	s:STATE_SIERRA_LEONE = {
 	create_state = {
@@ -5037,6 +5130,7 @@ STATES = {
 	add_homeland = cu:akan
 	add_homeland = cu:kissi
 	add_homeland = cu:fulbe
+	add_homeland = cu:african_han
 }
 	s:STATE_ZULULAND = {
 	create_state = {
@@ -5046,6 +5140,7 @@ STATES = {
 
 	add_homeland = cu:sotho
 	add_homeland = cu:zulu
+	add_homeland = cu:african_han
 }
 	# Transorangia
 	s:STATE_VRYSTAAT = {
@@ -5058,6 +5153,7 @@ STATES = {
 	add_homeland = cu:sotho
 	add_homeland = cu:nguni
 	add_homeland = cu:boer
+	add_homeland = cu:african_han
 }
 	s:STATE_TRANSVAAL = {
 	create_state = {
@@ -5070,6 +5166,7 @@ STATES = {
 	add_homeland = cu:tswana
 	add_homeland = cu:zulu
 	add_homeland = cu:boer
+	add_homeland = cu:african_han
 }
 	s:STATE_EASTERN_NEW_GUINEA = {
 		create_state = {
@@ -5184,6 +5281,7 @@ STATES = {
 		}
 
 		add_homeland = cu:bedouin
+	add_homeland = cu:western_han
 	}
 	s:STATE_NEJD = {
 		create_state = {
@@ -5192,6 +5290,7 @@ STATES = {
 		}
 
 		add_homeland = cu:bedouin
+	add_homeland = cu:western_han
 	}
 	s:STATE_TRANSJORDAN = {
 		create_state = {
@@ -5202,6 +5301,7 @@ STATES = {
 		add_homeland = cu:mashriqi
 		add_homeland = cu:bedouin
 		add_claim = c:TUR
+	add_homeland = cu:western_han
 	}
 	s:STATE_PALESTINE = {
 		create_state = {
@@ -5211,6 +5311,7 @@ STATES = {
 
 		add_homeland = cu:mashriqi
 		add_claim = c:TUR
+	add_homeland = cu:western_han
 	}
 	s:STATE_LEBANON = {
 		create_state = {
@@ -5220,6 +5321,7 @@ STATES = {
 
 		add_homeland = cu:mashriqi
 		add_claim = c:TUR
+	add_homeland = cu:western_han
 	}
 	s:STATE_SYRIA = {
 		create_state = {
@@ -5229,6 +5331,7 @@ STATES = {
 
 		add_homeland = cu:mashriqi
 		add_claim = c:TUR
+	add_homeland = cu:western_han
 	}
 	s:STATE_ALEPPO = {
 		create_state = {
@@ -5240,6 +5343,7 @@ STATES = {
 		add_homeland = cu:turkish
 		add_homeland = cu:kurdish
 		add_claim = c:TUR
+	add_homeland = cu:western_han
 	}
 	s:STATE_BAGHDAD = {
 		create_state = {
@@ -5249,6 +5353,7 @@ STATES = {
 
 		add_homeland = cu:mashriqi
 		add_homeland = cu:bedouin
+	add_homeland = cu:western_han
 	}
 	s:STATE_MOSUL = {
 		create_state = {
@@ -5260,6 +5365,7 @@ STATES = {
 		add_homeland = cu:turkish
 		add_homeland = cu:kurdish
 		add_homeland = cu:assyrian
+	add_homeland = cu:western_han
 	}
 	s:STATE_LARISTAN = {
 		create_state = {
@@ -5279,6 +5385,7 @@ STATES = {
 
 		add_homeland = cu:persian
 		add_homeland = cu:bedouin
+	add_homeland = cu:western_han
 	}
 
 	s:STATE_KERMAN = {
@@ -5288,6 +5395,7 @@ STATES = {
 		}
 
 		add_homeland = cu:persian
+	add_homeland = cu:western_han
 	}
 
 	s:STATE_SISTAN = {
@@ -5310,6 +5418,7 @@ STATES = {
 		add_claim = c:PER
 		add_homeland = cu:persian
 		add_homeland = cu:baluchi
+	add_homeland = cu:western_han
 	}
 	s:STATE_KHORASAN = {
 		create_state = {
@@ -5320,6 +5429,7 @@ STATES = {
 		add_homeland = cu:persian
 		add_homeland = cu:turkmen
 		add_homeland = cu:kurdish
+	add_homeland = cu:western_han
 	}
 	s:STATE_KHUZESTAN = {
 		create_state = {
@@ -5330,6 +5440,7 @@ STATES = {
 		add_homeland = cu:persian
 		add_homeland = cu:mashriqi
 		add_homeland = cu:luri
+	add_homeland = cu:western_han
 	}
 	s:STATE_FARS = {
 		create_state = {
@@ -5339,6 +5450,7 @@ STATES = {
 
 		add_homeland = cu:persian
 		add_homeland = cu:luri
+	add_homeland = cu:western_han
 	}
 	s:STATE_ISFAHAN = {
 		create_state = {
@@ -5347,6 +5459,7 @@ STATES = {
 		}
 
 		add_homeland = cu:persian
+	add_homeland = cu:western_han
 	}
 	s:STATE_MAZANDARAN = {
 		create_state = {
@@ -5357,6 +5470,7 @@ STATES = {
 		add_homeland = cu:mazanderani
 		add_homeland = cu:persian
 		add_homeland = cu:turkmen
+	add_homeland = cu:western_han
 	}
 	s:STATE_IRAKAJEMI = {
 		create_state = {
@@ -5365,6 +5479,7 @@ STATES = {
 		}
 
 		add_homeland = cu:persian
+	add_homeland = cu:western_han
 	}
 	s:STATE_SEMNAN = {
 		create_state = {
@@ -5373,6 +5488,7 @@ STATES = {
 		}
 
 		add_homeland = cu:persian
+	add_homeland = cu:western_han
 	}
 	s:STATE_TABRIZ = {
 		create_state = {
@@ -5383,6 +5499,7 @@ STATES = {
 		add_homeland = cu:persian
 		add_homeland = cu:armenian
 		add_homeland = cu:azerbaijani
+	add_homeland = cu:western_han
 	}
 
 	s:STATE_URMIA = {
@@ -5396,6 +5513,7 @@ STATES = {
 		add_homeland = cu:azerbaijani
 		add_homeland = cu:armenian
 		add_homeland = cu:assyrian
+	add_homeland = cu:western_han
 	}
 	s:STATE_PERSIAN_KURDISTAN = {
 		create_state = {
@@ -5405,6 +5523,7 @@ STATES = {
 
 		add_homeland = cu:persian
 		add_homeland = cu:kurdish
+	add_homeland = cu:western_han
 	}
 	s:STATE_LURISTAN = {
 		create_state = {
@@ -5414,6 +5533,7 @@ STATES = {
 
 		add_homeland = cu:persian
 		add_homeland = cu:luri
+	add_homeland = cu:western_han
 	}
 	s:STATE_ARMENIA = {
 		create_state = {
@@ -5519,6 +5639,7 @@ STATES = {
 
 		add_homeland = cu:turkish
 		add_homeland = cu:greek
+	add_homeland = cu:western_han
 	}
 	s:STATE_AYDIN = {
 		create_state = {
@@ -5528,6 +5649,7 @@ STATES = {
 
 		add_homeland = cu:turkish
 		add_homeland = cu:greek
+	add_homeland = cu:western_han
 	}
 	s:STATE_KONYA = {
 		create_state = {
@@ -5536,6 +5658,7 @@ STATES = {
 		}
 
 		add_homeland = cu:turkish
+	add_homeland = cu:western_han
 	}
 	s:STATE_KASTAMONU = {
 		create_state = {
@@ -5544,6 +5667,7 @@ STATES = {
 		}
 
 		add_homeland = cu:turkish
+	add_homeland = cu:western_han
 	}
 	s:STATE_CYPRUS = {
 		create_state = {
@@ -5553,6 +5677,7 @@ STATES = {
 
 		add_homeland = cu:turkish
 		add_homeland = cu:greek
+	add_homeland = cu:western_han
 	}
 	s:STATE_TRABZON = {
 		create_state = {
@@ -5563,6 +5688,7 @@ STATES = {
 		add_homeland = cu:turkish
 		add_homeland = cu:armenian
 		add_homeland = cu:greek
+	add_homeland = cu:western_han
 	}
 	s:STATE_ERZURUM = {
 		create_state = {
@@ -5573,6 +5699,7 @@ STATES = {
 		add_homeland = cu:turkish
 		add_homeland = cu:armenian
 		add_homeland = cu:kurdish
+	add_homeland = cu:western_han
 	}
 	s:STATE_KARS = {
 		create_state = {
@@ -5588,6 +5715,7 @@ STATES = {
 		add_homeland = cu:armenian
 		add_homeland = cu:kurdish
 		add_homeland = cu:georgian
+	add_homeland = cu:western_han
 	}
 	s:STATE_CRETE = {
 		create_state = {
@@ -5623,6 +5751,7 @@ STATES = {
 		}
 
 		add_homeland = cu:turkish
+	add_homeland = cu:western_han
 	}
 	s:STATE_KANDAHAR = {
 		create_state = {
@@ -5756,6 +5885,7 @@ STATES = {
 		add_homeland = cu:kurdish
 		add_homeland = cu:mashriqi
 		add_homeland = cu:assyrian
+	add_homeland = cu:western_han
 	}
 	s:STATE_BANGKOK = {
 		create_state = {
@@ -7668,6 +7798,7 @@ STATES = {
 		add_homeland = cu:kurdish
 
 		add_claim = c:TUR
+	add_homeland = cu:western_han
 	}
 	s:STATE_DEIR_EZ_ZOR = {
 		create_state = {
@@ -7678,6 +7809,7 @@ STATES = {
 		add_homeland = cu:mashriqi
 		add_homeland = cu:kurdish
 		add_homeland = cu:assyrian
+	add_homeland = cu:western_han
 	}
 	s:STATE_BAJA_CALIFORNIA = {
 		create_state = {

@@ -1,9 +1,36 @@
 param(
-    [string]$GameRoot = "D:\SteamLibrary\steamapps\common\Victoria 3\game",
+    [string]$GameRoot,
     [string]$ModRoot = (Join-Path $PSScriptRoot "..\mod\ming_in_africa")
 )
 
 $ErrorActionPreference = "Stop"
+
+function Get-LocalEnvValue {
+    param(
+        [string]$Name,
+        [string]$EnvPath = (Join-Path $PSScriptRoot "..\.env.local")
+    )
+
+    if (-not (Test-Path -LiteralPath $EnvPath)) { return $null }
+
+    foreach ($line in Get-Content -LiteralPath $EnvPath) {
+        $trimmed = $line.Trim()
+        if ($trimmed -eq "" -or $trimmed.StartsWith("#")) { continue }
+        if ($trimmed -match "^\s*$([regex]::Escape($Name))\s*=\s*(.+?)\s*$") {
+            return $Matches[1].Trim().Trim('"').Trim("'")
+        }
+    }
+
+    return $null
+}
+
+if (-not $GameRoot) {
+    $GameRoot = Get-LocalEnvValue -Name "VICTORIA3_GAME_ROOT"
+}
+
+if (-not $GameRoot) {
+    throw "Game root not set. Pass -GameRoot or create .env.local with VICTORIA3_GAME_ROOT=<Victoria 3 game directory>."
+}
 
 function Get-BalancedBlockEnd {
     param(
@@ -24,16 +51,14 @@ function Get-BalancedBlockEnd {
     throw "Unbalanced block starting at index $OpenBraceIndex"
 }
 
-function Get-AfricaStates {
-    param([string]$GameRoot)
-
-    $stateRegionFiles = @(
-        "map_data\state_regions\03_north_africa.txt",
-        "map_data\state_regions\04_subsaharan_africa.txt"
+function Get-StatesFromRegionFiles {
+    param(
+        [string]$GameRoot,
+        [string[]]$Files
     )
 
-    $states = foreach ($file in $stateRegionFiles) {
-        $path = Join-Path $GameRoot $file
+    $states = foreach ($file in $Files) {
+        $path = Join-Path $GameRoot "map_data\state_regions\$file"
         $text = Get-Content -LiteralPath $path -Raw
         [regex]::Matches($text, "(?m)^STATE_[A-Z0-9_]+(?=\s*=\s*\{)") | ForEach-Object { $_.Value }
     }
@@ -46,7 +71,9 @@ function Convert-StateHistory {
     param(
         [string]$GameRoot,
         [string]$ModRoot,
-        [System.Collections.Generic.HashSet[string]]$AfricaStates
+        [System.Collections.Generic.HashSet[string]]$AfricaStates,
+        [System.Collections.Generic.HashSet[string]]$AfricanHanHomelands,
+        [System.Collections.Generic.HashSet[string]]$WesternHanHomelands
     )
 
     $sourcePath = Join-Path $GameRoot "common\history\states\00_states.txt"
@@ -66,8 +93,8 @@ function Convert-StateHistory {
 
         [void]$out.Append($text.Substring($cursor, $match.Index - $cursor))
 
+        $block = $text.Substring($match.Index, $blockEndExclusive - $match.Index)
         if ($AfricaStates.Contains($state)) {
-            $block = $text.Substring($match.Index, $blockEndExclusive - $match.Index)
             $provinceMatches = [regex]::Matches($block, "owned_provinces\s*=\s*\{([^}]*)\}", "Singleline")
             $provinceSet = [System.Collections.Generic.List[string]]::new()
             $seen = [System.Collections.Generic.HashSet[string]]::new()
@@ -89,6 +116,12 @@ function Convert-StateHistory {
                     $extraLines.Add($line.Trim())
                 }
             }
+            if ($AfricanHanHomelands.Contains($state)) {
+                $extraLines.Add("add_homeland = cu:african_han")
+            }
+            if ($WesternHanHomelands.Contains($state)) {
+                $extraLines.Add("add_homeland = cu:western_han")
+            }
 
             [void]$out.Append("s:$state = {`r`n")
             [void]$out.Append("`tcreate_state = {`r`n")
@@ -104,7 +137,12 @@ function Convert-StateHistory {
             [void]$out.Append("}")
         }
         else {
-            [void]$out.Append($text.Substring($match.Index, $blockEndExclusive - $match.Index))
+            if ($WesternHanHomelands.Contains($state)) {
+                $closingBrace = $block.LastIndexOf("}")
+                $insertAt = $block.LastIndexOf("`n", $closingBrace) + 1
+                $block = $block.Insert($insertAt, "`tadd_homeland = cu:western_han`r`n")
+            }
+            [void]$out.Append($block)
         }
 
         $cursor = $blockEndExclusive
@@ -186,8 +224,16 @@ function Convert-EgyptMiddleEastPops {
     Set-Content -LiteralPath $targetPath -Value $text -Encoding UTF8
 }
 
-$africaStates = Get-AfricaStates -GameRoot $GameRoot
-Convert-StateHistory -GameRoot $GameRoot -ModRoot $ModRoot -AfricaStates $africaStates
+$northAfricaStates = Get-StatesFromRegionFiles -GameRoot $GameRoot -Files @("03_north_africa.txt")
+$subSaharanAfricaStates = Get-StatesFromRegionFiles -GameRoot $GameRoot -Files @("04_subsaharan_africa.txt")
+$middleEastStates = Get-StatesFromRegionFiles -GameRoot $GameRoot -Files @("08_middle_east.txt")
+$africaStates = [System.Collections.Generic.HashSet[string]]::new()
+foreach ($state in $northAfricaStates) { [void]$africaStates.Add($state) }
+foreach ($state in $subSaharanAfricaStates) { [void]$africaStates.Add($state) }
+$westernHanHomelands = [System.Collections.Generic.HashSet[string]]::new()
+foreach ($state in $northAfricaStates) { [void]$westernHanHomelands.Add($state) }
+foreach ($state in $middleEastStates) { [void]$westernHanHomelands.Add($state) }
+Convert-StateHistory -GameRoot $GameRoot -ModRoot $ModRoot -AfricaStates $africaStates -AfricanHanHomelands $subSaharanAfricaStates -WesternHanHomelands $westernHanHomelands
 Convert-BuildingHistory -GameRoot $GameRoot -ModRoot $ModRoot -Files @(
     "03_north_africa.txt",
     "04_subsaharan_africa.txt"
@@ -200,6 +246,8 @@ Convert-EgyptMiddleEastBuildings -GameRoot $GameRoot -ModRoot $ModRoot
 Convert-EgyptMiddleEastPops -GameRoot $GameRoot -ModRoot $ModRoot
 
 Write-Host "Generated Africa state history for $($africaStates.Count) states."
+Write-Host "Added African Han homelands to $($subSaharanAfricaStates.Count) Sub-Saharan states."
+Write-Host "Added Western Han homelands to $($westernHanHomelands.Count) North African and Middle Eastern states."
 Write-Host "Generated African building history files."
 Write-Host "Generated African pop history files."
 Write-Host "Generated Middle East building history with Egyptian ownership reassigned to TUR."

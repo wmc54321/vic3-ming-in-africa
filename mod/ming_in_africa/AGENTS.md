@@ -1,17 +1,17 @@
 # AGENTS.md
 
-This directory contains the actual Victoria 3 mod files.
+This directory is the actual loadable Victoria 3 mod.
 
-Keep `plan.md` in the repository root as the design record. Implement only the "初版实现范围" unless the user explicitly asks for second-phase content.
+Before editing, read:
 
-Generated files:
+- `../../docs/agent-handoff.md`
+- `../../docs/implementation-map.md`
 
-- `common/history/states/00_states.txt`
-- `common/history/buildings/03_north_africa.txt`
-- `common/history/buildings/04_subsaharan_africa.txt`
-- `common/history/buildings/08_middle_east.txt`
-- `common/history/pops/03_north_africa.txt`
-- `common/history/pops/04_subsaharan_africa.txt`
-- `common/history/pops/08_middle_east.txt`
+Generated files are listed in `../../docs/agent-handoff.md`. Regenerate them with `../../tools/generate_initial_mod.ps1` instead of manually editing copied vanilla history.
 
-Regenerate them with `tools/generate_initial_mod.ps1` instead of manually editing large copied history files.
+Player-facing localization lives in:
+
+- `localization/simp_chinese/mgn_l_simp_chinese.yml`
+- `localization/english/mgn_l_english.yml`
+
+Concept names may stay stable; descriptions, journal reasons, event flavor, and button/tooltips should read naturally and fit the alternate-history Ming-in-Africa premise.

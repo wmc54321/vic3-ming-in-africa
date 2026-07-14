@@ -5,7 +5,7 @@ MGN = {
 		priority = 120
 		trigger = {
 			scope:actor ?= {
-				has_law_or_variant = law_type:law_anarchy
+				has_law = law_type:law_anarchy
 			}
 		}
 	}
@@ -15,7 +15,7 @@ MGN = {
 		priority = 115
 		trigger = {
 			scope:actor ?= {
-				has_law_or_variant = law_type:law_theocracy
+				has_law = law_type:law_theocracy
 			}
 		}
 	}
@@ -37,7 +37,7 @@ MGN = {
 		priority = 105
 		trigger = {
 			scope:actor ?= {
-				has_law_or_variant = law_type:law_technocracy
+				has_law = law_type:law_technocracy
 			}
 		}
 	}
@@ -47,7 +47,7 @@ MGN = {
 		priority = 100
 		trigger = {
 			scope:actor ?= {
-				has_law_or_variant = law_type:law_corporate_state
+				has_law = law_type:law_corporate_state
 				country_has_monarchy_law = yes
 			}
 		}
@@ -58,7 +58,7 @@ MGN = {
 		priority = 95
 		trigger = {
 			scope:actor ?= {
-				has_law_or_variant = law_type:law_corporate_state
+				has_law = law_type:law_corporate_state
 			}
 		}
 	}
@@ -68,7 +68,7 @@ MGN = {
 		priority = 92
 		trigger = {
 			scope:actor ?= {
-				has_law_or_variant = law_type:law_single_party_state
+				has_law = law_type:law_single_party_state
 			}
 		}
 	}
@@ -78,7 +78,7 @@ MGN = {
 		priority = 90
 		trigger = {
 			scope:actor ?= {
-				has_law_or_variant = law_type:law_council_republic
+				has_law = law_type:law_council_republic
 			}
 		}
 	}
@@ -88,7 +88,7 @@ MGN = {
 		priority = 80
 		trigger = {
 			scope:actor ?= {
-				has_law_or_variant = law_type:law_parliamentary_republic
+				has_law = law_type:law_parliamentary_republic
 			}
 		}
 	}
@@ -98,7 +98,7 @@ MGN = {
 		priority = 70
 		trigger = {
 			scope:actor ?= {
-				has_law_or_variant = law_type:law_presidential_republic
+				has_law = law_type:law_presidential_republic
 			}
 		}
 	}
@@ -111,5 +111,290 @@ MGN = {
 				country_has_monarchy_law = yes
 			}
 		}
+	}
+}
+
+MCC = {
+	dynamic_country_name = {
+		name = dyn_c_ming_african_chartered_company
+		adjective = dyn_c_ming_african_chartered_company_adj
+		priority = 100
+		trigger = {
+			exists = scope:actor
+			scope:actor ?= {
+				is_subject_of = c:MGN
+				is_subject_type = subject_type_chartered_company
+			}
+		}
+	}
+	dynamic_country_name = {
+		name = dyn_c_qing_african_chartered_company
+		adjective = dyn_c_qing_african_chartered_company_adj
+		priority = 100
+		trigger = {
+			exists = scope:actor
+			scope:actor ?= {
+				is_subject_of = c:CHI
+				is_subject_type = subject_type_chartered_company
+			}
+		}
+	}
+	dynamic_country_name = {
+		name = dyn_c_ming_african_protectorate
+		adjective = dyn_c_ming_african_protectorate_adj
+		priority = 90
+		trigger = {
+			exists = scope:actor
+			scope:actor ?= {
+				is_subject_of = c:MGN
+				NOT = { is_subject_type = subject_type_chartered_company }
+			}
+		}
+	}
+	dynamic_country_name = {
+		name = dyn_c_qing_african_protectorate
+		adjective = dyn_c_qing_african_protectorate_adj
+		priority = 90
+		trigger = {
+			exists = scope:actor
+			scope:actor ?= {
+				is_subject_of = c:CHI
+				NOT = { is_subject_type = subject_type_chartered_company }
+			}
+		}
+	}
+	dynamic_country_name = {
+		name = dyn_c_mcc_theocracy
+		adjective = dyn_c_mcc_theocracy_adj
+		priority = 85
+		trigger = {
+			scope:actor ?= {
+				is_subject = no
+				has_law = law_type:law_theocracy
+			}
+		}
+	}
+	dynamic_country_name = {
+		name = dyn_c_mcc_technate
+		adjective = dyn_c_mcc_technate_adj
+		priority = 82
+		trigger = {
+			scope:actor ?= {
+				is_subject = no
+				has_law = law_type:law_technocracy
+			}
+		}
+	}
+	dynamic_country_name = {
+		name = dyn_c_mcc_corporate_state
+		adjective = dyn_c_mcc_corporate_state_adj
+		priority = 80
+		trigger = {
+			scope:actor ?= {
+				is_subject = no
+				has_law = law_type:law_corporate_state
+			}
+		}
+	}
+	dynamic_country_name = {
+		name = dyn_c_mcc_single_party
+		adjective = dyn_c_mcc_single_party_adj
+		priority = 75
+		trigger = {
+			scope:actor ?= {
+				is_subject = no
+				has_law = law_type:law_single_party_state
+			}
+		}
+	}
+	dynamic_country_name = {
+		name = dyn_c_mcc_council_republic
+		adjective = dyn_c_mcc_council_republic_adj
+		priority = 70
+		trigger = {
+			scope:actor ?= {
+				is_subject = no
+				has_law = law_type:law_council_republic
+			}
+		}
+	}
+	dynamic_country_name = {
+		name = dyn_c_mcc_federal_republic
+		adjective = dyn_c_mcc_federal_republic_adj
+		priority = 65
+		trigger = {
+			scope:actor ?= {
+				is_subject = no
+				has_law = law_type:law_parliamentary_republic
+			}
+		}
+	}
+	dynamic_country_name = {
+		name = dyn_c_mcc_republic
+		adjective = dyn_c_mcc_republic_adj
+		priority = 60
+		trigger = {
+			scope:actor ?= {
+				is_subject = no
+				has_law = law_type:law_presidential_republic
+			}
+		}
+	}
+	dynamic_country_name = {
+		name = dyn_c_mcc_kingdom
+		adjective = dyn_c_mcc_kingdom_adj
+		priority = 55
+		trigger = {
+			scope:actor ?= {
+				is_subject = no
+				country_has_monarchy_law = yes
+			}
+		}
+	}
+	dynamic_country_name = {
+		name = dyn_c_mcc_free_communes
+		adjective = dyn_c_mcc_free_communes_adj
+		priority = 50
+		trigger = {
+			scope:actor ?= {
+				is_subject = no
+				has_law = law_type:law_anarchy
+			}
+		}
+	}
+}
+
+MDC = {
+	dynamic_country_name = {
+		name = dyn_c_ming_mainland_chartered_company
+		adjective = dyn_c_ming_mainland_chartered_company_adj
+		priority = 100
+		trigger = { scope:actor ?= { is_subject_of = c:MGN is_subject_type = subject_type_chartered_company } }
+	}
+	dynamic_country_name = {
+		name = dyn_c_qing_mainland_chartered_company
+		adjective = dyn_c_qing_mainland_chartered_company_adj
+		priority = 100
+		trigger = { scope:actor ?= { is_subject_of = c:CHI is_subject_type = subject_type_chartered_company } }
+	}
+	dynamic_country_name = {
+		name = dyn_c_mdc_protectorate
+		adjective = dyn_c_mdc_protectorate_adj
+		priority = 80
+		trigger = { scope:actor ?= { is_subject = yes NOT = { is_subject_type = subject_type_chartered_company } } }
+	}
+	dynamic_country_name = {
+		name = dyn_c_mdc_free_state
+		adjective = dyn_c_mdc_free_state_adj
+		priority = 90
+		trigger = { scope:actor ?= { is_subject = no } }
+	}
+}
+
+MKC = {
+	dynamic_country_name = {
+		name = dyn_c_ming_korean_chartered_company
+		adjective = dyn_c_ming_korean_chartered_company_adj
+		priority = 100
+		trigger = { scope:actor ?= { is_subject_of = c:MGN is_subject_type = subject_type_chartered_company } }
+	}
+	dynamic_country_name = {
+		name = dyn_c_qing_korean_chartered_company
+		adjective = dyn_c_qing_korean_chartered_company_adj
+		priority = 100
+		trigger = { scope:actor ?= { is_subject_of = c:CHI is_subject_type = subject_type_chartered_company } }
+	}
+	dynamic_country_name = {
+		name = dyn_c_mkc_protectorate
+		adjective = dyn_c_mkc_protectorate_adj
+		priority = 80
+		trigger = { scope:actor ?= { is_subject = yes NOT = { is_subject_type = subject_type_chartered_company } } }
+	}
+	dynamic_country_name = {
+		name = dyn_c_mkc_free_state
+		adjective = dyn_c_mkc_free_state_adj
+		priority = 90
+		trigger = { scope:actor ?= { is_subject = no } }
+	}
+}
+
+MLF = {
+	dynamic_country_name = {
+		name = dyn_c_ming_lanfang_chartered_company
+		adjective = dyn_c_ming_lanfang_chartered_company_adj
+		priority = 100
+		trigger = { scope:actor ?= { is_subject_of = c:MGN is_subject_type = subject_type_chartered_company } }
+	}
+	dynamic_country_name = {
+		name = dyn_c_qing_lanfang_chartered_company
+		adjective = dyn_c_qing_lanfang_chartered_company_adj
+		priority = 100
+		trigger = { scope:actor ?= { is_subject_of = c:CHI is_subject_type = subject_type_chartered_company } }
+	}
+	dynamic_country_name = {
+		name = dyn_c_mlf_protectorate
+		adjective = dyn_c_mlf_protectorate_adj
+		priority = 80
+		trigger = { scope:actor ?= { is_subject = yes NOT = { is_subject_type = subject_type_chartered_company } } }
+	}
+	dynamic_country_name = {
+		name = dyn_c_mlf_free_state
+		adjective = dyn_c_mlf_free_state_adj
+		priority = 90
+		trigger = { scope:actor ?= { is_subject = no } }
+	}
+}
+
+MSB = {
+	dynamic_country_name = {
+		name = dyn_c_ming_siberian_chartered_company
+		adjective = dyn_c_ming_siberian_chartered_company_adj
+		priority = 100
+		trigger = { scope:actor ?= { is_subject_of = c:MGN is_subject_type = subject_type_chartered_company } }
+	}
+	dynamic_country_name = {
+		name = dyn_c_qing_siberian_chartered_company
+		adjective = dyn_c_qing_siberian_chartered_company_adj
+		priority = 100
+		trigger = { scope:actor ?= { is_subject_of = c:CHI is_subject_type = subject_type_chartered_company } }
+	}
+	dynamic_country_name = {
+		name = dyn_c_msb_protectorate
+		adjective = dyn_c_msb_protectorate_adj
+		priority = 80
+		trigger = { scope:actor ?= { is_subject = yes NOT = { is_subject_type = subject_type_chartered_company } } }
+	}
+	dynamic_country_name = {
+		name = dyn_c_msb_free_state
+		adjective = dyn_c_msb_free_state_adj
+		priority = 90
+		trigger = { scope:actor ?= { is_subject = no } }
+	}
+}
+
+MCA = {
+	dynamic_country_name = {
+		name = dyn_c_ming_central_asian_chartered_company
+		adjective = dyn_c_ming_central_asian_chartered_company_adj
+		priority = 100
+		trigger = { scope:actor ?= { is_subject_of = c:MGN is_subject_type = subject_type_chartered_company } }
+	}
+	dynamic_country_name = {
+		name = dyn_c_qing_central_asian_chartered_company
+		adjective = dyn_c_qing_central_asian_chartered_company_adj
+		priority = 100
+		trigger = { scope:actor ?= { is_subject_of = c:CHI is_subject_type = subject_type_chartered_company } }
+	}
+	dynamic_country_name = {
+		name = dyn_c_mca_protectorate
+		adjective = dyn_c_mca_protectorate_adj
+		priority = 80
+		trigger = { scope:actor ?= { is_subject = yes NOT = { is_subject_type = subject_type_chartered_company } } }
+	}
+	dynamic_country_name = {
+		name = dyn_c_mca_free_state
+		adjective = dyn_c_mca_free_state_adj
+		priority = 90
+		trigger = { scope:actor ?= { is_subject = no } }
 	}
 }

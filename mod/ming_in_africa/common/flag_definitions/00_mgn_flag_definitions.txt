@@ -55,3 +55,182 @@ MGN = {
 		trigger = { coa_def_communist_flag_trigger = yes }
 	}
 }
+
+MCC = {
+	flag_definition = {
+		coa = MCC_chartered
+		subject_canton = MCC_chartered
+		coa_with_overlord_canton = MCC_subject
+		allow_overlord_canton = yes
+		priority = 5000
+		trigger = { coa_def_chartered_company_trigger = yes }
+	}
+	flag_definition = {
+		coa = MCC_colonial
+		subject_canton = MCC_colonial
+		coa_with_overlord_canton = MCC_subject
+		allow_overlord_canton = yes
+		priority = 4500
+		trigger = {
+			scope:actor ?= { has_law = law_type:law_colonial_administration }
+		}
+	}
+	flag_definition = {
+		coa = MCC
+		subject_canton = MCC
+		coa_with_overlord_canton = MCC_subject
+		allow_overlord_canton = yes
+		priority = 4000
+		trigger = {
+			OR = {
+				coa_def_monarchy_flag_trigger = yes
+				coa_def_republic_flag_trigger = yes
+				coa_def_theocracy_flag_trigger = yes
+				coa_def_dictatorship_flag_trigger = yes
+				coa_def_military_junta_flag_trigger = yes
+				coa_def_corporate_state_flag_trigger = yes
+				coa_def_fascist_flag_trigger = yes
+				coa_def_communist_flag_trigger = yes
+				coa_def_anarchy_flag_trigger = yes
+				coa_def_technocracy_flag_trigger = yes
+			}
+		}
+	}
+	flag_definition = {
+		coa = MCC
+		subject_canton = MCC
+		coa_with_overlord_canton = MCC_subject
+		allow_overlord_canton = yes
+		priority = 1
+	}
+}
+
+MDC = {
+	flag_definition = {
+		coa = MDC_chartered
+		subject_canton = MDC_chartered
+		coa_with_overlord_canton = MDC_subject
+		allow_overlord_canton = yes
+		priority = 5000
+		trigger = { coa_def_chartered_company_trigger = yes }
+	}
+	flag_definition = {
+		coa = MDC_free
+		subject_canton = MDC_free
+		coa_with_overlord_canton = MDC_subject
+		allow_overlord_canton = yes
+		priority = 3000
+		trigger = { is_subject = no }
+	}
+	flag_definition = {
+		coa = MDC
+		subject_canton = MDC
+		coa_with_overlord_canton = MDC_subject
+		allow_overlord_canton = yes
+		priority = 1
+	}
+}
+
+MKC = {
+	flag_definition = {
+		coa = MKC_chartered
+		subject_canton = MKC_chartered
+		coa_with_overlord_canton = MKC_subject
+		allow_overlord_canton = yes
+		priority = 5000
+		trigger = { coa_def_chartered_company_trigger = yes }
+	}
+	flag_definition = {
+		coa = MKC_free
+		subject_canton = MKC_free
+		coa_with_overlord_canton = MKC_subject
+		allow_overlord_canton = yes
+		priority = 3000
+		trigger = { is_subject = no }
+	}
+	flag_definition = {
+		coa = MKC
+		subject_canton = MKC
+		coa_with_overlord_canton = MKC_subject
+		allow_overlord_canton = yes
+		priority = 1
+	}
+}
+
+MLF = {
+	flag_definition = {
+		coa = MLF_chartered
+		subject_canton = MLF_chartered
+		coa_with_overlord_canton = MLF_subject
+		allow_overlord_canton = yes
+		priority = 5000
+		trigger = { coa_def_chartered_company_trigger = yes }
+	}
+	flag_definition = {
+		coa = MLF_free
+		subject_canton = MLF_free
+		coa_with_overlord_canton = MLF_subject
+		allow_overlord_canton = yes
+		priority = 3000
+		trigger = { is_subject = no }
+	}
+	flag_definition = {
+		coa = MLF
+		subject_canton = MLF
+		coa_with_overlord_canton = MLF_subject
+		allow_overlord_canton = yes
+		priority = 1
+	}
+}
+
+MSB = {
+	flag_definition = {
+		coa = MSB_chartered
+		subject_canton = MSB_chartered
+		coa_with_overlord_canton = MSB_subject
+		allow_overlord_canton = yes
+		priority = 5000
+		trigger = { coa_def_chartered_company_trigger = yes }
+	}
+	flag_definition = {
+		coa = MSB_free
+		subject_canton = MSB_free
+		coa_with_overlord_canton = MSB_subject
+		allow_overlord_canton = yes
+		priority = 3000
+		trigger = { is_subject = no }
+	}
+	flag_definition = {
+		coa = MSB
+		subject_canton = MSB
+		coa_with_overlord_canton = MSB_subject
+		allow_overlord_canton = yes
+		priority = 1
+	}
+}
+
+MCA = {
+	flag_definition = {
+		coa = MCA_chartered
+		subject_canton = MCA_chartered
+		coa_with_overlord_canton = MCA_subject
+		allow_overlord_canton = yes
+		priority = 5000
+		trigger = { coa_def_chartered_company_trigger = yes }
+	}
+	flag_definition = {
+		coa = MCA_free
+		subject_canton = MCA_free
+		coa_with_overlord_canton = MCA_subject
+		allow_overlord_canton = yes
+		priority = 3000
+		trigger = { is_subject = no }
+	}
+	flag_definition = {
+		coa = MCA
+		subject_canton = MCA
+		coa_with_overlord_canton = MCA_subject
+		allow_overlord_canton = yes
+		priority = 1
+	}
+}

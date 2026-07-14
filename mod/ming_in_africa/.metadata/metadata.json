@@ -1,0 +1,15 @@
+{
+  "name": "非洲大明：Ming in Africa",
+  "id": "ming_in_africa",
+  "version": "0.1.0",
+  "supported_game_version": "1.13.*",
+  "short_description": "大明在非洲延续国祚，并与大清争夺中华正统的架空历史模组。",
+  "tags": [
+    "Alternative History",
+    "Gameplay"
+  ],
+  "relationships": [],
+  "game_custom_data": {
+    "multiplayer_synchronized": true
+  }
+}

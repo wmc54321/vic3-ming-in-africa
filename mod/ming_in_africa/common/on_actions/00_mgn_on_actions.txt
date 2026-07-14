@@ -1,0 +1,45 @@
+on_monthly_pulse_country = {
+	on_actions = { mgn_company_monthly_pulse }
+}
+
+on_state_owner_change = {
+	on_actions = { mgn_company_state_owner_change }
+}
+
+mgn_company_monthly_pulse = {
+	effect = {
+		if = {
+			limit = {
+				OR = {
+					c:MCC ?= THIS
+					c:MDC ?= THIS
+					c:MKC ?= THIS
+					c:MLF ?= THIS
+					c:MSB ?= THIS
+					c:MCA ?= THIS
+				}
+			}
+			mgn_integrate_company_target_states = yes
+		}
+	}
+}
+
+mgn_company_state_owner_change = {
+	effect = {
+		owner = {
+			if = {
+				limit = {
+					OR = {
+						c:MCC ?= THIS
+						c:MDC ?= THIS
+						c:MKC ?= THIS
+						c:MLF ?= THIS
+						c:MSB ?= THIS
+						c:MCA ?= THIS
+					}
+				}
+				mgn_integrate_company_target_states = yes
+			}
+		}
+	}
+}

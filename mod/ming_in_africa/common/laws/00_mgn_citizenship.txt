@@ -7,7 +7,15 @@ law_mgn_heavenly_subjecthood = {
 	progressiveness = -25
 
 	is_visible = {
-		c:MGN ?= THIS
+		OR = {
+			c:MGN ?= THIS
+			c:MCC ?= THIS
+			c:MDC ?= THIS
+			c:MKC ?= THIS
+			c:MLF ?= THIS
+			c:MSB ?= THIS
+			c:MCA ?= THIS
+		}
 	}
 
 	unlocking_laws = {
@@ -125,7 +133,15 @@ law_mgn_huayi_unity = {
 	progressiveness = 75
 
 	is_visible = {
-		c:MGN ?= THIS
+		OR = {
+			c:MGN ?= THIS
+			c:MCC ?= THIS
+			c:MDC ?= THIS
+			c:MKC ?= THIS
+			c:MLF ?= THIS
+			c:MSB ?= THIS
+			c:MCA ?= THIS
+		}
 	}
 
 	unlocking_technologies = {
@@ -140,7 +156,7 @@ law_mgn_huayi_unity = {
 		country_acceptance_primary_culture_add = 100
 		country_support_separatism_resistance_mult = 0.5
 		country_support_separatism_strength_mult = -0.5
-		state_assimilation_mult = 0.25
+		state_assimilation_mult = 0.35
 
 		country_acceptance_shared_heritage_trait_add = 60
 		country_acceptance_shared_heritage_trait_group_add = 50

@@ -1,0 +1,243 @@
+je_mgn_two_chinas = {
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+	group = je_group_foreign_affairs
+
+	is_shown_when_inactive = {
+		OR = {
+			c:MGN ?= THIS
+			c:CHI ?= THIS
+		}
+	}
+
+	possible = {
+		OR = {
+			AND = {
+				mgn_two_chinas_independent_rivals = yes
+				mgn_is_two_chinas_participant = yes
+			}
+			mgn_ming_can_claim_reconquest_complete = yes
+			mgn_qing_can_claim_conquest_complete = yes
+		}
+	}
+
+	scripted_button = button_mgn_request_open_migration
+	scripted_button = button_mgn_request_regulated_migration
+	scripted_button = button_mgn_request_closed_migration
+	scripted_button = button_mgn_recognize_brotherly_hierarchy
+	scripted_button = button_mgn_launch_peaceful_unification
+	scripted_button = button_mgn_launch_ming_reconquest
+	scripted_button = button_mgn_launch_qing_conquest
+
+	immediate = {
+		if = {
+			limit = { mgn_ming_can_claim_reconquest_complete = yes }
+			mgn_start_ming_rebuild_state = yes
+		}
+		if = {
+			limit = { mgn_qing_can_claim_conquest_complete = yes }
+			mgn_start_qing_rebuild_state = yes
+		}
+	}
+
+	on_weekly_pulse = {
+		effect = {
+			if = {
+				limit = { mgn_ming_can_claim_reconquest_complete = yes }
+				mgn_start_ming_rebuild_state = yes
+			}
+			if = {
+				limit = { mgn_qing_can_claim_conquest_complete = yes }
+				mgn_start_qing_rebuild_state = yes
+			}
+		}
+	}
+
+	complete = {
+		OR = {
+			mgn_is_two_chinas_leader = yes
+			mgn_is_two_chinas_subject = yes
+			mgn_ming_can_claim_reconquest_complete = yes
+			mgn_qing_can_claim_conquest_complete = yes
+		}
+	}
+
+	on_complete = {
+		if = {
+			limit = { mgn_ming_can_claim_reconquest_complete = yes }
+			mgn_start_ming_rebuild_state = yes
+		}
+		else_if = {
+			limit = { mgn_qing_can_claim_conquest_complete = yes }
+			mgn_start_qing_rebuild_state = yes
+		}
+		else = {
+			mgn_refresh_two_chinas_status = yes
+		}
+	}
+
+	weight = 1000
+	should_be_pinned_by_default_uninvolved_or_context = yes
+}
+
+je_mgn_rebuild_state_ming = {
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+	group = je_group_foreign_affairs
+
+	is_shown_when_inactive = {
+		c:MGN ?= THIS
+	}
+
+	possible = {
+		c:MGN ?= THIS
+		OR = {
+			has_variable = mgn_rebuild_state_started
+			mgn_is_two_chinas_leader = yes
+		}
+		NOT = { mgn_is_two_chinas_subject = yes }
+	}
+
+	scripted_button = button_mgn_request_open_migration
+	scripted_button = button_mgn_request_regulated_migration
+	scripted_button = button_mgn_request_closed_migration
+	scripted_button = button_mgn_launch_peaceful_unification
+	scripted_button = button_mgn_move_capital_beijing
+	scripted_button = button_mgn_move_capital_nanjing
+	scripted_button = button_mgn_move_capital_yingtian
+	scripted_button = button_mgn_restore_northeastern_border
+	scripted_button = button_mgn_restore_northwestern_border
+	scripted_button = button_mgn_establish_african_company_ming
+	scripted_button = button_mgn_establish_mainland_company
+	scripted_button = button_mgn_establish_korean_company
+	scripted_button = button_mgn_establish_lanfang_company
+	scripted_button = button_mgn_establish_siberian_company
+	scripted_button = button_mgn_establish_central_asian_company
+
+	on_weekly_pulse = {
+		effect = {
+			if = {
+				limit = {
+					mgn_two_chinas_independent_rivals = yes
+					NOT = { has_journal_entry = je_mgn_two_chinas }
+				}
+				mgn_restart_two_chinas_journal = yes
+			}
+			if = {
+				limit = {
+					mgn_is_two_chinas_subject = yes
+					NOT = { has_journal_entry = je_mgn_bitter_peace }
+				}
+				mgn_activate_bitter_peace = yes
+			}
+		}
+	}
+
+	weight = 1000
+	should_be_pinned_by_default_uninvolved_or_context = yes
+}
+
+je_mgn_rebuild_state_qing = {
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+	group = je_group_foreign_affairs
+
+	is_shown_when_inactive = {
+		c:CHI ?= THIS
+	}
+
+	possible = {
+		c:CHI ?= THIS
+		OR = {
+			has_variable = mgn_rebuild_state_started
+			mgn_is_two_chinas_leader = yes
+		}
+		NOT = { mgn_is_two_chinas_subject = yes }
+	}
+
+	scripted_button = button_mgn_request_open_migration
+	scripted_button = button_mgn_request_regulated_migration
+	scripted_button = button_mgn_request_closed_migration
+	scripted_button = button_mgn_launch_peaceful_unification
+	scripted_button = button_mgn_restore_northeastern_border
+	scripted_button = button_mgn_restore_northwestern_border
+	scripted_button = button_mgn_establish_african_company_qing
+	scripted_button = button_mgn_establish_mainland_company
+	scripted_button = button_mgn_establish_korean_company
+	scripted_button = button_mgn_establish_lanfang_company
+	scripted_button = button_mgn_establish_siberian_company
+	scripted_button = button_mgn_establish_central_asian_company
+
+	on_weekly_pulse = {
+		effect = {
+			if = {
+				limit = {
+					mgn_two_chinas_independent_rivals = yes
+					NOT = { has_journal_entry = je_mgn_two_chinas }
+				}
+				mgn_restart_two_chinas_journal = yes
+			}
+			if = {
+				limit = {
+					mgn_is_two_chinas_subject = yes
+					NOT = { has_journal_entry = je_mgn_bitter_peace }
+				}
+				mgn_activate_bitter_peace = yes
+			}
+		}
+	}
+
+	weight = 1000
+	should_be_pinned_by_default_uninvolved_or_context = yes
+}
+
+je_mgn_bitter_peace = {
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+	group = je_group_foreign_affairs
+
+	is_shown_when_inactive = {
+		mgn_is_two_chinas_participant = yes
+	}
+
+	possible = {
+		mgn_is_two_chinas_subject = yes
+	}
+
+	scripted_button = button_mgn_request_independence
+
+	on_weekly_pulse = {
+		effect = {
+			change_variable = {
+				name = mgn_subject_to_other_china_days
+				add = 7
+			}
+			if = {
+				limit = {
+					mgn_two_chinas_independent_rivals = yes
+					NOT = { has_journal_entry = je_mgn_two_chinas }
+				}
+				mgn_restart_two_chinas_journal = yes
+			}
+			if = {
+				limit = {
+					mgn_is_two_chinas_leader = yes
+					NOT = {
+						OR = {
+							has_journal_entry = je_mgn_rebuild_state_ming
+							has_journal_entry = je_mgn_rebuild_state_qing
+						}
+					}
+				}
+				mgn_refresh_two_chinas_status = yes
+			}
+		}
+	}
+
+	complete = {
+		NOT = { mgn_is_two_chinas_subject = yes }
+	}
+
+	on_complete = {
+		mgn_refresh_two_chinas_status = yes
+	}
+
+	weight = 1000
+	should_be_pinned_by_default_uninvolved_or_context = yes
+}
