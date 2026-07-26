@@ -59,6 +59,23 @@ POPS = {
 				size = 79230
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = bureaucrats
+				size = 1000
+			}
+			create_pop = {
+				culture = western_han
+				pop_type = bureaucrats
+				size = 3000
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = bureaucrats
+				size = 1000
+			}
+		}
 	}
 	s:STATE_UPPER_EGYPT = {
 		region_state:MGN = {
@@ -93,6 +110,18 @@ POPS = {
 				pop_type = slaves
 				culture = sudanese
 				size = 4102
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = western_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -136,6 +165,18 @@ POPS = {
 				size = 16210
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = bureaucrats
+				size = 100
+			}
+			create_pop = {
+				culture = western_han
+				pop_type = bureaucrats
+				size = 500
+			}
+		}
 	}
 	s:STATE_EGYPTIAN_DESERT = {
 		region_state:MGN = {
@@ -162,6 +203,18 @@ POPS = {
 				size = 1589
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = western_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_MATRUH = {
 		region_state:MGN = {
@@ -181,6 +234,18 @@ POPS = {
 				culture = misri
 				religion = oriental_orthodox
 				size = 1102
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = western_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -207,6 +272,18 @@ POPS = {
 				pop_type = slaves
 				culture = sudanese
 				size = 101
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = western_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -259,6 +336,18 @@ POPS = {
 				size = 3000
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = western_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_DONGOLA = {
 		region_state:MGN = {
@@ -284,6 +373,18 @@ POPS = {
 				pop_type = slaves
 				culture = beja
 				size = 40000
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = western_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -312,6 +413,18 @@ POPS = {
 				size = 50400
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = western_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_DARFUR = {
 		region_state:MGN = {
@@ -331,6 +444,18 @@ POPS = {
 			create_pop = {
 				culture = bedouin
 				size = 8000
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = western_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -370,6 +495,18 @@ POPS = {
 				size = 228000
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = western_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_MARRAKECH = {
 		region_state:MGN = {
@@ -391,6 +528,18 @@ POPS = {
 				size = 56000
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = bureaucrats
+				size = 100
+			}
+			create_pop = {
+				culture = western_han
+				pop_type = bureaucrats
+				size = 500
+			}
+		}
 	}
 	s:STATE_FEZ = {
 		region_state:MGN = {
@@ -410,6 +559,18 @@ POPS = {
 				pop_type = slaves
 				culture = bambara
 				size = 62000
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = bureaucrats
+				size = 100
+			}
+			create_pop = {
+				culture = western_han
+				pop_type = bureaucrats
+				size = 500
 			}
 		}
 	}
@@ -455,6 +616,18 @@ POPS = {
 				size = 5612
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = western_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_INNER_MOROCCO = {
 		region_state:MGN = {
@@ -489,6 +662,18 @@ POPS = {
 				pop_type = slaves
 				culture = haratin
 				size = 2000
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = western_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -540,6 +725,18 @@ POPS = {
 			create_pop = {
 				culture = bambara
 				size = 3401
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = bureaucrats
+				size = 100
+			}
+			create_pop = {
+				culture = western_han
+				pop_type = bureaucrats
+				size = 500
 			}
 		}
 	}
@@ -612,6 +809,18 @@ POPS = {
 				size = 1209
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = bureaucrats
+				size = 100
+			}
+			create_pop = {
+				culture = western_han
+				pop_type = bureaucrats
+				size = 500
+			}
+		}
 	}
 	s:STATE_ORAN = {
 		region_state:MGN = {
@@ -663,6 +872,18 @@ POPS = {
 				size = 1041
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = bureaucrats
+				size = 100
+			}
+			create_pop = {
+				culture = western_han
+				pop_type = bureaucrats
+				size = 500
+			}
+		}
 	}
 	s:STATE_TUNISIA = {
 		region_state:MGN = {
@@ -700,6 +921,18 @@ POPS = {
 				pop_type = slaves
 				culture = equatorial_bantu
 				size = 13000
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = western_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -757,6 +990,18 @@ POPS = {
 				size = 10000
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = western_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_LIBYA = {
 		region_state:MGN = {
@@ -798,6 +1043,18 @@ POPS = {
 				size = 8000
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = western_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_LIBYAN_DESERT = {
 		region_state:MGN = {
@@ -827,6 +1084,18 @@ POPS = {
 			create_pop = {
 				culture = teda
 				size = 8000
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = western_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -879,6 +1148,18 @@ POPS = {
 			create_pop = {
 				culture = bedouin
 				size = 10300
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = western_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -934,6 +1215,18 @@ POPS = {
 				size = 8000
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = western_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_WEST_SAHARA = {
 		region_state:MGN = {
@@ -975,6 +1268,18 @@ POPS = {
 				pop_type = slaves
 				culture = haratin
 				size = 2000
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = western_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -1070,6 +1375,18 @@ POPS = {
 				size = 12510
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = western_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_INNER_MAURITANIA = {
 		region_state:MGN = {
@@ -1122,6 +1439,18 @@ POPS = {
 				size = 1300
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = western_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_EASTERN_MALI = {
 		region_state:MGN = {
@@ -1145,6 +1474,18 @@ POPS = {
 				pop_type = slaves
 				culture = bambara
 				size = 25000
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = western_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -1181,6 +1522,18 @@ POPS = {
 				pop_type = slaves
 				culture = mande
 				size = 14000
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = western_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -1280,6 +1633,18 @@ POPS = {
 				size = 1000
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = western_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_NIGER = {
 		region_state:MGN = {
@@ -1340,6 +1705,18 @@ POPS = {
 			create_pop = {
 				culture = fulbe
 				size = 5000
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = western_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -1404,6 +1781,18 @@ POPS = {
 				pop_type = slaves
 				culture = equatorial_bantu
 				size = 7000
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = western_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}

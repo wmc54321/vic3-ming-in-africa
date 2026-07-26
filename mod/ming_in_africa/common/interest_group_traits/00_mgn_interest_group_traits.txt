@@ -1,0 +1,55 @@
+ig_trait_mgn_gentry_relief = {
+	icon = "gfx/interface/icons/ig_trait_icons/noblesse_oblige.dds"
+	min_approval = loyal
+
+	modifier = {
+		state_aristocrats_investment_pool_efficiency_mult = 0.1
+	}
+}
+
+ig_trait_mgn_patronage_networks = {
+	icon = "gfx/interface/icons/ig_trait_icons/family_ties.dds"
+	min_approval = happy
+
+	modifier = {
+		country_influence_mult = 0.1
+	}
+}
+
+ig_trait_mgn_register_privileges = {
+	icon = "gfx/interface/icons/ig_trait_icons/noble_privileges.dds"
+	max_approval = unhappy
+
+	modifier = {
+		building_group_bg_agriculture_tax_mult = -0.1
+		building_group_bg_ranching_tax_mult = -0.1
+		building_group_bg_plantations_tax_mult = -0.1
+	}
+}
+
+ig_trait_mgn_guild_mutual_credit = {
+	icon = "gfx/interface/icons/ig_trait_icons/treasury_bonds.dds"
+	min_approval = loyal
+
+	modifier = {
+		country_loan_interest_rate_mult = -0.1
+	}
+}
+
+ig_trait_mgn_market_ward_networks = {
+	icon = "gfx/interface/icons/ig_trait_icons/middle_managers.dds"
+	min_approval = happy
+
+	modifier = {
+		country_bureaucracy_mult = 0.1
+	}
+}
+
+ig_trait_mgn_guild_barriers = {
+	icon = "gfx/interface/icons/ig_trait_icons/xenophobia.dds"
+	max_approval = unhappy
+
+	modifier = {
+		country_bureaucracy_mult = -0.1
+	}
+}

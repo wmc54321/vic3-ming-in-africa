@@ -23,7 +23,7 @@ tools\build_release.ps1
 
 This validates the project and creates `release/ming_in_africa-v<version>.zip`. The archive is the player-facing artifact; GitHub's automatically generated source archive is a development snapshot and is not the recommended manual-install download.
 
-For a public release, commit the intended source changes, create a matching annotated tag such as `v0.1.0`, push the branch and tag, then attach the generated zip to the GitHub Release.
+For a public release, commit the intended source changes, merge the release PR, create a matching annotated tag such as `v0.1.1` from the merged default branch, push the tag, then attach the generated zip to the GitHub Release.
 
 ## Steam Workshop
 

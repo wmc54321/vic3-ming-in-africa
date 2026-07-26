@@ -15,6 +15,7 @@ je_mgn_two_chinas = {
 				mgn_two_chinas_independent_rivals = yes
 				mgn_is_two_chinas_participant = yes
 			}
+			mgn_is_two_chinas_leader = yes
 			mgn_ming_can_claim_reconquest_complete = yes
 			mgn_qing_can_claim_conquest_complete = yes
 		}
@@ -54,7 +55,6 @@ je_mgn_two_chinas = {
 
 	complete = {
 		OR = {
-			mgn_is_two_chinas_leader = yes
 			mgn_is_two_chinas_subject = yes
 			mgn_ming_can_claim_reconquest_complete = yes
 			mgn_qing_can_claim_conquest_complete = yes
@@ -96,28 +96,25 @@ je_mgn_rebuild_state_ming = {
 		NOT = { mgn_is_two_chinas_subject = yes }
 	}
 
-	scripted_button = button_mgn_request_open_migration
-	scripted_button = button_mgn_request_regulated_migration
-	scripted_button = button_mgn_request_closed_migration
-	scripted_button = button_mgn_launch_peaceful_unification
 	scripted_button = button_mgn_move_capital_beijing
 	scripted_button = button_mgn_move_capital_nanjing
 	scripted_button = button_mgn_move_capital_yingtian
 	scripted_button = button_mgn_restore_northeastern_border
 	scripted_button = button_mgn_restore_northwestern_border
-	scripted_button = button_mgn_establish_african_company_ming
-	scripted_button = button_mgn_establish_mainland_company
-	scripted_button = button_mgn_establish_korean_company
-	scripted_button = button_mgn_establish_lanfang_company
-	scripted_button = button_mgn_establish_siberian_company
-	scripted_button = button_mgn_establish_central_asian_company
 
 	on_weekly_pulse = {
 		effect = {
 			if = {
+				limit = { NOT = { has_journal_entry = je_mgn_administer_four_quarters } }
+				add_journal_entry = { type = je_mgn_administer_four_quarters }
+			}
+			if = {
 				limit = {
-					mgn_two_chinas_independent_rivals = yes
 					NOT = { has_journal_entry = je_mgn_two_chinas }
+					OR = {
+						mgn_two_chinas_independent_rivals = yes
+						mgn_is_two_chinas_leader = yes
+					}
 				}
 				mgn_restart_two_chinas_journal = yes
 			}
@@ -152,25 +149,22 @@ je_mgn_rebuild_state_qing = {
 		NOT = { mgn_is_two_chinas_subject = yes }
 	}
 
-	scripted_button = button_mgn_request_open_migration
-	scripted_button = button_mgn_request_regulated_migration
-	scripted_button = button_mgn_request_closed_migration
-	scripted_button = button_mgn_launch_peaceful_unification
 	scripted_button = button_mgn_restore_northeastern_border
 	scripted_button = button_mgn_restore_northwestern_border
-	scripted_button = button_mgn_establish_african_company_qing
-	scripted_button = button_mgn_establish_mainland_company
-	scripted_button = button_mgn_establish_korean_company
-	scripted_button = button_mgn_establish_lanfang_company
-	scripted_button = button_mgn_establish_siberian_company
-	scripted_button = button_mgn_establish_central_asian_company
 
 	on_weekly_pulse = {
 		effect = {
 			if = {
+				limit = { NOT = { has_journal_entry = je_mgn_administer_four_quarters } }
+				add_journal_entry = { type = je_mgn_administer_four_quarters }
+			}
+			if = {
 				limit = {
-					mgn_two_chinas_independent_rivals = yes
 					NOT = { has_journal_entry = je_mgn_two_chinas }
+					OR = {
+						mgn_two_chinas_independent_rivals = yes
+						mgn_is_two_chinas_leader = yes
+					}
 				}
 				mgn_restart_two_chinas_journal = yes
 			}
@@ -183,6 +177,40 @@ je_mgn_rebuild_state_qing = {
 			}
 		}
 	}
+
+	weight = 1000
+	should_be_pinned_by_default_uninvolved_or_context = yes
+}
+
+je_mgn_administer_four_quarters = {
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+	group = je_group_foreign_affairs
+
+	is_shown_when_inactive = {
+		OR = {
+			c:MGN ?= THIS
+			c:CHI ?= THIS
+		}
+	}
+
+	possible = {
+		OR = {
+			c:MGN ?= THIS
+			c:CHI ?= THIS
+		}
+		has_variable = mgn_rebuild_state_started
+		NOT = { mgn_is_two_chinas_subject = yes }
+	}
+
+	scripted_button = button_mgn_establish_mainland_company
+	scripted_button = button_mgn_establish_korean_company
+	scripted_button = button_mgn_establish_japanese_company
+	scripted_button = button_mgn_establish_siberian_company
+	scripted_button = button_mgn_establish_central_asian_company
+	scripted_button = button_mgn_establish_southeast_asian_company
+	scripted_button = button_mgn_establish_lanfang_company
+	scripted_button = button_mgn_establish_african_company_ming
+	scripted_button = button_mgn_establish_african_company_qing
 
 	weight = 1000
 	should_be_pinned_by_default_uninvolved_or_context = yes

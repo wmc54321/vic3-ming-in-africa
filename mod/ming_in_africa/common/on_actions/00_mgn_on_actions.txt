@@ -17,7 +17,13 @@ mgn_company_monthly_pulse = {
 					c:MLF ?= THIS
 					c:MSB ?= THIS
 					c:MCA ?= THIS
+					c:MJP ?= THIS
+					c:MSE ?= THIS
 				}
+			}
+			if = {
+				limit = { NOT = { has_variable = mgn_company_primary_cultures_normalized } }
+				mgn_normalize_company_primary_cultures = yes
 			}
 			mgn_integrate_company_target_states = yes
 		}
@@ -36,6 +42,8 @@ mgn_company_state_owner_change = {
 						c:MLF ?= THIS
 						c:MSB ?= THIS
 						c:MCA ?= THIS
+						c:MJP ?= THIS
+						c:MSE ?= THIS
 					}
 				}
 				mgn_integrate_company_target_states = yes

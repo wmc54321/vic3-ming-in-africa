@@ -23,14 +23,24 @@ This document records what the code currently implements, so future agents do no
 
 ## Cultures, Laws, and Economy
 
-- `african_han` and `western_han` are bridge cultures for the African and Middle Eastern heritage groups.
-- Generated state history makes `african_han` a homeland culture throughout the states in `04_subsaharan_africa.txt`, and `western_han` a homeland culture throughout the states in `03_north_africa.txt` and `08_middle_east.txt`. This prevents the locally rooted bridge cultures from receiving non-homeland malaria mortality in their intended regions; ordinary `han` remains non-homeland there.
+- Eight bridge cultures express locally rooted Sinitic communities without promoting existing regional cultures directly to primary-culture status: `african_han` (African), `western_han` (Middle Eastern), `haedong_han` (East Asian/Korean), `nanyang_han` (Southeast Asian/Bornean), `shuofang_han` (North Asian/Siberian), `tianshan_han` (Central Asian), `fusang_han` (East Asian/Japanese), and `jiaonan_han` (Southeast Asian/mainland Southeast Asian).
+- Generated state history makes each bridge culture a homeland throughout its legally defined region. `african_han` covers the states in `04_subsaharan_africa.txt`; `western_han` covers `03_north_africa.txt` and `08_middle_east.txt`. The other six sets are derived directly from the matching `mgn_state_is_*_company_region` scripted trigger, so regenerating state history keeps company and homeland borders synchronized. Homelands describe the durable geographic roots of a culture rather than a company's momentary ownership and therefore persist through conquest, dissolution, and re-establishment.
+- Generated African pop history adds a thin Chinese administrative or ritual presence to every starting African state. A state with a starting Government Administration receives 100 Han bureaucrats and 500 bureaucrats of its local bridge culture (`western_han` in North Africa, `african_han` in Sub-Saharan Africa); a state without one receives the same cultural counts as clergy instead, representing temples, shrines, tutors, and lineage keepers beyond the court's effective bureaucracy. Lower Egypt is the exception and receives 1,000 Han, 3,000 Western Han, and 1,000 African Han bureaucrats as the southern court's central administration. The roughly 60,000 people generated across Africa represent not only biological descendants of the original exiles but also two centuries of intermarriage, discipleship, local recruitment, and adoption into court-linked identities. `han` denotes the smaller court-registered inner lineages, while the bridge cultures denote the larger locally rooted communities. The generator derives administrative coverage from vanilla building history before rewriting ownership.
 - `law_mgn_heavenly_subjecthood` is the starting citizenship variant.
 - `law_mgn_huayi_unity` is the later inclusive citizenship variant.
-- `law_mgn_overseas_cooperative_ownership` mirrors cooperative ownership domestically while avoiding vanilla foreign collectivization for overseas investments. It also borrows a restrained market-capital package from Laissez-Faire: `country_free_charters_add = 2`, `state_capitalists_investment_pool_efficiency_mult = 0.25`, and `country_loan_interest_rate_mult = -0.10`.
+- `law_mgn_overseas_cooperative_ownership` mirrors cooperative ownership domestically while avoiding vanilla foreign collectivization for overseas investments. It also borrows a restrained market-capital package from Laissez-Faire: `country_free_charters_add = 2`, `state_capitalists_investment_pool_efficiency_mult = 0.25`, and `country_loan_interest_rate_mult = -0.10`. The law is visible to both active Two Chinas participants so players can inspect and plan around it, but `can_enact` remains winner-only until the rival claimant has been destroyed or subordinated.
 - Cooperative-ownership reverse references are overridden where needed so UI and production-method unlocks recognize the Ming variant.
 - Balance alternatives recorded for future tuning: a minimal version would only raise free charters from 1 to 2; a full Laissez-Faire splice with `country_loan_interest_rate_mult = -0.25`, `country_force_privatization_bool = yes`, and `country_forbid_monopoly_bool = yes` was rejected as too strong and thematically muddy.
 - `law_collectivized_agriculture` is technology-unlocked and uses an explicit `can_enact` OR gate for Command Economy, Cooperative Ownership, or `law_mgn_overseas_cooperative_ownership`. This avoids the engine's unreliable handling of modded law variants in `unlocking_laws` while preserving the intended prerequisites.
+
+### Revolutionary Committees
+
+- `law_mgn_revolutionary_committees` is a Council Republic-only Single-Party State variant for Ming, Qing, or the current legitimate Chinese central government. Warlords, subjects, chartered companies, and countries that merely possess a Han primary culture are excluded.
+- The law keeps vanilla Single-Party State legitimacy, Authority, voting, party-lock, and electoral-confidence behavior. Its additions are `country_legitimacy_govt_size_add = 2` and `+15%` political strength for both the Trade Unions and Armed Forces, representing the three-in-one committee structure.
+- `common/laws/00_labour_associations.txt` is a complete Victoria 3 1.13 same-name override because a separate duplicate Factory Councils object did not replace the live definition. The only intended upstream change is in `law_factory_councils`: `unlocking_laws` includes Revolutionary Committees, and `can_enact` accepts either a revolutionary country or an enacted Revolutionary Committees law. Recompare the complete file after game updates.
+- The variant deliberately does not satisfy Ming's higher-priority `dyn_c_ming_single_party` trigger. Council Republic plus Revolutionary Committees therefore retains `dyn_c_ming_soviet_union` (“中华苏维埃社会主义共和国联盟”); only the exact vanilla `law_single_party_state` produces “中华训政共和国.”
+- `common/character_interactions/00_mgn_character_interactions.txt` adds the player-only `mgn_struggle_session`. Its active-law check is in `potential`, so it is hidden before enactment. It costs no Authority, has a shared 18-month country cooldown, may target the ruler, and always ends the target's political career.
+- Ordinary targets have 50% retirement, 25% exile, and 25% death outcomes. Rulers have 50% retirement, 20% death, and 30% retirement with stronger political backlash. Every result opens a dedicated event from `events/mgn_revolutionary_committee_events.txt`; exile, death, and ruler-backlash outcomes radicalize the target's Interest Group where one exists.
 
 ## Route Journals
 
@@ -44,10 +54,13 @@ Implemented route journal files:
 
 Player-facing journals:
 
-- `je_mgn_two_chinas`: route navigation while Ming and Qing both exist.
-- `je_mgn_rebuild_state_ming`: Ming-led reconstruction after victory, subject hierarchy, or peaceful union.
-- `je_mgn_rebuild_state_qing`: Qing-led reconstruction after victory, subject hierarchy, or peaceful union.
+- `je_mgn_two_chinas`: diplomacy and route navigation while Ming and Qing are independent rivals or one remains the other's overlord.
+- `je_mgn_rebuild_state_ming`: Ming-led capital and frontier reconstruction after victory, subject hierarchy, or peaceful union.
+- `je_mgn_rebuild_state_qing`: Qing-led frontier reconstruction after victory, subject hierarchy, or peaceful union.
+- `je_mgn_administer_four_quarters`: shared post-unification company administration for both winners.
 - `je_mgn_bitter_peace`: subject-side independence route.
+
+The three primary panels—Two Chinas, Rebuild the State, and Administer the Four Quarters—are pinned by default. Migration and peaceful-unification buttons belong only to Two Chinas; capital and border-restoration actions belong to Rebuild the State; all eight chartered-company actions belong to Administer the Four Quarters.
 
 ## Diplomatic Plays and War Goals
 
@@ -66,10 +79,12 @@ Implemented company tags:
 - `MLF`: Lanfang Revenue Company.
 - `MSB`: Siberian Revenue Company.
 - `MCA`: Central Asian Revenue Company.
+- `MJP`: Fusang Revenue Company.
+- `MSE`: Southern Seas Administration Company.
 
-All are Chinese chartered companies with dynamic names, flags, starting law overrides, and target-region transfer effects. The Siberian company scope includes Tuva, Outer Manchuria, Amur, and Sakhalin, so the establishment button remains available when those are the only eligible holdings.
+All are Chinese chartered companies with dynamic names, flags, starting law overrides, and target-region transfer effects. Every company has `han` as its first primary culture, followed by its regional bridge culture or cultures: MCC adds `african_han western_han`; MKC adds `haedong_han`; MLF adds `nanyang_han`; MSB adds `shuofang_han`; MCA adds `tianshan_han`; MJP adds `fusang_han`; and MSE adds `jiaonan_han`. MDC uses `han` alone. A one-time monthly normalization updates already-existing companies in older saves to the same order. The Siberian company scope excludes Tuva. The Fusang scope covers all ten vanilla 1.13 Japanese home-island states, including Tokai, Hokushinetsu, and Kyoto, but excludes Ryukyu. Ryukyu is part of the Interior Administration trigger and therefore transfers to MDC when that company is established from controlled territory. The Southern Seas scope covers the fifteen vanilla Indochina states from Burma through Vietnam and Malaya while excluding Borneo, which remains in the Lanfang scope.
 
-The two rebuild journals also expose border-restoration buttons. They return subject-held northeastern and northwestern Qing frontier lands to the living Mainland Company (`MDC`), falling back to direct rule when that company does not exist. Full states change owner directly from their subject state scopes rather than through nested transfer macros. Kirghizia uses the exact provinces owned by Qing in the vanilla 1836 state history, preserving the opening split with Kokand.
+The two rebuild journals expose only capital and border-restoration actions. Beijing and Nanjing are always visible to Ming during reconstruction; lack of full ownership makes them disabled rather than hidden. The separate `je_mgn_administer_four_quarters` journal exposes all eight company-establishment actions in geographic order and remains available so destroyed companies can be re-established. Border restoration assigns subject-held northeastern and northwestern frontier lands in the fixed priority Qing (`CHI`) → Interior Administration Company (`MDC`) → direct Ming (`MGN`) rule. Full states change owner directly from their subject state scopes rather than through nested transfer macros. Kirghizia uses the exact provinces owned by Qing in the vanilla 1836 state history, preserving the opening split with Kokand.
 
 `common/country_formation/00_formable_countries.txt` is intentionally overridden to stop Chinese chartered companies from forming `CHI`.
 
@@ -77,8 +92,8 @@ The two rebuild journals also expose border-restoration buttons. They return sub
 
 - `building_mgn_forbidden_city`: buildable Yingtian Forbidden City in Lower Egypt.
 - `building_mgn_nanjing_forbidden_city`: buildable after moving the capital to Nanjing.
-- `mgn_heavenly_court_in_africa`: early ruling-friction modifier.
-- `mgn_southern_court_administration`: decaying administrative support for the oversized African realm.
+- `mgn_heavenly_court_in_africa`: 20-year decaying early ruling-friction modifier, including an initial `-10` legitimacy penalty.
+- `mgn_southern_court_administration`: 20-year decaying administrative support for the oversized African realm, starting at `+1000%` bureaucracy.
 - `mgn_chinese_unification_integration_drive`: ten-year incorporation speed bonus after unification.
 
 ## Localization
@@ -88,4 +103,10 @@ Primary localization files:
 - `localization/simp_chinese/mgn_l_simp_chinese.yml`
 - `localization/english/mgn_l_english.yml`
 
+Ming's eight country-specific interest-group names are assigned at game start with `set_interest_group_name`. Each custom name key has a matching `_desc` key because `InterestGroup.GetDesc` resolves the description from the active dynamic name; omitting that companion key exposes a raw placeholder in political-panel hovers.
+
+Two of those groups also receive country-specific effect cards from `common/interest_group_traits/00_mgn_interest_group_traits.txt`. Scholar Bureaucrats use narrative replacements for the three Landowner cards while retaining their vanilla thresholds and modifiers: Gentry Relief replaces Noblesse Oblige, Patronage Networks replaces Family Ties, and Command of the Registers replaces Noble Privileges. Guild Merchants use Guild Mutual Credit and Market Ward Networks at the vanilla Petite Bourgeoisie strengths, while the hostile Guild Barriers card replaces Xenophobia's discrimination and influence penalties with `country_bureaucracy_mult = -0.1`. The other six renamed groups retain their vanilla effect cards.
+
 Keep descriptions, tooltips, event flavor, and journal reasons aligned between both languages. Concept names may remain stable unless the user explicitly asks to rename them.
+
+The route localization has received a player-facing tone pass: journals distinguish courts from generic “states,” company descriptions acknowledge Han as the first primary culture alongside each bridge culture, charter effects use in-world charter language while retaining mechanical clarity, and event prose avoids overt implementation language such as target-state counts or “being processed.”

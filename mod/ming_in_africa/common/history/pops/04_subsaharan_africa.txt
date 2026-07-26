@@ -42,6 +42,18 @@ POPS = {
 				size = 8800
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_WINDWARD_COAST = {
 		region_state:MGN = {
@@ -88,6 +100,18 @@ POPS = {
 				pop_type = slaves
 				culture = kru
 				size = 17000
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -261,6 +285,18 @@ POPS = {
 				size = 34
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_SIERRA_LEONE = {
 		# Approximate 1844 numbers
@@ -315,6 +351,18 @@ POPS = {
 				size = 3012
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_VOLTA = {
 		region_state:MGN = {
@@ -365,6 +413,18 @@ POPS = {
 				culture = mande
 				religion = animist
 				size = 15000
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -424,6 +484,18 @@ POPS = {
 				size = 79200
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = bureaucrats
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = bureaucrats
+				size = 500
+			}
+		}
 	}
 	s:STATE_HAUSALAND = {
 		region_state:MGN = {
@@ -480,6 +552,18 @@ POPS = {
 				size = 40000
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = bureaucrats
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = bureaucrats
+				size = 500
+			}
+		}
 	}
 	s:STATE_BENIN = {
 		region_state:MGN = {
@@ -509,6 +593,18 @@ POPS = {
 				size = 186000
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_YORUBA_STATES = {
 		region_state:MGN = {
@@ -520,6 +616,18 @@ POPS = {
 				pop_type = slaves
 				culture = fon
 				size = 27996
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -551,6 +659,18 @@ POPS = {
 				pop_type = slaves
 				culture = ibibio
 				size = 30000
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -653,6 +773,18 @@ POPS = {
 				size = 3302
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_BORNU = {
 		region_state:MGN = {
@@ -676,6 +808,18 @@ POPS = {
 			create_pop = {
 				culture = bedouin
 				size = 8000
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -734,6 +878,18 @@ POPS = {
 				size = 10000
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_EAST_HAUSALAND = {
 		region_state:MGN = {
@@ -770,6 +926,18 @@ POPS = {
 				pop_type = slaves
 				culture = fulbe
 				size = 20000
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -865,6 +1033,18 @@ POPS = {
 				size = 10000
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_GOLD_COAST = {
 		region_state:MGN = {
@@ -920,6 +1100,18 @@ POPS = {
 				size = 15000
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_TOGO = {
 		region_state:MGN = {
@@ -954,6 +1146,18 @@ POPS = {
 				pop_type = slaves
 				culture = ewe
 				size = 28000
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -999,6 +1203,18 @@ POPS = {
 				pop_type = slaves
 				culture = fulbe
 				size = 7000
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -1068,6 +1284,18 @@ POPS = {
 				size = 5000
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_ZANZIBAR = {
 		region_state:MGN = {
@@ -1120,6 +1348,18 @@ POPS = {
 				pop_type = slaves
 				culture = lacustrine_bantu
 				size = 45000
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -1199,6 +1439,18 @@ POPS = {
 				pop_type = slaves
 				culture = rundi
 				size = 16000
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -1312,6 +1564,18 @@ POPS = {
 				size = 37000
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_RIFT_VALLEY = {
 		region_state:MGN = {
@@ -1349,6 +1613,18 @@ POPS = {
 				pop_type = slaves
 				culture = kikuyu
 				size = 4000
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -1410,6 +1686,18 @@ POPS = {
 			}
 		}
 
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_AMHARA = {
 		region_state:MGN = {
@@ -1523,6 +1811,18 @@ POPS = {
 				culture = kikuyu
 				size = 3000
 				pop_type = slaves
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -1641,6 +1941,18 @@ POPS = {
 				pop_type = slaves
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_KAZEMBE = {
 		region_state:MGN = {
@@ -1702,6 +2014,18 @@ POPS = {
 				pop_type = slaves
 				culture = chewa
 				size = 5000
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -1801,6 +2125,18 @@ POPS = {
 				size = 4000
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_SOUTH_MADAGASCAR = {
 		region_state:MGN = {
@@ -1823,6 +2159,18 @@ POPS = {
 				culture = malagasy
 				religion = sunni
 				size = 5000
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -1851,6 +2199,18 @@ POPS = {
 				pop_type = slaves
 				culture = malagasy
 				size = 30000
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -1914,6 +2274,18 @@ POPS = {
 				pop_type = slaves
 				culture = luo
 				size = 7200
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -2032,6 +2404,18 @@ POPS = {
 				size = 4000
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_MOCAMBIQUE = {
 		region_state:MGN = {
@@ -2111,6 +2495,18 @@ POPS = {
 				size = 4200
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_WADDAI = {
 		region_state:MGN = {
@@ -2166,6 +2562,18 @@ POPS = {
 				size = 3000
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_NORTH_CAMEROON = {
 		region_state:MGN = {
@@ -2210,6 +2618,18 @@ POPS = {
 				pop_type = slaves
 				culture = equatorial_bantu
 				size = 10020
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -2289,6 +2709,18 @@ POPS = {
 				size = 80000
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_UBANGI_SHARI = {
 		region_state:MGN = {
@@ -2324,6 +2756,18 @@ POPS = {
 				pop_type = slaves
 				culture = equatorial_bantu
 				size = 6000
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -2376,6 +2820,18 @@ POPS = {
 				pop_type = slaves
 				culture = bakongo
 				size = 3000
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -2435,6 +2891,18 @@ POPS = {
 				size = 12000
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_KASAI = {
 		region_state:MGN = {
@@ -2470,6 +2938,18 @@ POPS = {
 				pop_type = slaves
 				culture = fluvian_bantu
 				size = 30000
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -2519,6 +2999,18 @@ POPS = {
 				size = 10500
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_EQUATEUR = {
 		region_state:MGN = {
@@ -2541,6 +3033,18 @@ POPS = {
 				pop_type = slaves
 				culture = mongo
 				size = 12000
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -2569,6 +3073,18 @@ POPS = {
 				culture = bakongo
 				religion = catholic
 				size = 160000
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -2604,6 +3120,18 @@ POPS = {
 			create_pop = {
 				culture = kavango_bantu
 				size = 28100
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -2680,6 +3208,18 @@ POPS = {
 				size = 3400
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_KATANGA = {
 		region_state:MGN = {
@@ -2717,6 +3257,18 @@ POPS = {
 				pop_type = slaves
 				culture = luba
 				size = 16000
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -2774,6 +3326,18 @@ POPS = {
 				size = 2000
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_ZAMBIA = {
 		region_state:MGN = {
@@ -2813,6 +3377,18 @@ POPS = {
 				pop_type = slaves
 				culture = lunda
 				size = 3000
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -2914,6 +3490,18 @@ POPS = {
 				size = 2000
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_ZAMBEZI = {
 		region_state:MGN = {
@@ -2965,6 +3553,18 @@ POPS = {
 				size = 8000
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_NAMAQUALAND = {
 		region_state:MGN = {
@@ -2986,6 +3586,18 @@ POPS = {
 			create_pop = {
 				culture = khoisan
 				size = 3000
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -3031,6 +3643,18 @@ POPS = {
 				size = 14000
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_ZULULAND = {
 		# Total population of Natal (which was /very roughly/ coterminous with the Zulu Kingdom's 1836 borders after the annexation of Zululand in 1897) in 1904 was 1108754, of which 904041 were recorded as 'Black'. This is after Vryheid, Utrecht, and neighboring territories were annexed, which also increased Natal's population by approx. 98k overall, of which 92k were 'natives'. The Anglo-Zulu War led to some population loss in Zululand, but Zulu's population in 1836 should definitely be lower. I've seen an estimate of 250k people in the Zulu Kingdom floating around, but I can't find the original source, and that number only pops up uncited in articles since 2017 or so making me suspect everyone is copying the same uncited entry from Wikipedia, so I'm a little wary and will simply choose a similar number of my own choosing.
@@ -3064,6 +3688,18 @@ POPS = {
 				pop_type = slaves
 				culture = sotho
 				size = 7900
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -3111,6 +3747,18 @@ POPS = {
 			create_pop = {
 				culture = sotho
 				size = 27100
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -3174,6 +3822,18 @@ POPS = {
 				size = 22000
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_EASTERN_CAPE = {
 		region_state:MGN = {
@@ -3198,6 +3858,18 @@ POPS = {
 			create_pop = {
 				culture = xhosa
 				size = 152200
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -3234,6 +3906,18 @@ POPS = {
 				culture = khoisan
 				size = 15300
 			}			
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
+			}
 		}
 	}
 	# 73000
@@ -3299,6 +3983,18 @@ POPS = {
 				size = 12000
 			}
 		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
+			}
+		}
 	}
 	s:STATE_BOTSWANA = {
 		region_state:MGN = {
@@ -3326,6 +4022,18 @@ POPS = {
 			create_pop = {
 				culture = khoisan
 				size = 8000
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}
@@ -3356,6 +4064,18 @@ POPS = {
 			create_pop = {
 				culture = tonga
 				size = 323000
+			}
+		}
+		region_state:MGN = {
+			create_pop = {
+				culture = han
+				pop_type = clergymen
+				size = 100
+			}
+			create_pop = {
+				culture = african_han
+				pop_type = clergymen
+				size = 500
 			}
 		}
 	}

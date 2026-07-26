@@ -2,7 +2,7 @@
 
 一个《Victoria 3》架空历史 mod：大明在非洲延续国祚，并从尼罗河畔重新争夺中华正统。
 
-当前版本为 **0.1.0**，支持《Victoria 3》**1.13.x**。实际可加载文件位于 `mod/ming_in_africa`。
+当前版本为 **0.1.1**，支持《Victoria 3》**1.13.x**。实际可加载文件位于 `mod/ming_in_africa`。
 
 **[Steam 创意工坊订阅](https://steamcommunity.com/sharedfiles/filedetails/?id=3764465525)** · **[GitHub Releases 手动下载](https://github.com/wmc54321/vic3-ming-in-africa/releases)**
 
@@ -19,6 +19,7 @@
 - 支持游戏版本：`1.13.*`
 - DLC：没有强制 DLC 要求。
 - 本 mod 替换 `common/history/states`，通常不兼容其他修改 1836 年州所有权、开局国土或州历史的 mod。
+- 本 mod 同名覆盖劳工组织法律文件以扩展工厂委员会条件，可能与其他修改 `common/laws/00_labour_associations.txt` 的 mod 冲突。
 - 建议新开一局，并在报告问题前用只启用本 mod 的播放集复现。
 
 ## 安装

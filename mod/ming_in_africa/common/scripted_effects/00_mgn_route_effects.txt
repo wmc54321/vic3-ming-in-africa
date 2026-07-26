@@ -18,6 +18,10 @@ mgn_activate_ming_rebuild_state = {
 		limit = { NOT = { has_journal_entry = je_mgn_rebuild_state_ming } }
 		add_journal_entry = { type = je_mgn_rebuild_state_ming }
 	}
+	if = {
+		limit = { NOT = { has_journal_entry = je_mgn_administer_four_quarters } }
+		add_journal_entry = { type = je_mgn_administer_four_quarters }
+	}
 }
 
 mgn_activate_qing_rebuild_state = {
@@ -29,6 +33,10 @@ mgn_activate_qing_rebuild_state = {
 	if = {
 		limit = { NOT = { has_journal_entry = je_mgn_rebuild_state_qing } }
 		add_journal_entry = { type = je_mgn_rebuild_state_qing }
+	}
+	if = {
+		limit = { NOT = { has_journal_entry = je_mgn_administer_four_quarters } }
+		add_journal_entry = { type = je_mgn_administer_four_quarters }
 	}
 }
 
@@ -265,7 +273,7 @@ mgn_inherit_overlord_laws_except_company_specific = {
 	if = { limit = { $OVERLORD$ = { has_law = law_type:law_wealth_voting } } activate_law = law_type:law_wealth_voting }
 	if = { limit = { $OVERLORD$ = { has_law = law_type:law_census_voting } } activate_law = law_type:law_census_voting }
 	if = { limit = { $OVERLORD$ = { has_law = law_type:law_universal_suffrage } } activate_law = law_type:law_universal_suffrage }
-	if = { limit = { $OVERLORD$ = { has_law = law_type:law_single_party_state } } activate_law = law_type:law_single_party_state }
+	if = { limit = { $OVERLORD$ = { has_law_or_variant = law_type:law_single_party_state } } activate_law = law_type:law_single_party_state }
 	if = { limit = { $OVERLORD$ = { has_law = law_type:law_technocracy } } activate_law = law_type:law_technocracy }
 	if = { limit = { $OVERLORD$ = { has_law = law_type:law_elder_council } } activate_law = law_type:law_elder_council }
 	if = { limit = { $OVERLORD$ = { has_law = law_type:law_anarchy } } activate_law = law_type:law_anarchy }
@@ -439,6 +447,32 @@ mgn_transfer_subsubjects_of_central_asian_company_donors = {
 		limit = {
 			NOT = { is_country_type = company }
 			any_scope_state = { mgn_state_is_central_asian_company_region = yes }
+		}
+		every_direct_subject = {
+			limit = { NOT = { is_direct_subject_of = ROOT } }
+			ROOT = { transfer_subject = prev }
+		}
+	}
+}
+
+mgn_transfer_subsubjects_of_japanese_company_donors = {
+	every_subject_or_below = {
+		limit = {
+			NOT = { is_country_type = company }
+			any_scope_state = { mgn_state_is_japanese_company_region = yes }
+		}
+		every_direct_subject = {
+			limit = { NOT = { is_direct_subject_of = ROOT } }
+			ROOT = { transfer_subject = prev }
+		}
+	}
+}
+
+mgn_transfer_subsubjects_of_southeast_asian_company_donors = {
+	every_subject_or_below = {
+		limit = {
+			NOT = { is_country_type = company }
+			any_scope_state = { mgn_state_is_southeast_asian_company_region = yes }
 		}
 		every_direct_subject = {
 			limit = { NOT = { is_direct_subject_of = ROOT } }
@@ -736,7 +770,7 @@ mgn_create_korean_chartered_company = {
 				activate_law = law_type:law_mgn_heavenly_subjecthood
 				set_variable = mgn_company_cannot_form_china
 				add_primary_culture = cu:han
-				add_primary_culture = cu:manchu
+				add_primary_culture = cu:haedong_han
 			}
 		}
 	}
@@ -845,8 +879,7 @@ mgn_create_lanfang_chartered_company = {
 				activate_law = law_type:law_mgn_heavenly_subjecthood
 				set_variable = mgn_company_cannot_form_china
 				add_primary_culture = cu:han
-				add_primary_culture = cu:hakka
-				add_primary_culture = cu:yue
+				add_primary_culture = cu:nanyang_han
 			}
 		}
 	}
@@ -955,8 +988,7 @@ mgn_create_siberian_chartered_company = {
 				activate_law = law_type:law_mgn_heavenly_subjecthood
 				set_variable = mgn_company_cannot_form_china
 				add_primary_culture = cu:han
-				add_primary_culture = cu:western_han
-				add_primary_culture = cu:manchu
+				add_primary_culture = cu:shuofang_han
 			}
 		}
 	}
@@ -1066,8 +1098,7 @@ mgn_create_central_asian_chartered_company = {
 				activate_law = law_type:law_mgn_heavenly_subjecthood
 				set_variable = mgn_company_cannot_form_china
 				add_primary_culture = cu:han
-				add_primary_culture = cu:western_han
-				add_primary_culture = cu:manchu
+				add_primary_culture = cu:tianshan_han
 			}
 		}
 	}
@@ -1105,6 +1136,263 @@ mgn_create_central_asian_chartered_company = {
 		activate_law = law_type:law_mgn_heavenly_subjecthood
 		activate_law = law_type:law_extraction_economy
 		activate_law = law_type:law_state_religion
+		set_tax_level = low
+	}
+}
+
+mgn_create_japanese_chartered_company = {
+	if = {
+		limit = { any_scope_state = { state_region = s:STATE_KANTO } }
+		random_scope_state = {
+			limit = { state_region = s:STATE_KANTO }
+			save_scope_as = mgn_japanese_company_capital
+		}
+	}
+	else_if = {
+		limit = {
+			any_subject_or_below = {
+				NOT = { is_country_type = company }
+				any_scope_state = { state_region = s:STATE_KANTO }
+			}
+		}
+		random_subject_or_below = {
+			limit = {
+				NOT = { is_country_type = company }
+				any_scope_state = { state_region = s:STATE_KANTO }
+			}
+			random_scope_state = {
+				limit = { state_region = s:STATE_KANTO }
+				save_scope_as = mgn_japanese_company_capital
+			}
+		}
+	}
+	else_if = {
+		limit = { any_scope_state = { state_region = s:STATE_KANSAI } }
+		random_scope_state = {
+			limit = { state_region = s:STATE_KANSAI }
+			save_scope_as = mgn_japanese_company_capital
+		}
+	}
+	else_if = {
+		limit = {
+			any_subject_or_below = {
+				NOT = { is_country_type = company }
+				any_scope_state = { state_region = s:STATE_KANSAI }
+			}
+		}
+		random_subject_or_below = {
+			limit = {
+				NOT = { is_country_type = company }
+				any_scope_state = { state_region = s:STATE_KANSAI }
+			}
+			random_scope_state = {
+				limit = { state_region = s:STATE_KANSAI }
+				save_scope_as = mgn_japanese_company_capital
+			}
+		}
+	}
+	else_if = {
+		limit = { any_scope_state = { mgn_state_is_japanese_company_region = yes } }
+		random_scope_state = {
+			limit = { mgn_state_is_japanese_company_region = yes }
+			save_scope_as = mgn_japanese_company_capital
+		}
+	}
+	else = {
+		random_subject_or_below = {
+			limit = {
+				NOT = { is_country_type = company }
+				any_scope_state = { mgn_state_is_japanese_company_region = yes }
+			}
+			random_scope_state = {
+				limit = { mgn_state_is_japanese_company_region = yes }
+				save_scope_as = mgn_japanese_company_capital
+			}
+		}
+	}
+
+	if = {
+		limit = { NOT = { c:MJP ?= { is_country_alive = yes } } }
+		create_country = {
+			tag = MJP
+			origin = ROOT
+			state = scope:mgn_japanese_company_capital
+			on_created = {
+				activate_law = law_type:law_mgn_heavenly_subjecthood
+				set_variable = mgn_company_cannot_form_china
+				add_primary_culture = cu:han
+				add_primary_culture = cu:fusang_han
+			}
+		}
+	}
+
+	create_diplomatic_pact = { country = c:MJP type = chartered_company }
+	mgn_transfer_subsubjects_of_japanese_company_donors = yes
+
+	every_scope_state = {
+		limit = { mgn_state_is_japanese_company_region = yes }
+		set_state_owner = c:MJP
+		set_state_type = incorporated
+	}
+	every_subject_or_below = {
+		limit = { NOT = { is_country_type = company } }
+		every_scope_state = {
+			limit = { mgn_state_is_japanese_company_region = yes }
+			set_state_owner = c:MJP
+			set_state_type = incorporated
+		}
+	}
+
+	c:MJP ?= {
+		every_scope_state = {
+			limit = { owner = c:MJP }
+			set_state_type = incorporated
+		}
+		mgn_inherit_overlord_laws_except_company_specific = { OVERLORD = ROOT }
+		activate_law = law_type:law_colonial_administration
+		activate_law = law_type:law_mgn_heavenly_subjecthood
+		activate_law = law_type:law_extraction_economy
+		set_tax_level = low
+	}
+}
+
+mgn_create_southeast_asian_chartered_company = {
+	if = {
+		limit = { any_scope_state = { state_region = s:STATE_BANGKOK } }
+		random_scope_state = {
+			limit = { state_region = s:STATE_BANGKOK }
+			save_scope_as = mgn_southeast_asian_company_capital
+		}
+	}
+	else_if = {
+		limit = {
+			any_subject_or_below = {
+				NOT = { is_country_type = company }
+				any_scope_state = { state_region = s:STATE_BANGKOK }
+			}
+		}
+		random_subject_or_below = {
+			limit = {
+				NOT = { is_country_type = company }
+				any_scope_state = { state_region = s:STATE_BANGKOK }
+			}
+			random_scope_state = {
+				limit = { state_region = s:STATE_BANGKOK }
+				save_scope_as = mgn_southeast_asian_company_capital
+			}
+		}
+	}
+	else_if = {
+		limit = { any_scope_state = { state_region = s:STATE_TONKIN } }
+		random_scope_state = {
+			limit = { state_region = s:STATE_TONKIN }
+			save_scope_as = mgn_southeast_asian_company_capital
+		}
+	}
+	else_if = {
+		limit = {
+			any_subject_or_below = {
+				NOT = { is_country_type = company }
+				any_scope_state = { state_region = s:STATE_TONKIN }
+			}
+		}
+		random_subject_or_below = {
+			limit = {
+				NOT = { is_country_type = company }
+				any_scope_state = { state_region = s:STATE_TONKIN }
+			}
+			random_scope_state = {
+				limit = { state_region = s:STATE_TONKIN }
+				save_scope_as = mgn_southeast_asian_company_capital
+			}
+		}
+	}
+	else_if = {
+		limit = { any_scope_state = { state_region = s:STATE_MALAYA } }
+		random_scope_state = {
+			limit = { state_region = s:STATE_MALAYA }
+			save_scope_as = mgn_southeast_asian_company_capital
+		}
+	}
+	else_if = {
+		limit = {
+			any_subject_or_below = {
+				NOT = { is_country_type = company }
+				any_scope_state = { state_region = s:STATE_MALAYA }
+			}
+		}
+		random_subject_or_below = {
+			limit = {
+				NOT = { is_country_type = company }
+				any_scope_state = { state_region = s:STATE_MALAYA }
+			}
+			random_scope_state = {
+				limit = { state_region = s:STATE_MALAYA }
+				save_scope_as = mgn_southeast_asian_company_capital
+			}
+		}
+	}
+	else_if = {
+		limit = { any_scope_state = { mgn_state_is_southeast_asian_company_region = yes } }
+		random_scope_state = {
+			limit = { mgn_state_is_southeast_asian_company_region = yes }
+			save_scope_as = mgn_southeast_asian_company_capital
+		}
+	}
+	else = {
+		random_subject_or_below = {
+			limit = {
+				NOT = { is_country_type = company }
+				any_scope_state = { mgn_state_is_southeast_asian_company_region = yes }
+			}
+			random_scope_state = {
+				limit = { mgn_state_is_southeast_asian_company_region = yes }
+				save_scope_as = mgn_southeast_asian_company_capital
+			}
+		}
+	}
+
+	if = {
+		limit = { NOT = { c:MSE ?= { is_country_alive = yes } } }
+		create_country = {
+			tag = MSE
+			origin = ROOT
+			state = scope:mgn_southeast_asian_company_capital
+			on_created = {
+				activate_law = law_type:law_mgn_heavenly_subjecthood
+				set_variable = mgn_company_cannot_form_china
+				add_primary_culture = cu:han
+				add_primary_culture = cu:jiaonan_han
+			}
+		}
+	}
+
+	create_diplomatic_pact = { country = c:MSE type = chartered_company }
+	mgn_transfer_subsubjects_of_southeast_asian_company_donors = yes
+
+	every_scope_state = {
+		limit = { mgn_state_is_southeast_asian_company_region = yes }
+		set_state_owner = c:MSE
+		set_state_type = incorporated
+	}
+	every_subject_or_below = {
+		limit = { NOT = { is_country_type = company } }
+		every_scope_state = {
+			limit = { mgn_state_is_southeast_asian_company_region = yes }
+			set_state_owner = c:MSE
+			set_state_type = incorporated
+		}
+	}
+
+	c:MSE ?= {
+		every_scope_state = {
+			limit = { owner = c:MSE }
+			set_state_type = incorporated
+		}
+		mgn_inherit_overlord_laws_except_company_specific = { OVERLORD = ROOT }
+		activate_law = law_type:law_colonial_administration
+		activate_law = law_type:law_mgn_heavenly_subjecthood
+		activate_law = law_type:law_extraction_economy
 		set_tax_level = low
 	}
 }
@@ -1152,6 +1440,20 @@ mgn_integrate_company_target_states = {
 			set_state_type = incorporated
 		}
 	}
+	if = {
+		limit = { c:MJP ?= THIS }
+		every_scope_state = {
+			limit = { mgn_state_is_japanese_company_region = yes }
+			set_state_type = incorporated
+		}
+	}
+	if = {
+		limit = { c:MSE ?= THIS }
+		every_scope_state = {
+			limit = { mgn_state_is_southeast_asian_company_region = yes }
+			set_state_type = incorporated
+		}
+	}
 }
 
 mgn_finish_ming_rebuild_state = {
@@ -1163,12 +1465,61 @@ mgn_finish_ming_rebuild_state = {
 
 mgn_restore_northeastern_border = {
 	if = {
+		limit = { c:CHI ?= { is_country_alive = yes } }
+		mgn_restore_northeastern_border_to = { TAKER = c:CHI }
+	}
+	else_if = {
 		limit = { c:MDC ?= { is_country_alive = yes } }
 		mgn_restore_northeastern_border_to = { TAKER = c:MDC }
 	}
 	else = {
-		mgn_restore_northeastern_border_to = { TAKER = ROOT }
+		mgn_restore_northeastern_border_to = { TAKER = c:MGN }
 	}
+}
+
+mgn_normalize_company_primary_cultures = {
+	if = {
+		limit = { NOT = { country_has_primary_culture = cu:han } }
+		add_primary_culture = cu:han
+	}
+	if = {
+		limit = { c:MCC ?= THIS }
+		remove_primary_culture = cu:african_han
+		remove_primary_culture = cu:western_han
+		add_primary_culture = cu:african_han
+		add_primary_culture = cu:western_han
+	}
+	else_if = {
+		limit = { c:MKC ?= THIS }
+		remove_primary_culture = cu:haedong_han
+		add_primary_culture = cu:haedong_han
+	}
+	else_if = {
+		limit = { c:MLF ?= THIS }
+		remove_primary_culture = cu:nanyang_han
+		add_primary_culture = cu:nanyang_han
+	}
+	else_if = {
+		limit = { c:MSB ?= THIS }
+		remove_primary_culture = cu:shuofang_han
+		add_primary_culture = cu:shuofang_han
+	}
+	else_if = {
+		limit = { c:MCA ?= THIS }
+		remove_primary_culture = cu:tianshan_han
+		add_primary_culture = cu:tianshan_han
+	}
+	else_if = {
+		limit = { c:MJP ?= THIS }
+		remove_primary_culture = cu:fusang_han
+		add_primary_culture = cu:fusang_han
+	}
+	else_if = {
+		limit = { c:MSE ?= THIS }
+		remove_primary_culture = cu:jiaonan_han
+		add_primary_culture = cu:jiaonan_han
+	}
+	set_variable = mgn_company_primary_cultures_normalized
 }
 
 mgn_restore_northeastern_border_to = {
@@ -1187,11 +1538,15 @@ mgn_restore_northeastern_border_to = {
 
 mgn_restore_northwestern_border = {
 	if = {
+		limit = { c:CHI ?= { is_country_alive = yes } }
+		mgn_restore_northwestern_border_to = { TAKER = c:CHI }
+	}
+	else_if = {
 		limit = { c:MDC ?= { is_country_alive = yes } }
 		mgn_restore_northwestern_border_to = { TAKER = c:MDC }
 	}
 	else = {
-		mgn_restore_northwestern_border_to = { TAKER = ROOT }
+		mgn_restore_northwestern_border_to = { TAKER = c:MGN }
 	}
 }
 
@@ -1256,4 +1611,14 @@ mgn_finish_siberian_company = {
 mgn_finish_central_asian_company = {
 	mgn_create_central_asian_chartered_company = yes
 	trigger_event = { id = mgn_route_events.143 popup = yes }
+}
+
+mgn_finish_japanese_company = {
+	mgn_create_japanese_chartered_company = yes
+	trigger_event = { id = mgn_route_events.145 popup = yes }
+}
+
+mgn_finish_southeast_asian_company = {
+	mgn_create_southeast_asian_chartered_company = yes
+	trigger_event = { id = mgn_route_events.146 popup = yes }
 }

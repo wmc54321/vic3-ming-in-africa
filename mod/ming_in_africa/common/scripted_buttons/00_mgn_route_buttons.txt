@@ -487,12 +487,12 @@ button_mgn_move_capital_beijing = {
 	visible = {
 		c:MGN ?= THIS
 		has_variable = mgn_rebuild_state_started
-		owns_entire_state_region = STATE_BEIJING
 		NOT = { has_variable = mgn_capital_moved_to_china }
 	}
 
 	possible = {
 		owns_entire_state_region = STATE_BEIJING
+		NOT = { capital = { state_region = s:STATE_BEIJING } }
 	}
 
 	effect = {
@@ -509,12 +509,12 @@ button_mgn_move_capital_nanjing = {
 	visible = {
 		c:MGN ?= THIS
 		has_variable = mgn_rebuild_state_started
-		owns_entire_state_region = STATE_NANJING
 		NOT = { has_variable = mgn_capital_moved_to_china }
 	}
 
 	possible = {
 		owns_entire_state_region = STATE_NANJING
+		NOT = { capital = { state_region = s:STATE_NANJING } }
 	}
 
 	effect = {
@@ -745,6 +745,64 @@ button_mgn_establish_central_asian_company = {
 	effect = {
 		custom_tooltip = mgn_establish_central_asian_company_effect_tt
 		hidden_effect = { mgn_finish_central_asian_company = yes }
+	}
+
+	ai_chance = { value = 0 }
+}
+
+button_mgn_establish_japanese_company = {
+	name = "button_mgn_establish_japanese_company"
+	desc = "button_mgn_establish_japanese_company_desc"
+
+	visible = {
+		mgn_is_two_chinas_participant = yes
+		has_variable = mgn_rebuild_state_started
+	}
+
+	possible = {
+		NOT = { c:MJP ?= { is_country_alive = yes } }
+		custom_tooltip = {
+			text = mgn_capital_not_in_japanese_company_region_tt
+			hidden_trigger = { mgn_capital_is_not_in_japanese_company_region = yes }
+		}
+		custom_tooltip = {
+			text = mgn_has_japanese_company_land_tt
+			hidden_trigger = { mgn_has_japanese_company_land = yes }
+		}
+	}
+
+	effect = {
+		custom_tooltip = mgn_establish_japanese_company_effect_tt
+		hidden_effect = { mgn_finish_japanese_company = yes }
+	}
+
+	ai_chance = { value = 0 }
+}
+
+button_mgn_establish_southeast_asian_company = {
+	name = "button_mgn_establish_southeast_asian_company"
+	desc = "button_mgn_establish_southeast_asian_company_desc"
+
+	visible = {
+		mgn_is_two_chinas_participant = yes
+		has_variable = mgn_rebuild_state_started
+	}
+
+	possible = {
+		NOT = { c:MSE ?= { is_country_alive = yes } }
+		custom_tooltip = {
+			text = mgn_capital_not_in_southeast_asian_company_region_tt
+			hidden_trigger = { mgn_capital_is_not_in_southeast_asian_company_region = yes }
+		}
+		custom_tooltip = {
+			text = mgn_has_southeast_asian_company_land_tt
+			hidden_trigger = { mgn_has_southeast_asian_company_land = yes }
+		}
+	}
+
+	effect = {
+		custom_tooltip = mgn_establish_southeast_asian_company_effect_tt
+		hidden_effect = { mgn_finish_southeast_asian_company = yes }
 	}
 
 	ai_chance = { value = 0 }

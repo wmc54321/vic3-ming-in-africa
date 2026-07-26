@@ -59,3 +59,144 @@ western_han = {
 	}
 	graphics = east_asian
 }
+
+haedong_han = {
+	color = rgb{ 125 135 105 }
+	religion = confucian
+	heritage = heritage_haedong_sinitic
+	language = language_korean
+	name_format = last_first
+
+	obsessions = { liquor }
+	traditions = { tradition_sinosphere }
+	male_common_first_names = {
+		Bak Bong-haek Chen Chwa-chin Gu Han Heong-gyo Hong Jeong Jo Kwon Li Liu Min Pak Seong Wang Yi Zhang
+	}
+	female_common_first_names = {
+		Bok-hui Chun-ja Eun-ji Hae-won Jin Jinhong Junying Mei Ok-sun Sun-ja Xiefen Yun
+	}
+	noble_last_names = { Chen Choe Han Hong Kim Li Pak Wang Yi Zhang }
+	common_last_names = { An Baek Chen Choe Han Hong Jeong Kim Li Pak Wang Yi Zhang }
+	ethnicities = { 1 = asian }
+	graphics = east_asian
+}
+
+nanyang_han = {
+	color = rgb{ 175 120 65 }
+	religion = confucian
+	heritage = heritage_nanyang_sinitic
+	language = language_hakka
+	name_format = last_first
+
+	obsessions = { opium }
+	traditions = { tradition_sinosphere }
+	male_common_first_names = {
+		Chen Deng Feng Hong Huang Kanang Li Liao Liu Oevaang Qiu Shi Shu Sugianto Wang Zhang
+	}
+	female_common_first_names = {
+		Ah-lan Ah-moi Jinhong Junying Mei Pandelela Sanniang Shanziang Xiefen Xiugu Yun
+	}
+	noble_last_names = { Chen Deng Feng Hong Huang Li Liao Liu Qiu Wang Zhang }
+	common_last_names = { Chen Deng Feng Hong Huang Li Liao Liu Qiu Shi Wang Zhang }
+	ethnicities = {
+		2 = asian
+		1 = south_east_asian
+	}
+	graphics = east_asian
+}
+
+shuofang_han = {
+	color = rgb{ 110 145 140 }
+	religion = confucian
+	heritage = heritage_shuofang_sinitic
+	language = language_mandarin
+	name_format = last_first
+
+	obsessions = { liquor }
+	traditions = { tradition_sinosphere }
+	male_common_first_names = {
+		Agvan Aysen Batozhargal Bulat Chen Deng Elley Huang Li Liu Nyurgun Solbon Wang Zhang
+	}
+	female_common_first_names = {
+		Anna Ayana Chen Jinhong Junying Natalia Sardana Seseg Xiefen Yun Zoya
+	}
+	noble_last_names = { Chen Li Ma Nie Wang Zhang }
+	common_last_names = { Chen Dong Hu Jiang Li Ma Peng Sun Wang Wu Zhang Zhao }
+	ethnicities = {
+		3 = asian
+		1 = circumpolar
+	}
+	graphics = east_asian
+}
+
+tianshan_han = {
+	color = rgb{ 155 120 75 }
+	religion = confucian
+	heritage = heritage_tianshan_sinitic
+	language = language_mandarin
+	name_format = last_first
+
+	obsessions = { opium }
+	traditions = {
+		tradition_sinosphere
+		tradition_persianate
+	}
+	male_common_first_names = {
+		Abbas Ahmad Alimqul Askar Chen Deng Haydar Huang Li Liu Murat Nurberdi Wang Zhang
+	}
+	female_common_first_names = {
+		Aksoltan Dilara Gulbahar Jinhong Junying Mei Sanniang Xiefen Xiugu Yun
+	}
+	noble_last_names = { Chen Li Ma Wang Zhang }
+	common_last_names = { Chen Hu Li Ma Peng Sun Wang Wu Zhang Zhao }
+	ethnicities = {
+		1 = asian
+		1 = central_asian
+	}
+	graphics = east_asian
+}
+
+fusang_han = {
+	color = rgb{ 155 105 105 }
+	religion = mahayana
+	heritage = heritage_fusang_sinitic
+	language = language_japanese
+	name_format = last_first
+
+	obsessions = { tea }
+	traditions = { tradition_sinosphere }
+	male_common_first_names = {
+		Akira Chen Haruto Hiroshi Ichiro Isamu Kenji Li Masao Noboru Takashi Takeshi Wang Zhang
+	}
+	female_common_first_names = {
+		Aiko Akiko Chiyo Emiko Hana Haruko Jinhong Junko Keiko Michiko Xiefen Yun
+	}
+	noble_last_names = { Chen Fujiwara Li Minamoto Taira Tokugawa Wang Zhang }
+	common_last_names = { Chen Hayashi Ito Kato Kobayashi Li Nakamura Sato Suzuki Tanaka Wang Watanabe Zhang }
+	ethnicities = { 1 = asian }
+	graphics = east_asian
+}
+
+jiaonan_han = {
+	color = rgb{ 155 125 70 }
+	religion = mahayana
+	heritage = heritage_jiaonan_sinitic
+	language = language_vietic
+	name_format = last_first
+
+	obsessions = { tea }
+	traditions = { tradition_sinosphere }
+	male_common_first_names = {
+		Anh Chen Duy Hai Hoang Huy Kiet Li Long Minh Nam Phuc Quang Thanh Wang Zhang
+	}
+	female_common_first_names = {
+		Anh Dao Giang Hoa Huong Jinhong Lan Linh Mai Ngoc Thanh Thuy Xiefen Yun
+	}
+	noble_last_names = { Chen Le Li Ly Nguyen Pham Tran Trinh Wang Zhang }
+	common_last_names = { Bui Chen Dang Do Hoang Le Li Ngo Nguyen Pham Tran Vu Wang Zhang }
+	ethnicities = {
+		2 = south_east_asian
+		1 = asian
+	}
+	graphics = east_asian
+}

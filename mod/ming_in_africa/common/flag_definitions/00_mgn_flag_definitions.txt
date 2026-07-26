@@ -234,3 +234,55 @@ MCA = {
 		priority = 1
 	}
 }
+
+MJP = {
+	flag_definition = {
+		coa = MJP_chartered
+		subject_canton = MJP_chartered
+		coa_with_overlord_canton = MJP_subject
+		allow_overlord_canton = yes
+		priority = 5000
+		trigger = { coa_def_chartered_company_trigger = yes }
+	}
+	flag_definition = {
+		coa = MJP_free
+		subject_canton = MJP_free
+		coa_with_overlord_canton = MJP_subject
+		allow_overlord_canton = yes
+		priority = 3000
+		trigger = { is_subject = no }
+	}
+	flag_definition = {
+		coa = MJP
+		subject_canton = MJP
+		coa_with_overlord_canton = MJP_subject
+		allow_overlord_canton = yes
+		priority = 1
+	}
+}
+
+MSE = {
+	flag_definition = {
+		coa = MSE_chartered
+		subject_canton = MSE_chartered
+		coa_with_overlord_canton = MSE_subject
+		allow_overlord_canton = yes
+		priority = 5000
+		trigger = { coa_def_chartered_company_trigger = yes }
+	}
+	flag_definition = {
+		coa = MSE_free
+		subject_canton = MSE_free
+		coa_with_overlord_canton = MSE_subject
+		allow_overlord_canton = yes
+		priority = 3000
+		trigger = { is_subject = no }
+	}
+	flag_definition = {
+		coa = MSE
+		subject_canton = MSE
+		coa_with_overlord_canton = MSE_subject
+		allow_overlord_canton = yes
+		priority = 1
+	}
+}

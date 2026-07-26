@@ -398,3 +398,57 @@ MCA = {
 		trigger = { scope:actor ?= { is_subject = no } }
 	}
 }
+
+MJP = {
+	dynamic_country_name = {
+		name = dyn_c_ming_japanese_chartered_company
+		adjective = dyn_c_ming_japanese_chartered_company_adj
+		priority = 100
+		trigger = { scope:actor ?= { is_subject_of = c:MGN is_subject_type = subject_type_chartered_company } }
+	}
+	dynamic_country_name = {
+		name = dyn_c_qing_japanese_chartered_company
+		adjective = dyn_c_qing_japanese_chartered_company_adj
+		priority = 100
+		trigger = { scope:actor ?= { is_subject_of = c:CHI is_subject_type = subject_type_chartered_company } }
+	}
+	dynamic_country_name = {
+		name = dyn_c_mjp_protectorate
+		adjective = dyn_c_mjp_protectorate_adj
+		priority = 80
+		trigger = { scope:actor ?= { is_subject = yes NOT = { is_subject_type = subject_type_chartered_company } } }
+	}
+	dynamic_country_name = {
+		name = dyn_c_mjp_free_state
+		adjective = dyn_c_mjp_free_state_adj
+		priority = 90
+		trigger = { scope:actor ?= { is_subject = no } }
+	}
+}
+
+MSE = {
+	dynamic_country_name = {
+		name = dyn_c_ming_southeast_asian_chartered_company
+		adjective = dyn_c_ming_southeast_asian_chartered_company_adj
+		priority = 100
+		trigger = { scope:actor ?= { is_subject_of = c:MGN is_subject_type = subject_type_chartered_company } }
+	}
+	dynamic_country_name = {
+		name = dyn_c_qing_southeast_asian_chartered_company
+		adjective = dyn_c_qing_southeast_asian_chartered_company_adj
+		priority = 100
+		trigger = { scope:actor ?= { is_subject_of = c:CHI is_subject_type = subject_type_chartered_company } }
+	}
+	dynamic_country_name = {
+		name = dyn_c_mse_protectorate
+		adjective = dyn_c_mse_protectorate_adj
+		priority = 80
+		trigger = { scope:actor ?= { is_subject = yes NOT = { is_subject_type = subject_type_chartered_company } } }
+	}
+	dynamic_country_name = {
+		name = dyn_c_mse_free_state
+		adjective = dyn_c_mse_free_state_adj
+		priority = 90
+		trigger = { scope:actor ?= { is_subject = no } }
+	}
+}
