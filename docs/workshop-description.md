@@ -38,6 +38,11 @@
 [url=https://github.com/wmc54321/vic3-ming-in-africa]GitHub 源码与问题反馈[/url]
 [url=https://github.com/wmc54321/vic3-ming-in-africa/releases]GitHub Releases 手动下载[/url]
 
+[h2]声明[/h2]
+本 mod 纯属架空历史与游戏机制创作。作品中的国家、政权、文化、族群、人物、制度与事件均服务于虚构叙事及玩法设计，不影射或评价现实中的国家、民族、族裔、文化、政治组织或个人，也不表达、支持或鼓励任何形式的种族优越论、种族主义、民族仇恨或歧视。
+
+本作品为非官方玩家创作，与 Paradox Interactive AB 无隶属、赞助或认可关系。《Victoria 3》及相关商标和原版内容归其各自权利人所有。
+
 [hr][/hr]
 
 [h1]English[/h1]
@@ -80,6 +85,7 @@
 [url=https://github.com/wmc54321/vic3-ming-in-africa]GitHub source and issue tracker[/url]
 [url=https://github.com/wmc54321/vic3-ming-in-africa/releases]GitHub Releases manual download[/url]
 
-[hr][/hr]
+[h2]Disclaimer[/h2]
+This mod is a work of alternate-history fiction and game design. Its countries, regimes, cultures, peoples, characters, institutions, and events exist solely for fictional narrative and gameplay. They are not intended to represent or judge any real nation, ethnicity, culture, political organization, or individual, nor to express, endorse, or encourage racial supremacy, racism, ethnic hatred, or discrimination of any kind.
 
 This is an unofficial fan-made modification. It is not affiliated with, sponsored by, or endorsed by Paradox Interactive AB. Victoria 3 and related marks and original content belong to their respective owners.

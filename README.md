@@ -42,3 +42,7 @@ Steam 用户建议直接从 [Steam 创意工坊](https://steamcommunity.com/shar
 本项目作者原创部分采用 [MIT License](LICENSE)。原版游戏数据、Paradox Interactive 的商标和其他第三方内容不在该授权范围内，详见 [NOTICE.md](NOTICE.md)。
 
 本项目是非官方玩家作品，与 Paradox Interactive AB 无隶属、赞助或认可关系。《Victoria 3》及相关商标和原版游戏内容归其各自权利人所有。
+
+本 mod 纯属架空历史与游戏机制创作。作品中的国家、政权、文化、族群、人物、制度与事件均服务于虚构叙事及玩法设计，不影射或评价现实中的国家、民族、族裔、文化、政治组织或个人，也不表达、支持或鼓励任何形式的种族优越论、种族主义、民族仇恨或歧视。
+
+This mod is a work of alternate-history fiction and game design. Its countries, regimes, cultures, peoples, characters, institutions, and events exist solely for fictional narrative and gameplay. They are not intended to represent or judge any real nation, ethnicity, culture, political organization, or individual, nor to express, endorse, or encourage racial supremacy, racism, ethnic hatred, or discrimination of any kind.
