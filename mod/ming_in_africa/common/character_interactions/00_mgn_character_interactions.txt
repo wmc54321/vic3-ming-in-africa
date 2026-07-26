@@ -1,0 +1,47 @@
+mgn_struggle_session = {
+	clicksound = "event:/SFX/DLC/1.3_ip1/UI/exile_character"
+
+	potential = {
+		owner ?= scope:actor
+		owner ?= {
+			has_law = law_type:law_mgn_revolutionary_committees
+		}
+		is_in_exile_pool = no
+		is_in_void = no
+		is_immortal = no
+	}
+
+	show_requirements = yes
+
+	effect = {
+		save_scope_as = mgn_struggle_target
+		interest_group ?= { save_scope_as = mgn_struggle_target_ig }
+
+		if = {
+			limit = { is_ruler_of_own_country = yes }
+			random_list = {
+				50 = { owner = { trigger_event = { id = mgn_revolutionary_committee_events.1 popup = yes } } }
+				20 = { owner = { trigger_event = { id = mgn_revolutionary_committee_events.3 popup = yes } } }
+				30 = { owner = { trigger_event = { id = mgn_revolutionary_committee_events.4 popup = yes } } }
+			}
+		}
+		else = {
+			random_list = {
+				50 = { owner = { trigger_event = { id = mgn_revolutionary_committee_events.1 popup = yes } } }
+				25 = { owner = { trigger_event = { id = mgn_revolutionary_committee_events.2 popup = yes } } }
+				25 = { owner = { trigger_event = { id = mgn_revolutionary_committee_events.3 popup = yes } } }
+			}
+		}
+	}
+
+	cooldown = { months = 18 }
+	show_confirmation_box = yes
+
+	should_ai_evaluate = {
+		always = no
+	}
+
+	ai_chance = {
+		value = 0
+	}
+}

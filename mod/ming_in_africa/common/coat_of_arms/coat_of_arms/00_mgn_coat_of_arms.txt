@@ -749,3 +749,125 @@ MCA_subject = {
 		instance = { scale = { 0.38 0.38 } position = { 0.75 0.5 } }
 	}
 }
+
+MJP_chartered = {
+	pattern = "pattern_border_of_3.dds"
+	color1 = "black"
+	color2 = "red"
+	colored_emblem = {
+		texture = "ce_wreath.dds"
+		color1 = "golden"
+		color2 = "golden"
+		instance = { scale = { 0.72 0.72 } position = { 0.5 0.5 } }
+	}
+	colored_emblem = {
+		texture = "ce_star_08.dds"
+		color1 = "white"
+		color2 = "white"
+		instance = { scale = { 0.34 0.34 } position = { 0.5 0.5 } }
+	}
+}
+
+MJP = {
+	pattern = "pattern_solid.tga"
+	color1 = "white"
+	color2 = "red"
+	colored_emblem = {
+		texture = "ce_star_08.dds"
+		color1 = "red"
+		color2 = "red"
+		instance = { scale = { 0.48 0.48 } position = { 0.5 0.5 } }
+	}
+}
+
+MJP_free = {
+	pattern = "pattern_border_of_3.dds"
+	color1 = "black"
+	color2 = "white"
+	colored_emblem = {
+		texture = "ce_star_08.dds"
+		color1 = "red"
+		color2 = "red"
+		instance = { scale = { 0.42 0.42 } position = { 0.5 0.5 } }
+	}
+	colored_emblem = {
+		texture = "ce_dragon_china_circle.dds"
+		color1 = "black"
+		color2 = "golden"
+		color3 = "yellow"
+		instance = { scale = { 0.16 0.16 } position = { 0.5 0.74 } }
+	}
+}
+
+MJP_subject = {
+	pattern = "pattern_border_of_3.dds"
+	color1 = "black"
+	color2 = "white"
+	colored_emblem = {
+		texture = "ce_star_08.dds"
+		color1 = "red"
+		color2 = "red"
+		instance = { scale = { 0.32 0.32 } position = { 0.75 0.5 } }
+	}
+}
+
+MSE_chartered = {
+	pattern = "pattern_border_of_3.dds"
+	color1 = "black"
+	color2 = "orange"
+	colored_emblem = {
+		texture = "ce_wreath.dds"
+		color1 = "golden"
+		color2 = "golden"
+		instance = { scale = { 0.72 0.72 } position = { 0.5 0.5 } }
+	}
+	colored_emblem = {
+		texture = "ce_ship_manchester.dds"
+		color1 = "golden"
+		color2 = "yellow"
+		instance = { scale = { 0.42 0.42 } position = { 0.5 0.55 } }
+	}
+}
+
+MSE = {
+	pattern = "pattern_solid.tga"
+	color1 = "orange"
+	color2 = "black"
+	colored_emblem = {
+		texture = "ce_ship_manchester.dds"
+		color1 = "black"
+		color2 = "golden"
+		instance = { scale = { 0.50 0.50 } position = { 0.5 0.55 } }
+	}
+}
+
+MSE_free = {
+	pattern = "pattern_border_of_3.dds"
+	color1 = "black"
+	color2 = "orange"
+	colored_emblem = {
+		texture = "ce_ship_manchester.dds"
+		color1 = "golden"
+		color2 = "yellow"
+		instance = { scale = { 0.48 0.48 } position = { 0.5 0.55 } }
+	}
+	colored_emblem = {
+		texture = "ce_dragon_china_circle.dds"
+		color1 = "red"
+		color2 = "golden"
+		color3 = "yellow"
+		instance = { scale = { 0.16 0.16 } position = { 0.5 0.74 } }
+	}
+}
+
+MSE_subject = {
+	pattern = "pattern_border_of_3.dds"
+	color1 = "black"
+	color2 = "orange"
+	colored_emblem = {
+		texture = "ce_ship_manchester.dds"
+		color1 = "golden"
+		color2 = "yellow"
+		instance = { scale = { 0.34 0.34 } position = { 0.75 0.5 } }
+	}
+}

@@ -41,7 +41,7 @@ MKC = {
 
 	tier = kingdom
 
-	cultures = { han manchu }
+	cultures = { han haedong_han }
 	religion = confucian
 	capital = STATE_SEOUL
 }
@@ -53,7 +53,7 @@ MLF = {
 
 	tier = kingdom
 
-	cultures = { han hakka yue }
+	cultures = { han nanyang_han }
 	religion = confucian
 	capital = STATE_WEST_BORNEO
 }
@@ -65,7 +65,7 @@ MSB = {
 
 	tier = kingdom
 
-	cultures = { han western_han manchu }
+	cultures = { han shuofang_han }
 	religion = confucian
 	capital = STATE_IRKUTSK
 }
@@ -77,7 +77,31 @@ MCA = {
 
 	tier = kingdom
 
-	cultures = { han western_han manchu }
+	cultures = { han tianshan_han }
 	religion = confucian
 	capital = STATE_MERZ
+}
+
+MJP = {
+	color = { 160 90 95 }
+
+	country_type = company
+
+	tier = kingdom
+
+	cultures = { han fusang_han }
+	religion = mahayana
+	capital = STATE_KANTO
+}
+
+MSE = {
+	color = { 155 115 55 }
+
+	country_type = company
+
+	tier = kingdom
+
+	cultures = { han jiaonan_han }
+	religion = mahayana
+	capital = STATE_BANGKOK
 }

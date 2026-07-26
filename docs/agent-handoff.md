@@ -50,6 +50,11 @@ or pass `-GameRoot` explicitly.
 - Do not manually rewrite generated state/building/pop history unless the user explicitly asks for a one-off experiment.
 - If vanilla files are overridden by same-name files, document why in `docs/implementation-map.md`.
 
+## Same-Name Vanilla Overrides
+
+- `mod/ming_in_africa/common/laws/00_labour_associations.txt` is a complete Victoria 3 1.13 copy. It exists because a separate duplicate `law_factory_councils` object did not replace the live vanilla definition. The only intended change is that Factory Councils may be enacted while revolutionary or under `law_mgn_revolutionary_committees`, with the matching reverse-reference UI entry.
+- Recompare this file with the current vanilla `common/laws/00_labour_associations.txt` after every supported-game-version update. Preserve all upstream changes and reapply only the documented Factory Councils block.
+
 ## Current Narrative Premise
 
 Great Ming survived in Africa and rules from Lower Egypt/Yingtian at game start. It claims Chinese legitimacy against Qing, can reunify China by war or political convergence, and can later reorganize far-flung territories through Chinese chartered companies.

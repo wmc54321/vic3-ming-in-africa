@@ -20,6 +20,8 @@ mgn_is_chinese_chartered_company = {
 		c:MLF ?= THIS
 		c:MSB ?= THIS
 		c:MCA ?= THIS
+		c:MJP ?= THIS
+		c:MSE ?= THIS
 		AND = {
 			is_country_type = company
 			OR = {
@@ -130,7 +132,7 @@ mgn_has_electoral_distribution_for_union = {
 		has_law = law_type:law_wealth_voting
 		has_law = law_type:law_census_voting
 		has_law = law_type:law_universal_suffrage
-		has_law = law_type:law_single_party_state
+		has_law_or_variant = law_type:law_single_party_state
 	}
 }
 
@@ -489,8 +491,10 @@ mgn_state_is_lanfang_company_region = {
 
 mgn_state_is_siberian_company_region = {
 	OR = {
-		is_in_geographic_region = geographic_region_siberia
-		state_region = s:STATE_TUVA
+		AND = {
+			is_in_geographic_region = geographic_region_siberia
+			NOT = { state_region = s:STATE_TUVA }
+		}
 		state_region = s:STATE_OUTER_MANCHURIA
 		state_region = s:STATE_AMUR
 		state_region = s:STATE_SAKHALIN
@@ -552,6 +556,54 @@ mgn_state_is_central_asian_company_region = {
 	}
 }
 
+# The Cultural Revolution easter egg belongs to the competing Chinese central
+# governments, not to every country or chartered company with a Han culture.
+mgn_can_use_revolutionary_committees = {
+	OR = {
+		c:MGN ?= THIS
+		c:CHI ?= THIS
+		global_var:chinese_central_government ?= THIS
+	}
+	NOT = { has_variable = warlord_state }
+	mgn_is_chinese_chartered_company = no
+	is_subject = no
+}
+
+mgn_state_is_japanese_company_region = {
+	OR = {
+		state_region = s:STATE_HOKKAIDO
+		state_region = s:STATE_TOHOKU
+		state_region = s:STATE_KANTO
+		state_region = s:STATE_TOKAI
+		state_region = s:STATE_HOKUSHINETSU
+		state_region = s:STATE_KANSAI
+		state_region = s:STATE_KYOTO
+		state_region = s:STATE_CHUGOKU
+		state_region = s:STATE_SHIKOKU
+		state_region = s:STATE_KYUSHU
+	}
+}
+
+mgn_state_is_southeast_asian_company_region = {
+	OR = {
+		state_region = s:STATE_TENASSERIM
+		state_region = s:STATE_KACHIN
+		state_region = s:STATE_SHAN_STATES
+		state_region = s:STATE_MANDALAY
+		state_region = s:STATE_PEGU
+		state_region = s:STATE_ARAKAN
+		state_region = s:STATE_BANGKOK
+		state_region = s:STATE_CHIANG_MAI
+		state_region = s:STATE_NAKHON_RATCHASIMA
+		state_region = s:STATE_LAOS
+		state_region = s:STATE_CAMBODIA
+		state_region = s:STATE_TONKIN
+		state_region = s:STATE_ANNAM
+		state_region = s:STATE_MEKONG
+		state_region = s:STATE_MALAYA
+	}
+}
+
 mgn_capital_is_not_in_mainland_company_region = {
 	NOT = { capital = { mgn_state_is_mainland_company_region = yes } }
 }
@@ -570,6 +622,14 @@ mgn_capital_is_not_in_siberian_company_region = {
 
 mgn_capital_is_not_in_central_asian_company_region = {
 	NOT = { capital = { mgn_state_is_central_asian_company_region = yes } }
+}
+
+mgn_capital_is_not_in_japanese_company_region = {
+	NOT = { capital = { mgn_state_is_japanese_company_region = yes } }
+}
+
+mgn_capital_is_not_in_southeast_asian_company_region = {
+	NOT = { capital = { mgn_state_is_southeast_asian_company_region = yes } }
 }
 
 mgn_has_african_company_land = {
@@ -656,6 +716,26 @@ mgn_has_central_asian_company_land = {
 	}
 }
 
+mgn_has_japanese_company_land = {
+	OR = {
+		any_scope_state = { mgn_state_is_japanese_company_region = yes }
+		any_subject_or_below = {
+			NOT = { is_country_type = company }
+			any_scope_state = { mgn_state_is_japanese_company_region = yes }
+		}
+	}
+}
+
+mgn_has_southeast_asian_company_land = {
+	OR = {
+		any_scope_state = { mgn_state_is_southeast_asian_company_region = yes }
+		any_subject_or_below = {
+			NOT = { is_country_type = company }
+			any_scope_state = { mgn_state_is_southeast_asian_company_region = yes }
+		}
+	}
+}
+
 mgn_can_establish_african_company = {
 	NOT = { c:MCC ?= { is_country_alive = yes } }
 	mgn_capital_is_not_in_africa = yes
@@ -690,4 +770,16 @@ mgn_can_establish_central_asian_company = {
 	NOT = { c:MCA ?= { is_country_alive = yes } }
 	mgn_capital_is_not_in_central_asian_company_region = yes
 	hidden_trigger = { mgn_has_central_asian_company_land = yes }
+}
+
+mgn_can_establish_japanese_company = {
+	NOT = { c:MJP ?= { is_country_alive = yes } }
+	mgn_capital_is_not_in_japanese_company_region = yes
+	hidden_trigger = { mgn_has_japanese_company_land = yes }
+}
+
+mgn_can_establish_southeast_asian_company = {
+	NOT = { c:MSE ?= { is_country_alive = yes } }
+	mgn_capital_is_not_in_southeast_asian_company_region = yes
+	hidden_trigger = { mgn_has_southeast_asian_company_land = yes }
 }

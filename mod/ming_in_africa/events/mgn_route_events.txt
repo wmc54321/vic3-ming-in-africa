@@ -453,3 +453,37 @@ mgn_route_events.144 = {
 		default_option = yes
 	}
 }
+
+mgn_route_events.145 = {
+	type = country_event
+	placement = root
+	title = mgn_route_events.145.t
+	desc = mgn_route_events.145.d
+	flavor = mgn_route_events.145.f
+	icon = "gfx/interface/icons/event_icons/event_industry.dds"
+	event_image = {
+		video = "asia_westerners_arriving"
+	}
+
+	option = {
+		name = mgn_route_events.145.a
+		default_option = yes
+	}
+}
+
+mgn_route_events.146 = {
+	type = country_event
+	placement = root
+	title = mgn_route_events.146.t
+	desc = mgn_route_events.146.d
+	flavor = mgn_route_events.146.f
+	icon = "gfx/interface/icons/event_icons/event_industry.dds"
+	event_image = {
+		video = "asia_farmers_market"
+	}
+
+	option = {
+		name = mgn_route_events.146.a
+		default_option = yes
+	}
+}

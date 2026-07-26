@@ -179,6 +179,7 @@ STATES = {
 		add_homeland = cu:khmer
 		add_homeland = cu:champa
 		add_claim = c:DAI
+	add_homeland = cu:jiaonan_han
 	}
 	s:STATE_SHANDONG = {
 		create_state = {
@@ -1956,6 +1957,7 @@ STATES = {
 		add_homeland = cu:khmer
 		add_homeland = cu:champa
 		add_claim = c:CAM
+	add_homeland = cu:jiaonan_han
 	}
 	s:STATE_SAVOY = {
 		create_state = {
@@ -4211,6 +4213,7 @@ STATES = {
 		add_homeland = cu:karen
 		add_homeland = cu:thai
 		add_homeland = cu:malay
+	add_homeland = cu:jiaonan_han
 	}
 	s:STATE_KACHIN = {
 		create_state = {
@@ -4221,6 +4224,7 @@ STATES = {
 		add_homeland = cu:burmese
 		add_homeland = cu:kachin
 		add_homeland = cu:shan
+	add_homeland = cu:jiaonan_han
 	}
 	s:STATE_SHAN_STATES = {
 		create_state = {
@@ -4235,6 +4239,7 @@ STATES = {
 
 		add_homeland = cu:kachin
 		add_homeland = cu:shan
+	add_homeland = cu:jiaonan_han
 	}
 
 	s:STATE_MANDALAY = {
@@ -4250,6 +4255,7 @@ STATES = {
 		add_homeland = cu:burmese
 		add_homeland = cu:kachin
 
+	add_homeland = cu:jiaonan_han
 	}
 	s:STATE_PEGU = {
 		create_state = {
@@ -4272,6 +4278,7 @@ STATES = {
 		add_homeland = cu:karen
 		add_homeland = cu:mon
 		add_homeland = cu:burmese
+	add_homeland = cu:jiaonan_han
 	}
 	s:STATE_NORTH_SUMATRA = {
 		create_state = {
@@ -4384,6 +4391,7 @@ STATES = {
 
 		add_homeland = cu:bornean
 		add_homeland = cu:dayak
+	add_homeland = cu:nanyang_han
 	}
 	s:STATE_EAST_BORNEO = {
 		create_state = {
@@ -4411,6 +4419,7 @@ STATES = {
 
 		add_homeland = cu:bornean
 		add_homeland = cu:dayak
+	add_homeland = cu:nanyang_han
 	}
 	s:STATE_SUNDA_ISLANDS = {
 		create_state = {
@@ -4454,6 +4463,7 @@ STATES = {
 		}
 
 		add_homeland = cu:malay
+	add_homeland = cu:jiaonan_han
 	}
 	s:STATE_NORTH_BORNEO = {
 		create_state = {
@@ -4471,6 +4481,7 @@ STATES = {
 
 		add_homeland = cu:bornean
 		add_homeland = cu:dayak
+	add_homeland = cu:nanyang_han
 	}
 	s:STATE_MINDANAO = {
 		create_state = {
@@ -5894,6 +5905,7 @@ STATES = {
 		}
 
 		add_homeland = cu:thai
+	add_homeland = cu:jiaonan_han
 	}
 	s:STATE_TONKIN = {
 		create_state = {
@@ -5909,6 +5921,7 @@ STATES = {
 		add_homeland = cu:zhuang
 
 		add_claim = c:DAI
+	add_homeland = cu:jiaonan_han
 	}
 	s:STATE_ANNAM = {
 		create_state = {
@@ -5917,6 +5930,7 @@ STATES = {
 		}
 
 		add_homeland = cu:vietnamese
+	add_homeland = cu:jiaonan_han
 	}
 	s:STATE_LAOS = {
 		create_state = {
@@ -5944,6 +5958,7 @@ STATES = {
 
 		add_homeland = cu:lao
 		add_homeland = cu:khmu
+	add_homeland = cu:jiaonan_han
 	}
 	s:STATE_CHIANG_MAI = {
 		create_state = {
@@ -5953,6 +5968,7 @@ STATES = {
 
 		add_homeland = cu:thai
 		add_homeland = cu:shan
+	add_homeland = cu:jiaonan_han
 	}
 	s:STATE_NAKHON_RATCHASIMA = {
 		create_state = {
@@ -5962,6 +5978,7 @@ STATES = {
 
 		add_homeland = cu:thai
 		add_homeland = cu:lao
+	add_homeland = cu:jiaonan_han
 	}
 	s:STATE_SEOUL = {
 		create_state = {
@@ -5972,6 +5989,7 @@ STATES = {
 		}
 
 		add_homeland = cu:korean
+	add_homeland = cu:haedong_han
 	}
 	s:STATE_BUSAN = {
 		create_state = {
@@ -5982,6 +6000,7 @@ STATES = {
 		}
 
 		add_homeland = cu:korean
+	add_homeland = cu:haedong_han
 	}
 	s:STATE_YANGHO = {
 		create_state = {
@@ -5992,6 +6011,7 @@ STATES = {
 		}
 
 		add_homeland = cu:korean
+	add_homeland = cu:haedong_han
 	}
 	s:STATE_SARIWON = {
 		create_state = {
@@ -6002,6 +6022,7 @@ STATES = {
 		}
 
 		add_homeland = cu:korean
+	add_homeland = cu:haedong_han
 	}
 	s:STATE_PYONGYANG = {
 		create_state = {
@@ -6012,6 +6033,7 @@ STATES = {
 		}
 
 		add_homeland = cu:korean
+	add_homeland = cu:haedong_han
 	}
 	s:STATE_SAKHALIN = {
 		create_state = {
@@ -6048,6 +6070,7 @@ STATES = {
 		add_claim = c:RUS
 		add_claim = c:JAP
 		add_claim = c:CHI
+	add_homeland = cu:shuofang_han
 	}
 	s:STATE_HOKKAIDO = {
 		create_state = {
@@ -6068,6 +6091,7 @@ STATES = {
 		add_homeland = cu:ainu
 		add_claim = c:JAP
 		set_variable = { name = daimyo_chain_id value = 0 }
+	add_homeland = cu:fusang_han
 	}
 	s:STATE_TOHOKU = {
 		create_state = {
@@ -6077,6 +6101,7 @@ STATES = {
 
 		add_homeland = cu:japanese
 		set_variable = { name = daimyo_chain_id value = 0 }
+	add_homeland = cu:fusang_han
 	}
 	s:STATE_KANTO = {
 		create_state = {
@@ -6090,6 +6115,7 @@ STATES = {
 
 		add_homeland = cu:japanese
 		set_variable = { name = daimyo_chain_id value = 0 }
+	add_homeland = cu:fusang_han
 	}
 	s:STATE_TOKAI = {
 		create_state = {
@@ -6099,6 +6125,7 @@ STATES = {
 
 		add_homeland = cu:japanese
 		set_variable = { name = daimyo_chain_id value = 0 }
+	add_homeland = cu:fusang_han
 	}
 	s:STATE_HOKUSHINETSU = {
 		create_state = {
@@ -6108,6 +6135,7 @@ STATES = {
 
 		add_homeland = cu:japanese
 		set_variable = { name = daimyo_chain_id value = 0 }
+	add_homeland = cu:fusang_han
 	}
 	s:STATE_KANSAI = {
 		create_state = {
@@ -6117,6 +6145,7 @@ STATES = {
 
 		add_homeland = cu:japanese
 		set_variable = { name = daimyo_chain_id value = 0 }
+	add_homeland = cu:fusang_han
 	}
 	s:STATE_KYOTO = {
 		create_state = {
@@ -6126,6 +6155,7 @@ STATES = {
 
 		add_homeland = cu:japanese
 		set_variable = { name = daimyo_chain_id value = 0 }
+	add_homeland = cu:fusang_han
 	}
 	s:STATE_KYUSHU = {
 		create_state = {
@@ -6135,6 +6165,7 @@ STATES = {
 
 		add_homeland = cu:japanese
 		set_variable = { name = daimyo_chain_id value = 0 }
+	add_homeland = cu:fusang_han
 	}
 
 	s:STATE_RYUKYU_ISLANDS = {
@@ -6159,6 +6190,7 @@ STATES = {
 
 		add_homeland = cu:japanese
 		set_variable = { name = daimyo_chain_id value = 0 }
+	add_homeland = cu:fusang_han
 	}
 	s:STATE_SHIKOKU = {
 		create_state = {
@@ -6168,6 +6200,7 @@ STATES = {
 
 		add_homeland = cu:japanese
 		set_variable = { name = daimyo_chain_id value = 0 }
+	add_homeland = cu:fusang_han
 	}
 	s:STATE_LHASA = {
 		create_state = {
@@ -6312,6 +6345,7 @@ STATES = {
 		}
 		add_homeland = cu:manchu
 		add_homeland = cu:siberian
+	add_homeland = cu:shuofang_han
 	}
 	s:STATE_SOUTHERN_MANCHURIA = {
 		create_state = {
@@ -6650,6 +6684,7 @@ STATES = {
 
 		add_homeland = cu:inuit
 		add_homeland = cu:siberian
+	add_homeland = cu:shuofang_han
 	}
 	s:STATE_NENETSIA = {
 		create_state = {
@@ -6720,6 +6755,7 @@ STATES = {
 
 		add_homeland = cu:uzbek
 		add_homeland = cu:kazak
+	add_homeland = cu:tianshan_han
 	}
 	s:STATE_UZBEKIA = {
 		create_state = {
@@ -6729,6 +6765,7 @@ STATES = {
 
 		add_homeland = cu:uzbek
 		add_homeland = cu:kazak
+	add_homeland = cu:tianshan_han
 	}
 	s:STATE_TAJIKISTAN = {
 		create_state = {
@@ -6742,6 +6779,7 @@ STATES = {
 
 		add_homeland = cu:uzbek
 		add_homeland = cu:tajik
+	add_homeland = cu:tianshan_han
 	}
 	s:STATE_KIRGHIZIA = {
 		create_state = {
@@ -6756,6 +6794,7 @@ STATES = {
 
 		add_homeland = cu:uzbek
 		add_homeland = cu:kirgiz
+	add_homeland = cu:tianshan_han
 	}
 	s:STATE_URALSK = {
 		create_state = {
@@ -6776,6 +6815,7 @@ STATES = {
 			}
 		}
 		add_homeland = cu:kazak
+	add_homeland = cu:tianshan_han
 	}
 	s:STATE_TURKMENIA = {
 		create_state = {
@@ -6790,6 +6830,7 @@ STATES = {
 
 		add_homeland = cu:uzbek
 		add_homeland = cu:turkmen
+	add_homeland = cu:tianshan_han
 	}
 	s:STATE_SEMIRECHE = {
 		create_state = {
@@ -6800,6 +6841,7 @@ STATES = {
 		}
 		add_homeland = cu:kazak
 		add_homeland = cu:kirgiz
+	add_homeland = cu:tianshan_han
 	}
 	s:STATE_JETISY = {
 		create_state = {
@@ -6812,6 +6854,7 @@ STATES = {
 		add_homeland = cu:kazak
 		add_homeland = cu:uighur
 		add_homeland = cu:kirgiz
+	add_homeland = cu:tianshan_han
 	}
 	s:STATE_AKMOLINSK = {
 		create_state = {
@@ -6825,6 +6868,7 @@ STATES = {
 
 		add_homeland = cu:kazak
 		add_homeland = cu:uzbek
+	add_homeland = cu:tianshan_han
 	}
 	s:STATE_KAMCHATKA = {
 		create_state = {
@@ -6834,6 +6878,7 @@ STATES = {
 		}
 
 		add_homeland = cu:siberian
+	add_homeland = cu:shuofang_han
 	}
 
 
@@ -6846,6 +6891,7 @@ STATES = {
 
 		add_homeland = cu:siberian
 		add_homeland = cu:russian
+	add_homeland = cu:shuofang_han
 	}
 
 	s:STATE_YAKUTSK = {
@@ -6859,6 +6905,7 @@ STATES = {
 
 		add_homeland = cu:russian
 		add_homeland = cu:yakut
+	add_homeland = cu:shuofang_han
 	}
 	s:STATE_TRANS_BAIKAL = {
 		create_state = {
@@ -6871,6 +6918,7 @@ STATES = {
 
 		add_homeland = cu:russian
 		add_homeland = cu:buryat
+	add_homeland = cu:shuofang_han
 	}
 	s:STATE_IRKUTSK = {
 		create_state = {
@@ -6881,6 +6929,7 @@ STATES = {
 
 		add_homeland = cu:russian
 		add_homeland = cu:buryat
+	add_homeland = cu:shuofang_han
 	}
 
 	s:STATE_TOMSK = {
@@ -6893,6 +6942,7 @@ STATES = {
 		}
 		add_homeland = cu:siberian
 		add_homeland = cu:russian
+	add_homeland = cu:shuofang_han
 	}
 	s:STATE_TUVA = {
 		create_state = {
@@ -6914,6 +6964,7 @@ STATES = {
 		add_homeland = cu:russian
 		add_homeland = cu:siberian
 		add_homeland = cu:ugrian
+	add_homeland = cu:shuofang_han
 	}
 
 	s:STATE_UPPER_YENISEYSK = {
@@ -6925,6 +6976,7 @@ STATES = {
 
 		add_homeland = cu:russian
 		add_homeland = cu:siberian
+	add_homeland = cu:shuofang_han
 	}
 
 	s:STATE_OB = {
@@ -6934,6 +6986,7 @@ STATES = {
 			state_type = unincorporated
 		}
 		add_homeland = cu:ugrian
+	add_homeland = cu:shuofang_han
 	}
 
 	s:STATE_URAL = {
@@ -6945,6 +6998,7 @@ STATES = {
 
 		add_homeland = cu:russian
 		add_homeland = cu:ugrian
+	add_homeland = cu:shuofang_han
 	}
 	s:STATE_SAMARA = {
 		create_state = {
@@ -7838,6 +7892,7 @@ STATES = {
 	    add_homeland = cu:kirgiz
 	    add_homeland = cu:uzbek
 	    add_homeland = cu:tajik
+	add_homeland = cu:tianshan_han
 	}
 
 	s:STATE_MERZ = {
@@ -7856,6 +7911,7 @@ STATES = {
 	    	owned_provinces = { x2E3A04 x80FDCA x5F1CE5 x1B7D15 xD72954 x0111C0 x7B3A19 }
 	    }
 	    add_homeland = cu:turkmen
+	add_homeland = cu:tianshan_han
 	}
 
 	s:STATE_SYRDARYA = {
@@ -7883,6 +7939,7 @@ STATES = {
 	    }
 	    add_homeland = cu:kazak
 	    add_homeland = cu:uzbek
+	add_homeland = cu:tianshan_han
 	}
 
 	s:STATE_AKTOBE = {
@@ -7891,6 +7948,7 @@ STATES = {
 	    	owned_provinces = { x03DEAB x05A5D3 x093A29 x0C16D5 x0CDDC8 x10D440 x10F2A4 x10F394 x12B014 x153EF8 x19DB52 x1A0A77 x1A765B x1A973F x1E7905 x1EB604 x1F5F1A x2173E6 x21907E x23B70B x2577CF x2660A5 x2973FB x2D0AAC x2E12FC x3190BF x328878 x32C0C8 x3354E8 x37BB95 x3A7473 x3D0E20 x3F854B x504F54 x510B92 x55C060 x56279A x588F70 x58D48C x59BA59 x5DCF1A x5EF765 x6025C2 x618800 x62EE42 x68D6C0 x6906B2 x69439D x6A8667 x6AD008 x6E0170 x70B0CC x742700 x74A226 x758597 x780B11 x7BAA61 x7FD811 x81BE7E x84FA13 x867C05 x86A90A x881AFB x88A88E x92F404 x94A660 x9C6012 xAE51B4 xAFDF44 xB0FEAB xB16E1C xB62DEC xB92DE8 xBB4E20 xBC84A6 xBD0769 xC05141 xC053C7 xC6E6CD xC866F3 xCBB325 xD04D31 xD32A64 xD4D80A xDAD022 xDB8ABA xDE558E xE2A5AC xE32413 xE4A7D1 xE91FBD xEC9E67 xEE6AAB xEEFA33 xF387A5 xF66290 xF9CD4F xFC1095 xFE2865 }
 	    }
 	    add_homeland = cu:kazak
+	add_homeland = cu:tianshan_han
 	}
 
 	s:STATE_KALMYKIA = {
@@ -8022,6 +8080,7 @@ STATES = {
 	    }
 	    add_homeland = cu:ugrian
 	    add_homeland = cu:russian
+	add_homeland = cu:shuofang_han
 	}
 
 	s:STATE_KRASNOYARSK = {
@@ -8030,6 +8089,7 @@ STATES = {
 	    	owned_provinces = { x002E9B x06EE0F x0A077E x0B5759 x0BD5EA x0E8325 x0EF8A9 x16A3F1 x17485E x1C9E38 x1D2833 x1ED2BE x1F2173 x20F691 x212D4B x2322FF x24AD34 x27851E x2B314F x2BD8DA x2E2EB7 x2E91A4 x2F241C x2F4100 x32E2F9 x33972C x33B7EF x346788 x35CFA3 x35F072 x369D01 x396E12 x397AE3 x3A2869 x3A5004 x3DF7E3 x3EB931 x4159F5 x443121 x46126F x4659F5 x47DA9F x488242 x4C1170 x4E97AD x51B7A4 x52444F x55471F x5AE5F7 x5D0B05 x5F1494 x5FA262 x61295B x62D064 x636C59 x65040F x685B70 x6A12AF x6CC996 x70E0DD x72A3F4 x7409BE x794529 x7A4009 x7CE746 x7DCFB1 x7F7EF1 x80CDFC x82E41E x82FF95 x896ABA x89FA86 x8BD40C x8DA621 x8EF70B x90B3BE x92339B x926252 x95CE91 x95CF89 x95F2AE x95F3A0 x963E6C x980497 x998ACA x9A7C88 x9B7431 x9BA9A9 x9BC125 x9C89B6 x9DB1F6 x9EF98A xA2329D xA2CB17 xA2CB7C xA388FA xACF0C1 xAE3589 xAEA64A xAF4A23 xB0AC34 xB22C7D xB2E24C xB2F67A xB37659 xB55679 xB616F9 xBAE224 xBC7EED xBD1398 xC126CD xC5A419 xCA0075 xCB4AB8 xCD6CFD xD029F3 xD042A3 xD18473 xD3EC72 xD8B87B xDBC96B xDD8704 xE11237 xE271B4 xE46C44 xE55BE2 xE65693 xE73ED8 xECA5B2 xECED8A xEE4D21 xF2F981 xF43698 xF67D7B xFC9486 xFFCDD6 }
 	    }
 	    add_homeland = cu:russian
+	add_homeland = cu:shuofang_han
 	}
 
 	s:STATE_ALTAI = {
@@ -8040,6 +8100,7 @@ STATES = {
 		}
 	    add_homeland = cu:russian
 	    add_homeland = cu:mongol
+	add_homeland = cu:shuofang_han
 	}
 
 	s:STATE_BURYATIA = {
@@ -8049,6 +8110,7 @@ STATES = {
 	    }
 	    add_homeland = cu:russian
 	    add_homeland = cu:buryat
+	add_homeland = cu:shuofang_han
 	}
 
 	s:STATE_KOLYMA = {
@@ -8058,6 +8120,7 @@ STATES = {
 	    }
 	    add_homeland = cu:russian
 	    add_homeland = cu:yakut
+	add_homeland = cu:shuofang_han
 	}
 
 	s:STATE_AMUR = {
@@ -8067,6 +8130,7 @@ STATES = {
 			state_type = unincorporated
 		}
 	    add_homeland = cu:siberian
+	add_homeland = cu:shuofang_han
 	}
 
 	s:STATE_CHELYABINSK = {
@@ -8084,6 +8148,7 @@ STATES = {
 	    }
 	    add_homeland = cu:russian
 	    add_homeland = cu:bashkir
+	add_homeland = cu:shuofang_han
 	}
 
 	s:STATE_KURNOOL = {
@@ -8152,6 +8217,7 @@ STATES = {
 		add_claim = c:BIC
 	    add_homeland = cu:burmese
 	    add_homeland = cu:lushai
+	add_homeland = cu:jiaonan_han
 	}
 
 	s:STATE_HILL_PUNJAB = {

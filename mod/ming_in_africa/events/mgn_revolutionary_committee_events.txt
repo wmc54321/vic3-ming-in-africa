@@ -1,0 +1,82 @@
+namespace = mgn_revolutionary_committee_events
+
+mgn_revolutionary_committee_events.1 = {
+	type = country_event
+	placement = root
+	title = mgn_revolutionary_committee_events.1.t
+	desc = mgn_revolutionary_committee_events.1.d
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+	event_image = { video = "unspecific_ruler_speaking_to_people" }
+
+	option = {
+		default_option = yes
+		name = mgn_revolutionary_committee_events.1.a
+		scope:mgn_struggle_target = { retire_character = yes }
+	}
+}
+
+mgn_revolutionary_committee_events.2 = {
+	type = country_event
+	placement = root
+	title = mgn_revolutionary_committee_events.2.t
+	desc = mgn_revolutionary_committee_events.2.d
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+	event_image = { video = "unspecific_ruler_speaking_to_people" }
+
+	option = {
+		default_option = yes
+		name = mgn_revolutionary_committee_events.2.a
+		if = {
+			limit = { exists = scope:mgn_struggle_target_ig }
+			add_radicals = {
+				value = medium_radicals
+				interest_group = scope:mgn_struggle_target_ig
+			}
+		}
+		scope:mgn_struggle_target = { exile_character_with_role_cleanup = yes }
+	}
+}
+
+mgn_revolutionary_committee_events.3 = {
+	type = country_event
+	placement = root
+	title = mgn_revolutionary_committee_events.3.t
+	desc = mgn_revolutionary_committee_events.3.d
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+	event_image = { video = "unspecific_ruler_speaking_to_people" }
+
+	option = {
+		default_option = yes
+		name = mgn_revolutionary_committee_events.3.a
+		if = {
+			limit = { exists = scope:mgn_struggle_target_ig }
+			add_radicals = {
+				value = very_large_radicals
+				interest_group = scope:mgn_struggle_target_ig
+			}
+		}
+		scope:mgn_struggle_target = { kill_character = yes }
+	}
+}
+
+mgn_revolutionary_committee_events.4 = {
+	type = country_event
+	placement = root
+	title = mgn_revolutionary_committee_events.4.t
+	desc = mgn_revolutionary_committee_events.4.d
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+	event_image = { video = "unspecific_ruler_speaking_to_people" }
+
+	option = {
+		default_option = yes
+		name = mgn_revolutionary_committee_events.4.a
+		if = {
+			limit = { exists = scope:mgn_struggle_target_ig }
+			add_radicals = {
+				value = medium_radicals
+				interest_group = scope:mgn_struggle_target_ig
+			}
+		}
+		scope:mgn_struggle_target = { retire_character = yes }
+	}
+}

@@ -15,6 +15,8 @@ law_mgn_heavenly_subjecthood = {
 			c:MLF ?= THIS
 			c:MSB ?= THIS
 			c:MCA ?= THIS
+			c:MJP ?= THIS
+			c:MSE ?= THIS
 		}
 	}
 
@@ -141,6 +143,8 @@ law_mgn_huayi_unity = {
 			c:MLF ?= THIS
 			c:MSB ?= THIS
 			c:MCA ?= THIS
+			c:MJP ?= THIS
+			c:MSE ?= THIS
 		}
 	}
 

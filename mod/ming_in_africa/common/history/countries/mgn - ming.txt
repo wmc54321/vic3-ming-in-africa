@@ -56,6 +56,9 @@ COUNTRIES = {
 			set_interest_group_name = ig_mgn_scholar_bureaucrats
 			remove_ideology = ideology_paternalistic
 			add_ideology = ideology_scholar_paternalistic
+			set_ig_trait = ig_trait:ig_trait_mgn_register_privileges
+			set_ig_trait = ig_trait:ig_trait_mgn_patronage_networks
+			set_ig_trait = ig_trait:ig_trait_mgn_gentry_relief
 			add_ruling_interest_group = yes
 		}
 		ig:ig_devout ?= {
@@ -74,6 +77,9 @@ COUNTRIES = {
 		ig:ig_petty_bourgeoisie ?= {
 			set_interest_group_name = ig_mgn_guild_merchants
 			add_ideology = ideology_mgn_maritime_opening
+			set_ig_trait = ig_trait:ig_trait_mgn_guild_barriers
+			set_ig_trait = ig_trait:ig_trait_mgn_market_ward_networks
+			set_ig_trait = ig_trait:ig_trait_mgn_guild_mutual_credit
 		}
 		ig:ig_industrialists ?= {
 			set_interest_group_name = ig_mgn_maritime_merchants

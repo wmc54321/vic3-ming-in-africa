@@ -4,11 +4,14 @@
 
 ## 设计定稿
 
-日志链分为两层：
+日志链按职责拆分：
 
-1. 导航日志：`je_mgn_two_chinas`，本地化名“两个中华”。它常驻显示大明与大清的关系局势、五条路线的达成条件，以及玩家可点击的路线按钮。
-2. 重建日志：`je_mgn_rebuild_state_ming` / `je_mgn_rebuild_state_qing`，本地化名均可为“重建国家”，按国家版本区分描述和按钮。
-3. 臣服方日志：`je_mgn_bitter_peace`，本地化名“苦涩的和平”，给臣服一方保留要求独立入口。
+1. 外交导航日志：`je_mgn_two_chinas`，本地化名“两个中华”。它显示大明与大清的关系局势、路线条件、移民要求、和平统一与武力路线。
+2. 中央重建日志：`je_mgn_rebuild_state_ming` / `je_mgn_rebuild_state_qing`，本地化名均为“重建国家”，只承载迁都与东北、西北版籍整理。
+3. 域外治理日志：`je_mgn_administer_four_quarters`，本地化名“经略四方”，由大明、大清胜利方共用，集中承载八类特许公司。
+4. 臣服方日志：`je_mgn_bitter_peace`，本地化名“苦涩的和平”，给臣服一方保留要求独立入口。
+
+“两个中华”“重建国家”“经略四方”均默认置顶；三者分别承担外交、中央重建、公司治理，避免单一日志同时堆叠十余个按钮。
 
 路线按钮优先级：
 
@@ -24,16 +27,18 @@
 - “海内一统”不再作为 `je_mgn_two_chinas` 的玩家按钮出现。日志在创建时与每周脉冲中自动检查 `mgn_ming_can_claim_reconquest_complete` / `mgn_qing_can_claim_conquest_complete`；对方国家不存在后自动进入对应“重建国家”日志并弹出新闻事件。
 - “提议兄弟皇谊”的接受事件改为调用统一的 `mgn_make_brotherly_subject`，按宗主国/目标国地位创建朝贡或保护国关系，避免大明/大清两边事件分支维护出错。
 - “兄弟皇谊”战争目标 `mgn_brotherly_vassalization` 改为原生 `kind = make_tributary`，并保留 0 恶名与专用本地化；专用 war goal 不套用原版普通附庸外交的目标等级验证，避免大明/大清这种大国因等级过高不能被路线战争压服。这样战败、让步、议和结算走游戏内置臣属结算，而不是 custom war goal 事后手写 pact。
-- 移民政策战争目标改为移民制度版“要求政权更迭”：使用政权更迭图标、要求控制目标首都，并按发起方现行法律拆成“要求弛禁迁徙”“要求厘定迁徙章程”“要求闭关封境”。大明/大清双方都可以通过“两个中华”或领导方“重建国家”日志按钮提出要求；AI 目标方默认接受，玩家拒绝则触发双方互相要求采用各自移民政策的事件博弈。接受后双方获得 60 个月停战协议。
+- 移民政策战争目标改为移民制度版“要求政权更迭”：使用政权更迭图标、要求控制目标首都，并按发起方现行法律拆成“要求弛禁迁徙”“要求厘定迁徙章程”“要求闭关封境”。按钮只保留在“两个中华”；AI 目标方默认接受，玩家拒绝则触发双方互相要求采用各自移民政策的事件博弈。接受后双方获得 60 个月停战协议。
 - 吞并或臣服都会使领导方进入对应“重建国家”日志；若一方脱离臣服或重新独立存在，则通过日志完成回调或专用独立战争目标为双方重启“两个中华”日志。再次统一/臣服后可重新进入重建国家或苦涩和平日志。
-- “重建国家”日志中的领导方保留移民政策按钮和和平统一按钮。若对方已经是臣属，和平统一额外要求臣属方累计臣服满五年。
+- 移民政策与和平统一按钮不再重复挂入“重建国家”；相关外交操作统一留在“两个中华”。若对方已经是臣属，和平统一仍额外要求臣属方累计臣服满五年。
 - 臣服方获得“苦涩的和平”日志，可在双方无战争、无外交博弈、无停战协议时要求独立。AI 臣服方不会主动点击；AI 宗主方接受概率沿用普通外交博弈式独立要求。
-- “重建国家”日志扩展为六类特许公司：非洲榷务公司、内地经略公司、东藩榷务公司、兰芳榷务公司、西伯利亚榷务公司、中亚榷务公司。重建日志不再设置完成条件，成立公司也不写“已完成”变量；公司被吞并或不再存活后，可以重新设立。
+- 八类特许公司从“重建国家”拆入共用的“经略四方”日志：内地经略公司、东藩榷务公司、扶桑榷务公司、西伯利亚榷务公司、中亚榷务公司、南洋经略公司、兰芳榷务公司、非洲榷务公司。日志不设置完成条件，成立公司也不写“已完成”变量；公司被吞并或不再存活后，可以重新设立。
+- 废案记录：未采用“开疆扩土”作为日志名，因为现有按钮只重组已经控制的领土，不提供宣称、殖民或征服机制；未继续把公司、迁徙与和平统一按钮塞在“重建国家”，因为职责混杂且按钮过多；未让“经略四方”默认取消置顶，按用户选择三个主日志均默认置顶。
+- 玩家文本复审后，日志、战争目标、按钮、条件提示与事件统一使用“朝廷、名分、章程、关津、版籍”等世界观词汇；纯机制信息仍保留在 tooltip，但避免“目标国家”“正在处理”“十个州”等容易让玩家跳出叙事的表述。公司叙事统一写明汉家官商与地方桥梁文化共同经营，和实际主流文化顺序一致。
 - 设立特许公司的领土条件改为：本国、非公司附庸或附庸的附庸控制目标区域任意州即可。按钮 tooltip 只显示短自定义条件，具体州列表和附庸链检查放入隐藏触发器；按钮执行效果用 `hidden_effect` 隐藏批量 `set_state_owner` / `set_state_type` 列表，只显示一条短结果说明。划地效果遍历本国与 `every_subject_or_below`，从非公司附庸链中划出目标州；若某个被划地附庸因此灭国，其直接臣属会先转给宗主，避免附庸的附庸独立。
 - `MCC` 旗帜补上殖民政府与主要政体的高优先级定义，并将专属优先级提升到原版 `DEFAULT` 通用特许公司旗帜之上，避免回落到绿色默认/随机图案；特许公司章旗优先级最高。
 - 非洲政府基础旗帜的大象改为黑金配色，并新增 `MCC_colonial` 黑边朱底版本，提高小尺寸图标下的对比度。
-- `MDC`、`MKC`、`MLF`、`MSB`、`MCA` 新增非臣服状态动态国号和 `*_free` 旗帜。特许公司臣属仍使用 `*_chartered` 章旗；脱离臣服后改用自由态国号与独立旗帜。内地经略公司旗帜已提高中心图案与圆形边界对比度。
-- 中华属特许公司不能成立中国：mod 以同名覆盖 `common/country_formation/00_formable_countries.txt` 的方式修改 `CHI` 成国定义，使用 `mgn_is_chinese_chartered_company` 触发器拦截 `MCC/MDC/MKC/MLF/MSB/MCA` 及带公司法律/中华主流文化的 company 国家，避免内地公司或其他中华公司在吞并内地后自动成立中国。
+- `MDC`、`MKC`、`MLF`、`MSB`、`MCA`、`MJP`、`MSE` 均有非臣服状态动态国号和 `*_free` 旗帜。特许公司臣属仍使用 `*_chartered` 章旗；脱离臣服后改用自由态国号与独立旗帜。
+- 中华属特许公司不能成立中国：mod 以同名覆盖 `common/country_formation/00_formable_countries.txt` 的方式修改 `CHI` 成国定义，使用 `mgn_is_chinese_chartered_company` 触发器拦截 `MCC/MDC/MKC/MLF/MSB/MCA/MJP/MSE` 及带公司法律/中华主流文化的 company 国家，避免公司在扩张后自动成立中国。
 
 ## 原版调查结论
 
@@ -430,31 +435,19 @@ AI 权重：
 
 挂载按钮：
 
-- `button_mgn_request_open_migration`
-- `button_mgn_request_regulated_migration`
-- `button_mgn_request_closed_migration`
-- `button_mgn_launch_peaceful_unification`
 - `button_mgn_move_capital_beijing`
 - `button_mgn_move_capital_nanjing`
 - `button_mgn_move_capital_yingtian`
-- `button_mgn_establish_african_company_ming`
-- `button_mgn_establish_mainland_company`
-- `button_mgn_establish_korean_company`
-- `button_mgn_establish_lanfang_company`
 - `button_mgn_restore_northeastern_border`
 - `button_mgn_restore_northwestern_border`
-- `button_mgn_establish_siberian_company`
-- `button_mgn_establish_central_asian_company`
 
-移民政策按钮与“两个中华”日志共用条件；领导方可在臣属关系下继续要求对方改用自己的移民政策。和平统一按钮在臣属关系下要求臣属方累计臣服满五年。
-
-北京迁都按钮：
+北京与南京迁都按钮在大明进入重建阶段后始终显示；未完整拥有相应州时由 `possible` 使按钮灰显，而不是从日志隐藏。北京迁都按钮：
 
 ```txt
 visible = {
 	c:MGN ?= THIS
-	owns_entire_state_region = STATE_BEIJING
-	NOT = { capital = { state_region = s:STATE_BEIJING } }
+	has_variable = mgn_rebuild_state_started
+	NOT = { has_variable = mgn_capital_moved_to_china }
 }
 possible = { owns_entire_state_region = STATE_BEIJING }
 effect = {
@@ -467,65 +460,36 @@ effect = {
 
 南京迁都按钮同理，使用 `STATE_NANJING`；迁都后不自动落成南京紫禁城，只解锁玩家在南京自建 `building_mgn_nanjing_forbidden_city` 的条件。应天府迁都按钮使用 `STATE_LOWER_EGYPT`，表示朝廷正式以北非埃及应天府为新的中原。
 
-设立非洲特许公司按钮：
-
-```txt
-visible = {
-	c:MGN ?= THIS
-	has_variable = mgn_rebuild_state_started
-}
-possible = {
-	NOT = { c:MCC ?= { is_country_alive = yes } }
-	NOT = { capital = { is_in_geographic_region = geographic_region_africa } }
-	custom_tooltip = {
-		text = mgn_has_african_company_land_tt
-		hidden_trigger = { mgn_has_african_company_land = yes }
-	}
-}
-effect = {
-	custom_tooltip = mgn_establish_african_company_effect_tt
-	hidden_effect = { mgn_finish_ming_rebuild_state = yes }
-}
-```
-
-设立内地、东藩、兰芳、西伯利亚、中亚特许公司按钮使用同一模式：已经进入重建国家日志、对应公司当前不存活、首都不在对应区域，并且本国、非公司附庸或附庸的附庸控制对应区域任意州。按钮 effect 只显示短 `custom_tooltip`，真正的创建、划地、整合与事件触发放入 `hidden_effect`，避免 tooltip 展开长州列表。西伯利亚范围包含图瓦、外满洲、阿穆尔与库页岛，确保仅控制这些地区时按钮也可使用。
-
-“恢复东北边界”与“恢复西北边界”只处理本国附庸层级持有的土地，不从独立国家或其他宗主国手中无条件夺地。内地公司 `MDC` 存活时，收回领土划给该公司；公司不存在时才划归宗主国。东北恢复外满洲与阿穆尔；西北恢复阿尔泰、图瓦、准噶尔、天山、七河、库伦、乌里雅苏台，并对分州的吉尔吉斯采用原版 1836 大清 `owned_provinces` 清单逐省转移，因此仍保留与浩罕相同的开局分界。
-
-完成条件：
-
-- 无。重建国家日志保持常驻，不因设立公司自动消失。
+“恢复东北边界”与“恢复西北边界”只处理本国附庸层级持有的土地，不从独立国家或其他宗主国手中无条件夺地。接收方固定按大清 `CHI` 存续 → 内地经略公司 `MDC` 存续 → 大明 `MGN` 直辖的顺序选择。东北恢复外满洲与阿穆尔；西北恢复阿尔泰、图瓦、准噶尔、天山、七河、库伦、乌里雅苏台，并对分州的吉尔吉斯采用原版 1836 大清 `owned_provinces` 清单逐省转移，因此仍保留与浩罕相同的开局分界。
 
 ### 大清版 `je_mgn_rebuild_state_qing`
 
 挂载按钮：
 
-- `button_mgn_request_open_migration`
-- `button_mgn_request_regulated_migration`
-- `button_mgn_request_closed_migration`
-- `button_mgn_launch_peaceful_unification`
-- `button_mgn_establish_african_company_qing`
-- `button_mgn_establish_mainland_company`
-- `button_mgn_establish_korean_company`
-- `button_mgn_establish_lanfang_company`
-- `button_mgn_establish_siberian_company`
-- `button_mgn_establish_central_asian_company`
-
-按钮条件：
-
-- `c:CHI ?= THIS`
-- `mgn_qing_counterpart_exists = yes`
-- 对应公司当前不存活。
-- 本国、非公司附庸或附庸的附庸控制目标区域任意州。
-
-按钮效果：
-
-```txt
-custom_tooltip = mgn_establish_african_company_effect_tt
-hidden_effect = { mgn_finish_qing_rebuild_state = yes }
-```
+- `button_mgn_restore_northeastern_border`
+- `button_mgn_restore_northwestern_border`
 
 大清版不移除大清主流文化，不迁都。
+
+两个重建日志均不设置完成条件并默认置顶。其每周脉冲还会为升级前已经进入重建阶段的旧存档补挂“经略四方”。
+
+## 经略四方日志
+
+`je_mgn_administer_four_quarters` 由大明、大清胜利方共用，在进入重建阶段时与对应“重建国家”同时添加，并默认置顶。按钮按地理叙事顺序排列：
+
+- `button_mgn_establish_mainland_company`
+- `button_mgn_establish_korean_company`
+- `button_mgn_establish_japanese_company`
+- `button_mgn_establish_siberian_company`
+- `button_mgn_establish_central_asian_company`
+- `button_mgn_establish_southeast_asian_company`
+- `button_mgn_establish_lanfang_company`
+- `button_mgn_establish_african_company_ming`
+- `button_mgn_establish_african_company_qing`
+
+最后两个非洲按钮同时挂载，但各自的 `visible` 限定为大明或大清，因此玩家实际只会看到一个。所有公司按钮要求已经进入重建阶段、对应公司当前不存活、首都不在对应区域，并且本国、非公司附庸或附庸的附庸控制对应区域任意州。按钮 effect 只显示短 `custom_tooltip`，真正的创建、划地、整合与事件触发放入 `hidden_effect`，避免 tooltip 展开长州列表。西伯利亚范围排除图瓦；扶桑范围排除琉球；南洋范围排除归兰芳公司的婆罗洲。
+
+“经略四方”不设置完成条件。公司被吞并或不再存活后，原按钮会重新可用。
 
 ### 臣服方 `je_mgn_bitter_peace`
 
@@ -563,11 +527,13 @@ AI 臣服方 `ai_chance = 0`，不会主动点击。该外交博弈使用专用 
 
 区域公司 tag：
 
-- `MDC`：内地经略公司，覆盖大清开局领土范围、库页岛、琉球，以及西藏阿里/拉萨/喜马拉雅/东喜马拉雅；主流文化为汉；首都偏好北京。
-- `MKC`：东藩榷务公司，覆盖开局朝鲜、沙里院、两湖/关北等朝鲜目标州；主流文化为汉、满；首都偏好汉城。
-- `MLF`：兰芳榷务公司，覆盖北婆罗洲、东婆罗洲、西婆罗洲；主流文化为汉、客家、粤；首都偏好西婆罗洲。
-- `MSB`：西伯利亚榷务公司，覆盖除图瓦外的游戏内西伯利亚地理区域，并显式包含鄂霍茨克、楚科奇、勘察加；主流文化为汉、西域中华、满；国教儒家；首都偏好伊尔库茨克。
-- `MCA`：中亚榷务公司，覆盖现实中亚五国范围，包含梅尔夫；主流文化为汉、西域中华、满；国教儒家；首都偏好梅尔夫。
+- `MDC`：内地经略公司，覆盖大清开局领土范围、库页岛、琉球，以及西藏阿里/拉萨/喜马拉雅/东喜马拉雅；主流文化为汉；首都偏好北京。琉球在公司设立时默认随该范围划入。
+- `MKC`：东藩榷务公司，覆盖开局朝鲜、沙里院、两湖/关北等朝鲜目标州；主流文化依次为汉、海东中华；首都偏好汉城。
+- `MLF`：兰芳榷务公司，覆盖北婆罗洲、东婆罗洲、西婆罗洲；主流文化依次为汉、南洋中华；首都偏好西婆罗洲。
+- `MSB`：西伯利亚榷务公司，覆盖除图瓦外的游戏内西伯利亚地理区域，并显式包含外满洲、阿穆尔、库页岛、鄂霍茨克、楚科奇、勘察加；主流文化依次为汉、朔方中华；国教儒家；首都偏好伊尔库茨克。
+- `MCA`：中亚榷务公司，覆盖现实中亚五国范围，包含梅尔夫；主流文化依次为汉、天山中华；国教儒家；首都偏好梅尔夫。
+- `MJP`：扶桑榷务公司，覆盖原版 1.13 的北海道、东北、关东、东海、北信越、大阪、京都、中国、四国、九州十州，不含琉球；主流文化依次为汉、扶桑中华；首都优先关东、其次大阪。
+- `MSE`：南洋经略公司，覆盖缅甸六州、暹罗/老挝/柬埔寨五州、越南三州及马来亚，共十五州；主流文化依次为汉、交南中华；首都优先曼谷、其次北圻、再次马来亚。
 
 命名原则：
 
@@ -576,6 +542,17 @@ AI 臣服方 `ai_chance = 0`，不会主动点击。该外交博弈使用专用 
 - “兰芳榷务公司”借南洋兰芳与会馆/公议传统，突出港务、锡矿、商路与华人公司政权。
 - “西伯利亚榷务公司”偏向北境、寒海口岸、皮货与矿山经营。
 - “中亚榷务公司”偏向绿洲、商道、水渠、矿山与边疆榷税。
+- “扶桑榷务公司”以传统地理名区分于直接复刻日本民族国家，突出日语本地制度与中华特许章程的结合。
+- “南洋经略公司”统筹大陆东南亚与马来半岛；桥梁文化称“交南中华”，避免与兰芳的“南洋中华”重名。
+
+新增两公司废案记录：
+
+- 日本公司不直接采用 `japanese` 为主流文化；这会把日本民族国家身份直接等同于公司共同体。早期“只使用单一 `fusang_han`、不附加 `han`”方案也已废弃；现行统一规则要求所有特许公司以汉为第一主流文化，再加入地方桥梁文化。
+- 日本公司不纳入琉球。琉球保留在内地经略范围，以维持其处于中华朝贡体系与日本列岛之间的特殊地位；让两家公司共享琉球范围会制造成立顺序冲突。
+- 东南亚公司不直接采用 `vietnamese/thai/burmese/khmer/lao/malay` 主流文化清单，也不复用兰芳的 `nanyang_han`。前者会让主流文化变成人口来源枚举，后者会抹平大陆经略体系与婆罗洲公司社会的区别。
+- “中南半岛榷务公司”过于现代地理学，“交南榷务公司”又容易被理解为仅限越南；最终国家名采用覆盖面清楚的“南洋经略公司”，文化名采用更具世界观风味的“交南中华”。
+- 交南中华未采用官话、泰语或马来语。官话会把它写成海外汉人，泰语与马来语又难解释越南儒学官僚传统；最终采用越语作为制度语言，并以东南亚 heritage group 覆盖更广的地方根基。
+- 未直接引用原版 `region_indochina` 作为公司范围；显式州清单避免游戏更新改变战略区域时悄然扩大或缩小法定边界。
 
 设立原则：
 
@@ -583,13 +560,13 @@ AI 臣服方 `ai_chance = 0`，不会主动点击。该外交博弈使用专用 
 - 可用地块包括本国直接拥有的州，以及非公司附庸或附庸的附庸拥有的州；公司臣属持有的州不会被其他公司再次划走。
 - 建立公司前会先转移目标区域非公司附庸的直接臣属给宗主，避免该附庸被公司吃掉后其下级附庸独立。
 - 公司成立后通过 `on_monthly_pulse_country` 与 `on_state_owner_change` 调用 `mgn_integrate_company_target_states`，后续打下并交给该公司的目标区域州也会自动变为已整合。
-- 非洲公司在首都位于非洲时禁用；内地、朝鲜、兰芳、西伯利亚与中亚公司同理按对应区域排除。
+- 非洲公司在首都位于非洲时禁用；其余七家公司同理按各自法定区域排除。
 - 公司初始必须采用 `law_mgn_heavenly_subjecthood`（天朝万民）。
 - 各公司初始采用 `law_extraction_economy`（盘剥经济制度）；西伯利亚与中亚公司额外固定为国教制。
 - 除特许公司/殖民公司专属法律外，公司其他法律应继承宗主国当前法律，而不是固定回到大明开局法律。
 - 如果宗主国法律与特许公司专属法律冲突，以特许公司专属法律优先覆盖；首版至少固定覆盖公民权与经济制度。
 - 所有中华属特许公司创建时设置 `mgn_company_cannot_form_china` 变量；同时 `CHI` 成国定义在 `00_formable_countries.txt` 同名覆盖文件中调用 `mgn_is_chinese_chartered_company`，从成国界面层面阻止它们成立中国。
-- `MDC`、`MKC`、`MLF`、`MSB`、`MCA` 在非臣服状态下使用独立动态国号与 `*_free` 旗帜：内地经略国、东藩经略国、兰芳公议国、北庭经略国、西域经略国。
+- `MDC`、`MKC`、`MLF`、`MSB`、`MCA`、`MJP`、`MSE` 在非臣服状态下使用独立动态国号与 `*_free` 旗帜：内地经略国、东藩经略国、兰芳公议国、北庭经略国、西域经略国、扶桑经略国、南洋经略国。
 
 需要新增/扩展：
 
@@ -623,7 +600,7 @@ MDC = {
 MKC = {
 	country_type = company
 	tier = kingdom
-	cultures = { han manchu }
+	cultures = { han haedong_han }
 	religion = confucian
 	capital = STATE_SEOUL
 }
@@ -631,7 +608,7 @@ MKC = {
 MLF = {
 	country_type = company
 	tier = kingdom
-	cultures = { han hakka yue }
+	cultures = { han nanyang_han }
 	religion = confucian
 	capital = STATE_WEST_BORNEO
 }
@@ -639,7 +616,7 @@ MLF = {
 MSB = {
 	country_type = company
 	tier = kingdom
-	cultures = { han western_han manchu }
+	cultures = { han shuofang_han }
 	religion = confucian
 	capital = STATE_IRKUTSK
 }
@@ -647,9 +624,25 @@ MSB = {
 MCA = {
 	country_type = company
 	tier = kingdom
-	cultures = { han western_han manchu }
+	cultures = { han tianshan_han }
 	religion = confucian
 	capital = STATE_MERZ
+}
+
+MJP = {
+	country_type = company
+	tier = kingdom
+	cultures = { han fusang_han }
+	religion = mahayana
+	capital = STATE_KANTO
+}
+
+MSE = {
+	country_type = company
+	tier = kingdom
+	cultures = { han jiaonan_han }
+	religion = mahayana
+	capital = STATE_BANGKOK
 }
 ```
 
@@ -730,7 +723,7 @@ mgn_create_african_chartered_company = {
 - 原版 `CHI` 成国定义位于 `common/country_formation/00_formable_countries.txt`，单独新增 `99_mgn_country_formation.txt` 不会覆盖原版 `CHI`。当前实现改为在 mod 中提供同名 `00_formable_countries.txt` 覆盖文件，只在 `CHI` 段新增 `mgn_chinese_chartered_company_cannot_form_china_tt` / `mgn_is_chinese_chartered_company` 限制。
 - 大明/大清完成统一并打开“重建国家”日志时，获得 10 年 `mgn_chinese_unification_integration_drive`：`state_incorporation_speed_mult = 0.25`。这是统一后的行政整合红利，不直接改变州状态。
 - 若 `create_country` 后再 `set_state_owner` 大量州导致市场/建筑/军队异常，第一版可只转移州，不转移军队，实测后再补军队处理。
-- `law_mgn_heavenly_subjecthood` 与 `law_mgn_huayi_unity` 的 `is_visible` 已扩展到 `c:MCC`、`c:MDC`、`c:MKC`、`c:MLF`、`c:MSB`、`c:MCA`。
+- `law_mgn_heavenly_subjecthood` 与 `law_mgn_huayi_unity` 的 `is_visible` 已扩展到全部八个公司 tag。
 - “继承宗主国法律但排除公司专属法律”需要写成显式 scripted effect。不要尝试自动遍历所有 law group；Victoria 3 脚本通常更适合逐法律组判断宗主国当前法律并 `activate_law`。
 - `is_in_geographic_region = geographic_region_africa` 在原版事件和日志中可用于州/国家相关 scope；正式写 effect 时仍要用游戏日志验证 scope 是否落在 `state` 上。
 
@@ -902,21 +895,22 @@ mgn_create_african_chartered_company = {
 
 ### 第 6 步：特许公司国家
 
-新增 `MCC`、`MDC`、`MKC`、`MLF`、`MSB`、`MCA` 国家、旗帜、动态名、本地化。
+新增 `MCC`、`MDC`、`MKC`、`MLF`、`MSB`、`MCA`、`MJP`、`MSE` 国家、旗帜、动态名、本地化。
 
 同步调整：
 
-- `law_mgn_heavenly_subjecthood` 的 `is_visible` 扩展到 `c:MCC`、`c:MDC`、`c:MKC`、`c:MLF`、`c:MSB`、`c:MCA`。
-- `law_mgn_huayi_unity` 的 `is_visible` 扩展到 `c:MCC`、`c:MDC`、`c:MKC`、`c:MLF`、`c:MSB`、`c:MCA`。
+- `law_mgn_heavenly_subjecthood` 的 `is_visible` 扩展到全部八个公司 tag。
+- `law_mgn_huayi_unity` 的 `is_visible` 扩展到全部八个公司 tag。
 - 明确 `MCC` 初始/覆盖法律：公民权固定为“天朝万民”，经济制度固定为 `law_extraction_economy`，其他法律继承宗主国。
-- 明确 `MDC`、`MKC`、`MLF`、`MSB`、`MCA` 初始/覆盖法律：公民权固定为“天朝万民”，经济制度固定为 `law_extraction_economy`，其他法律继承宗主国；`MSB`、`MCA` 额外固定国教制。
-- 新增统一胜利方专属经济制度变体：`law_mgn_overseas_cooperative_ownership`，中文名“人民资本合作制”。该法律前序与原版合作社所有制一致，但额外限定只有大明/大清胜利者本体可制定；国内等同合作社所有制，海外投资不启用原版合作社所有制的 `country_foreign_collectivization_bool`。公司不自动继承该变体；若宗主采用该变体，公司法律继承映射为普通合作社所有制。为修复法律详情中缺少原版合作社所有制“解锁新法律/生产方式、禁用生产方式”的问题，需同步覆盖相关反向引用：无政府制、集体化农业、城市中心艺术赞助和公司总部所有权生产方式都把该变体加入对应 `unlocking_laws` 或 `disallowing_laws`。集体化农业另在 `requires_law_or` 与 `can_enact` 中显式接受人民资本合作制，确保研究 `socialism` 后能由人民资本合作制解锁并制定。命名备选曾包括“特色合作社所有制”“社会主义市场合作制”“有特色的合作社所有制”“一国两制所有制”“内公外私”等，最终采用“人民资本合作制”以保留现代制度梗和所有权机制暗示。
+- 明确 `MDC`、`MKC`、`MLF`、`MSB`、`MCA`、`MJP`、`MSE` 初始/覆盖法律：公民权固定为“天朝万民”，经济制度固定为 `law_extraction_economy`，其他法律继承宗主国；`MSB`、`MCA` 额外固定国教制。
+- 新增统一胜利方专属经济制度变体：`law_mgn_overseas_cooperative_ownership`，中文名“人民资本合作制”。该法律前序与原版合作社所有制一致，但额外限定只有大明/大清胜利者本体可制定；大明与仍为有效中华竞争者的大清从开局即可看见该法律，胜负未定时灰显，便于玩家提前预览。国内等同合作社所有制，海外投资不启用原版合作社所有制的 `country_foreign_collectivization_bool`。公司不自动继承该变体；若宗主采用该变体，公司法律继承映射为普通合作社所有制。为修复法律详情中缺少原版合作社所有制“解锁新法律/生产方式、禁用生产方式”的问题，需同步覆盖相关反向引用：无政府制、集体化农业、城市中心艺术赞助和公司总部所有权生产方式都把该变体加入对应 `unlocking_laws` 或 `disallowing_laws`。集体化农业另在 `requires_law_or` 与 `can_enact` 中显式接受人民资本合作制，确保研究 `socialism` 后能由人民资本合作制解锁并制定。命名备选曾包括“特色合作社所有制”“社会主义市场合作制”“有特色的合作社所有制”“一国两制所有制”“内公外私”等，最终采用“人民资本合作制”以保留现代制度梗和所有权机制暗示。
+- 政体彩蛋已实现 `law_mgn_revolutionary_committees`（革命委员会制）：委员会共和国下的大明、大清或合法中华中央政府可制定；它解锁工厂委员会和仅在法律生效时显示的“批斗”人物互动，并保持“中华苏维埃社会主义共和国联盟”国号。工厂委员会依赖当前 1.13 完整同名 `00_labour_associations.txt` 覆盖，游戏更新后须重新比对。完整数值、概率和维护路径见 `docs/implementation-map.md`；设计取舍与废案见 `docs/design-plan.md` 的“革命委员会制彩蛋”。
 - 数值采用“有味道版”推荐：保留合作社主体数值，额外加入 `country_free_charters_add = 2`、`state_capitalists_investment_pool_efficiency_mult = 0.25`、`country_loan_interest_rate_mult = -0.10`。这比只加一枚免费公司特许更能体现“人民资本”，但比完整自由放任缝合温和；废案为 `country_loan_interest_rate_mult = -0.25`、`country_force_privatization_bool = yes`、`country_forbid_monopoly_bool = yes`，理由是强度过高且强制私有化会冲淡国内合作化叙事。未来若需削弱，优先回退贷款利率优惠，再把免费特许降回 1；若需强化，可先考虑把贷款利率调到 `-0.15`，不要直接加入强制私有化。
 
 验收：
 
 - `MCC` 能成立。
-- `MDC`、`MKC`、`MLF`、`MSB`、`MCA` 能成立。
+- `MDC`、`MKC`、`MLF`、`MSB`、`MCA`、`MJP`、`MSE` 能成立。
 - `MCC` 能使用大明公民权变体。
 - 新增公司均能使用大明公民权变体。
 - `MCC` 成为 `chartered_company`。
@@ -928,13 +922,13 @@ mgn_create_african_chartered_company = {
 - `MCC` 除特许公司专属覆盖项外，其他法律与宗主国一致。
 - 大明版设立公司后，大明只保留 `han` 主流文化。
 - 中华属特许公司在拥有足够中华文化本土后仍不能成立 `CHI`。
-- `MDC`、`MKC`、`MLF`、`MSB`、`MCA` 脱离臣服后切换到自由态动态国号与 `*_free` 旗帜。
+- `MDC`、`MKC`、`MLF`、`MSB`、`MCA`、`MJP`、`MSE` 脱离臣服后切换到自由态动态国号与 `*_free` 旗帜。
 
 ### 第 7 步：本地化
 
 扩展 `localization/simp_chinese/mgn_l_simp_chinese.yml` 与 `localization/english/mgn_l_english.yml`，至少包含：
 
-- 三个日志标题/描述/原因。
+- “两个中华”“重建国家”“经略四方”“苦涩的和平”日志标题、描述与原因。
 - 所有按钮名、按钮描述、按钮效果描述。
 - 和平统一事件标题、描述、选项。
 - 重建国家事件标题、描述、选项。
@@ -950,7 +944,7 @@ mgn_create_african_chartered_company = {
 2. 触发或模拟 `china_shatters` 后，“两个中华”不再把北洋/军阀中央政府当作大清。
 3. 大明拥有北京、南京、直隶后，反攻大陆按钮可用，并添加大明版“重建国家”。
 4. 大清拥有下埃及、尼日尔三角洲、开普、刚果后，武力统一按钮可用，并添加大清版“重建国家”。
-5. 一方臣属另一方时，领导方进入“重建国家”，臣服方进入“苦涩的和平”。
+5. 一方臣属另一方时，领导方同时保留“两个中华”并进入“重建国家”“经略四方”，三个日志均默认置顶；臣服方进入“苦涩的和平”。
 6. 双方总统共和、友善、无战争、无停战、发起方国际地位更高时，和平统一按钮可用；若目标方为臣属，则需累计臣服满五年。
 7. 双方有停战协议时，和平统一按钮不可用。
 8. 玩家作为目标方时，可拒绝和平统一并进入战争路径。
@@ -960,27 +954,39 @@ mgn_create_african_chartered_company = {
 12. 玩家拒绝修改边境移民政策时，双方进入事件专用博弈，并各自获得要求对方采用本国移民政策的战争目标。
 13. 修改边境移民政策被接受后，双方获得停战协议。
 14. 臣服方“苦涩的和平”日志显示要求独立按钮；AI 臣服方不会主动点击，玩家点击后走专用独立外交博弈。
-15. 首都不在非洲，且直接或通过非公司臣属控制任意非洲州时，非洲公司按钮可用；首都在非洲时不可用。
-16. 首都不在内地公司区域，且直接或通过非公司臣属控制任意目标州时，内地经略公司按钮可用；首都在内地时不可用。
-17. 首都不在朝鲜公司区域，且直接或通过非公司臣属控制任意目标州时，东藩榷务公司按钮可用。
-18. 首都不在兰芳公司区域，且本国、非公司附庸或附庸的附庸控制北/东/西婆罗洲任意目标州时，兰芳榷务公司按钮可用。
-19. 首都不在西伯利亚公司区域，且本国、非公司附庸或附庸的附庸控制除图瓦外任意目标州时，西伯利亚榷务公司按钮可用。
-20. 首都不在中亚公司区域，且本国、非公司附庸或附庸的附庸控制任意目标州时，中亚榷务公司按钮可用。
-21. 设立 `MCC` 后，非洲州转移给公司，公司成为特许公司附庸。
-22. 设立 `MDC` 后，大清开局领土范围外加西藏、库页岛、琉球、吉尔吉斯、伊犁、图瓦中的可用州转移给公司，公司成为特许公司附庸。
-23. 设立 `MKC` 后，朝鲜目标州转移给公司，公司成为特许公司附庸。
-24. 设立 `MLF` 后，北婆罗洲、东婆罗洲、西婆罗洲目标州转移给公司，公司成为特许公司附庸。
-25. 设立 `MSB` 后，除图瓦外的西伯利亚目标州转移给公司，公司成为特许公司附庸；图瓦仍归内地经略公司范围。
-26. 设立 `MCA` 后，中亚目标州转移给公司，公司成为特许公司附庸。
-27. 大明版设立非洲公司后，大明移除 `african_han` 与 `western_han`，只保留 `han`。
-28. 大清版设立公司后，大清主流文化不被修改。
-29. 各公司拥有的目标地块均为已整合；公司后续获得目标区域州时，该州会自动整合。
-30. 若在附庸领土上设立公司并导致该附庸灭国，其附庸的附庸会转给宗主，不会独立。
-31. 各公司初始采用“天朝万民”和 `law_extraction_economy`；`MSB`、`MCA` 额外采用国教制。
-32. 各公司除公司专属法律覆盖外，其他法律继承宗主国。
-33. `MDC` 或其他中华属特许公司即使拥有足够中国本土和汉/满等主流文化，也不能成立 `CHI`。
-34. 路线日志、弹出事件和国家修正在 UI 中不显示默认圆脸占位图；所有 `event_icons`、`event_image video` 与 `timed_modifier_icons` 均能在原版资源目录中找到。
-35. `MDC`、`MKC`、`MLF`、`MSB`、`MCA` 脱离臣服后使用自由态动态国号和 `*_free` 旗帜；臣服特许公司状态仍使用 `*_chartered`。
+15. “重建国家”只显示迁都和边界整理按钮；“经略四方”按内地、东藩、扶桑、西伯利亚、中亚、南洋、兰芳、非洲顺序显示公司按钮。
+16. 首都不在非洲，且直接或通过非公司臣属控制任意非洲州时，非洲公司按钮可用；首都在非洲时不可用。
+17. 首都不在内地公司区域，且直接或通过非公司臣属控制任意目标州时，内地经略公司按钮可用；首都在内地时不可用。
+18. 从旧版本载入已经拥有“重建国家”的存档时，每周脉冲能补挂“经略四方”；若领导方的“两个中华”旧日志已经结束，也能重新补挂。
+19. 大明进入“重建国家”后，北京与南京迁都按钮始终显示；未完整拥有目标州时按钮灰显且不可点击。
+20. 恢复东北或西北边界时，接收方严格按存续大清、内地经略公司、大明本体的顺序选择。
+21. 东海、北信越、京都与其余日本本土州均带有扶桑中华 homeland，并能随扶桑榷务公司按钮正确划转。
+22. 琉球不进入扶桑范围；设立内地经略公司时默认划入该公司。
+23. 八家公司国家定义和创建 effect 均以汉为第一主流文化，再列地方桥梁文化。
+    已存在于旧存档的公司会在首次月度维护时执行一次文化顺序规范化，避免只修新建公司。
+24. 首都不在朝鲜公司区域，且直接或通过非公司臣属控制任意目标州时，东藩榷务公司按钮可用。
+25. 首都不在兰芳公司区域，且本国、非公司附庸或附庸的附庸控制北/东/西婆罗洲任意目标州时，兰芳榷务公司按钮可用。
+26. 首都不在西伯利亚公司区域，且本国、非公司附庸或附庸的附庸控制除图瓦外任意目标州时，西伯利亚榷务公司按钮可用。
+27. 首都不在中亚公司区域，且本国、非公司附庸或附庸的附庸控制任意目标州时，中亚榷务公司按钮可用。
+28. 首都不在日本本土，且本国、非公司附庸或附庸的附庸控制北海道至九州任意目标州时，扶桑榷务公司按钮可用；琉球不计入。
+29. 首都不在南洋经略范围，且本国、非公司附庸或附庸的附庸控制缅甸、暹罗、老挝、柬埔寨、越南或马来亚任意目标州时，南洋经略公司按钮可用；婆罗洲不计入。
+30. 设立 `MCC` 后，非洲州转移给公司，公司成为特许公司附庸。
+31. 设立 `MDC` 后，大清开局领土范围外加西藏、库页岛、琉球、吉尔吉斯、伊犁、图瓦中的可用州转移给公司，公司成为特许公司附庸。
+32. 设立 `MKC` 后，朝鲜目标州转移给公司，公司成为特许公司附庸。
+33. 设立 `MLF` 后，北婆罗洲、东婆罗洲、西婆罗洲目标州转移给公司，公司成为特许公司附庸。
+34. 设立 `MSB` 后，除图瓦外的西伯利亚目标州转移给公司，公司成为特许公司附庸；图瓦仍归内地经略公司范围。
+35. 设立 `MCA` 后，中亚目标州转移给公司，公司成为特许公司附庸。
+36. 设立 `MJP` 后，日本本土十州中的可用目标州转移给公司，东海、北信越、京都均包含在内；琉球不转移。
+37. 设立 `MSE` 后，大陆东南亚与马来亚十五州中的可用目标州转移给公司，婆罗洲不转移。
+38. 大明版设立非洲公司后，大明移除 `african_han` 与 `western_han`，只保留 `han`。
+39. 大清版设立公司后，大清主流文化不被修改。
+40. 各公司拥有的目标地块均为已整合；公司后续获得目标区域州时，该州会自动整合。
+41. 若在附庸领土上设立公司并导致该附庸灭国，其附庸的附庸会转给宗主，不会独立。
+42. 各公司初始采用“天朝万民”和 `law_extraction_economy`；`MSB`、`MCA` 额外采用国教制。
+43. 各公司除公司专属法律覆盖外，其他法律继承宗主国。
+44. `MDC` 或其他中华属特许公司即使拥有足够中国本土和汉/满等主流文化，也不能成立 `CHI`。
+45. 路线日志、弹出事件和国家修正在 UI 中不显示默认圆脸占位图；所有 `event_icons`、`event_image video` 与 `timed_modifier_icons` 均能在原版资源目录中找到。
+46. `MDC`、`MKC`、`MLF`、`MSB`、`MCA`、`MJP`、`MSE` 脱离臣服后使用自由态动态国号和 `*_free` 旗帜；臣服特许公司状态仍使用 `*_chartered`。
 
 ## 待实测问题
 

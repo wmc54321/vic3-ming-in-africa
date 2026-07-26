@@ -17,7 +17,7 @@ law_mgn_overseas_cooperative_ownership = {
 	}
 
 	is_visible = {
-		mgn_is_two_chinas_winner = yes
+		mgn_is_two_chinas_participant = yes
 	}
 
 	can_enact = {
