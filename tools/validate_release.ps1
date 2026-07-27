@@ -30,6 +30,8 @@ if ($gameVersions.Count -ne 1 -or [string]::IsNullOrWhiteSpace($gameVersions[0])
     Add-ValidationError "Supported game version mismatch across launcher metadata."
 }
 
+$mingCountryHistory = Get-Content -LiteralPath (Join-Path $ModRoot "common\history\countries\mgn - ming.txt") -Raw
+
 foreach ($required in @("LICENSE", "NOTICE.md", "README.md", "CHANGELOG.md", "mod\ming_in_africa\thumbnail.png", "mod\ming_in_africa\.metadata\thumbnail.png")) {
     if (-not (Test-Path -LiteralPath (Join-Path $RepositoryRoot $required))) {
         Add-ValidationError "Missing required release file: $required"

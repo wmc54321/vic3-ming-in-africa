@@ -2,6 +2,16 @@
 
 All notable public releases are recorded here.
 
+## 0.1.2
+
+Completed the custom-law unlock chains and refined Great Ming's opening military technology.
+
+- Replaced the unreliable focused cooperative-law compatibility file with documented same-name Victoria 3 1.13 overrides for Anarchy, Collectivized Agriculture, and Command Economy.
+- Completed the vanilla reverse-reference and unlock chains for People's Capital Cooperation and Revolutionary Committees, including Factory Councils.
+- Gave Great Ming the Line Infantry technology while retaining its mixed opening army of 22 line-infantry and 44 irregular-infantry battalions; wider modernization remains a player decision.
+- Updated compatibility notes and release validation for the expanded vanilla law-file overrides.
+- Declared compatibility with Victoria 3 1.13.x; a new campaign and a clean playset remain strongly recommended.
+
 ## 0.1.1
 
 Expanded the Two Chinas route, chartered-company system, opening population model, and late-game political variants.

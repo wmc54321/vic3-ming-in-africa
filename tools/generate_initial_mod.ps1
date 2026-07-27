@@ -252,6 +252,7 @@ function Convert-BuildingHistory {
         $text = [regex]::Replace($text, "region_state:[A-Z0-9_]+", "region_state:MGN")
         $text = [regex]::Replace($text, 'country\s*=\s*"c:[A-Z0-9_]+"', 'country="c:MGN"')
         $text = [regex]::Replace($text, 'country\s*=\s*c:[A-Z0-9_]+', 'country = c:MGN')
+
         Set-Content -LiteralPath $targetPath -Value $text -Encoding UTF8
     }
 }
