@@ -139,6 +139,7 @@ function Convert-StateHistory {
         [System.Collections.Generic.HashSet[string]]$AfricaStates,
         [System.Collections.Generic.HashSet[string]]$AfricanHanHomelands,
         [System.Collections.Generic.HashSet[string]]$WesternHanHomelands,
+        [System.Collections.Generic.HashSet[string]]$QingTibetStates,
         [hashtable]$CompanyCultureHomelands
     )
 
@@ -208,6 +209,14 @@ function Convert-StateHistory {
             [void]$out.Append("}")
         }
         else {
+            if ($QingTibetStates.Contains($state)) {
+                $block = [regex]::Replace(
+                    $block,
+                    "country\s*=\s*c:TIB",
+                    "country = c:CHI`r`n`t`t`tstate_type = unincorporated"
+                )
+            }
+
             $newHomelands = [System.Collections.Generic.List[string]]::new()
             if ($WesternHanHomelands.Contains($state)) {
                 $newHomelands.Add("western_han")
@@ -380,6 +389,25 @@ function Convert-EgyptMiddleEastPops {
     Set-Content -LiteralPath $targetPath -Value $text -Encoding UTF8
 }
 
+function Convert-QingTibetCentralAsiaHistory {
+    param(
+        [string]$GameRoot,
+        [string]$ModRoot
+    )
+
+    foreach ($category in @("buildings", "pops")) {
+        $sourcePath = Join-Path $GameRoot "common\history\$category\09_central_asia.txt"
+        $targetPath = Join-Path $ModRoot "common\history\$category\09_central_asia.txt"
+        $text = Get-Content -LiteralPath $sourcePath -Raw
+        $text = [regex]::Replace($text, "region_state:TIB", "region_state:CHI")
+        if ($category -eq "buildings") {
+            $text = [regex]::Replace($text, 'country\s*=\s*"c:TIB"', 'country="c:CHI"')
+            $text = [regex]::Replace($text, 'country\s*=\s*c:TIB', 'country = c:CHI')
+        }
+        Set-Content -LiteralPath $targetPath -Value $text -Encoding UTF8
+    }
+}
+
 $northAfricaStates = Get-StatesFromRegionFiles -GameRoot $GameRoot -Files @("03_north_africa.txt")
 $subSaharanAfricaStates = Get-StatesFromRegionFiles -GameRoot $GameRoot -Files @("04_subsaharan_africa.txt")
 $middleEastStates = Get-StatesFromRegionFiles -GameRoot $GameRoot -Files @("08_middle_east.txt")
@@ -391,6 +419,11 @@ foreach ($state in $subSaharanAfricaStates) { [void]$africaStates.Add($state) }
 $westernHanHomelands = [System.Collections.Generic.HashSet[string]]::new()
 foreach ($state in $northAfricaStates) { [void]$westernHanHomelands.Add($state) }
 foreach ($state in $middleEastStates) { [void]$westernHanHomelands.Add($state) }
+$qingTibetStates = [System.Collections.Generic.HashSet[string]]::new([string[]]@(
+    "STATE_LHASA",
+    "STATE_NGARI",
+    "STATE_EASTERN_HIMALAYAS"
+))
 $companyCultureHomelands = @{
     haedong_han = Get-CompanyRegionStates -GameRoot $GameRoot -ModRoot $ModRoot -TriggerName "mgn_state_is_korean_company_region"
     nanyang_han = Get-CompanyRegionStates -GameRoot $GameRoot -ModRoot $ModRoot -TriggerName "mgn_state_is_lanfang_company_region"
@@ -399,7 +432,7 @@ $companyCultureHomelands = @{
     fusang_han = Get-CompanyRegionStates -GameRoot $GameRoot -ModRoot $ModRoot -TriggerName "mgn_state_is_japanese_company_region"
     jiaonan_han = Get-CompanyRegionStates -GameRoot $GameRoot -ModRoot $ModRoot -TriggerName "mgn_state_is_southeast_asian_company_region"
 }
-Convert-StateHistory -GameRoot $GameRoot -ModRoot $ModRoot -AfricaStates $africaStates -AfricanHanHomelands $subSaharanAfricaStates -WesternHanHomelands $westernHanHomelands -CompanyCultureHomelands $companyCultureHomelands
+Convert-StateHistory -GameRoot $GameRoot -ModRoot $ModRoot -AfricaStates $africaStates -AfricanHanHomelands $subSaharanAfricaStates -WesternHanHomelands $westernHanHomelands -QingTibetStates $qingTibetStates -CompanyCultureHomelands $companyCultureHomelands
 Convert-BuildingHistory -GameRoot $GameRoot -ModRoot $ModRoot -Files @(
     "03_north_africa.txt",
     "04_subsaharan_africa.txt"
@@ -412,6 +445,7 @@ Convert-PopHistory -GameRoot $GameRoot -ModRoot $ModRoot -Files @(
 ) -GovernmentAdministrationStates $subSaharanAdministrationStates -LocalChineseCulture "african_han"
 Convert-EgyptMiddleEastBuildings -GameRoot $GameRoot -ModRoot $ModRoot
 Convert-EgyptMiddleEastPops -GameRoot $GameRoot -ModRoot $ModRoot
+Convert-QingTibetCentralAsiaHistory -GameRoot $GameRoot -ModRoot $ModRoot
 
 Write-Host "Generated Africa state history for $($africaStates.Count) states."
 Write-Host "Added African Han homelands to $($subSaharanAfricaStates.Count) Sub-Saharan states."
@@ -424,3 +458,4 @@ Write-Host "Generated African pop history files."
 Write-Host "Added Han and local Chinese bureaucrats to $($northAfricaAdministrationStates.Count + $subSaharanAdministrationStates.Count) African states with government administrations; other African states received clergy."
 Write-Host "Generated Middle East building history with Egyptian ownership reassigned to TUR."
 Write-Host "Generated Middle East pop history with Egyptian ownership reassigned to TUR."
+Write-Host "Generated Central Asian state, building, and pop history with Tibet directly owned by Qing as unincorporated territory."

@@ -2,6 +2,17 @@
 
 All notable public releases are recorded here.
 
+## 0.1.3
+
+Expanded Qing opening-state coverage, added dynasty-aware royal portraits, and documented external-mod compatibility boundaries.
+
+- Placed the 1836 Tibetan polity under direct Qing ownership while keeping Lhasa, Ngari, and Tibet's portion of Eastern Himalayas unincorporated; Tibetan pops, homelands, and releasability remain intact.
+- Added generated portrait compatibility so Great Ming royalty and post-Manchu Qing royalty use appropriate Chinese imperial clothing and headgear without changing ordinary officials or Manchu-led Qing.
+- Added validation for generated Central Asian history and portrait overrides, plus a check mode for the portrait generator.
+- Documented the investigated Dayang-Hanzhou compatibility surface as a deferred, separately loadable optional patch; the base mod remains independently playable.
+- Updated public and internal documentation for the new state-history, portrait, and compatibility behavior.
+- Declared compatibility with Victoria 3 1.13.x; a new campaign and a clean playset remain strongly recommended.
+
 ## 0.1.2
 
 Completed the custom-law unlock chains and refined Great Ming's opening military technology.

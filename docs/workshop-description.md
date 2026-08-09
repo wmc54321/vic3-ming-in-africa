@@ -1,6 +1,6 @@
 [h1]非洲大明：Ming in Africa[/h1]
 
-[b]当前版本：0.1.2[/b]
+[b]当前版本：0.1.3[/b]
 [b]支持版本：Victoria 3 1.13.x[/b]
 [b]所需 DLC：无[/b]
 
@@ -12,6 +12,7 @@
 [h2]核心玩法[/h2]
 [list]
 [*][b]两个中华：[/b]围绕明清正统展开完整路线，可通过统一战争、臣属安排或共和制政治趋同完成合流；失败方也拥有“苦涩的和平”结局。
+[*][b]大清开局：[/b]西藏直属大清；拉萨、阿里及东喜马拉雅原西藏部分未整合，藏族人口、homeland 与可释放国保留。
 [*][b]重建国家：[/b]处理非洲行政与边界问题，并在条件成熟后迁都北京或南京。
 [*][b]经略四方：[/b]将远方领土重组为中华属特许公司。八类公司覆盖非洲、中华内地、朝鲜、日本、西伯利亚、中亚、东南亚与婆罗洲。
 [*][b]在地化帝国：[/b]各公司拥有中华桥梁文化、合法 homeland、动态国号与旗帜；非洲各州分布少量中华行政和礼仪人口。
@@ -47,7 +48,7 @@
 
 [h1]English[/h1]
 
-[b]Current version: 0.1.2[/b]
+[b]Current version: 0.1.3[/b]
 [b]Supported game version: Victoria 3 1.13.x[/b]
 [b]Required DLC: None[/b]
 
@@ -59,6 +60,7 @@ Vast territory, a complex population, and severe administrative costs arrive tog
 [h2]Core Features[/h2]
 [list]
 [*][b]Two Chinas:[/b] Resolve the rival claims through unification war, subject arrangements, or republican political convergence, with a Bitter Peace outcome for the defeated claimant.
+[*][b]Qing's opening:[/b] Tibet is directly ruled but unincorporated in Lhasa, Ngari, and its portion of Eastern Himalayas. Tibetan pops, homelands, and releasability remain.
 [*][b]Rebuild the Nation:[/b] Stabilize the African realm, settle borders, and move the capital to Beijing or Nanjing.
 [*][b]Administer the Four Quarters:[/b] Reorganize distant possessions into eight Chinese chartered-company regions spanning Africa, China, Korea, Japan, Siberia, Central Asia, Southeast Asia, and Borneo.
 [*][b]A localized empire:[/b] Companies receive Sinitic bridge cultures, legal homelands, dynamic names, and flags. Small Chinese administrative and ritual communities enrich the African setting.

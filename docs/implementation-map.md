@@ -13,13 +13,23 @@ Peaceful unification uses Victoria 3 1.13-compatible law checks. Monarchy (inclu
 
 This document records what the code currently implements, so future agents do not need to rediscover the mod from scratch.
 
+## External compatibility status
+
+- Compatibility with Steam Workshop item `3464386853`, “大洋国-汉洲联省共和国,” has been investigated but is not implemented or scheduled.
+- The current mod remains independently playable. Directly enabling both mod roots is not a supported combination because both provide `common/history/states/00_states.txt`, while Ming in Africa also replaces the full `common/history/states` path.
+- A separate optional compatibility patch could preserve standalone play and provide a combined playset when both parent mods are enabled. This is a deferred future option and must not be started without a new explicit user decision.
+- The evidence, proposed generated-patch architecture, upstream-permission concern, and test matrix are recorded in `docs/dayang-hanzhou-compatibility-plan.md`. None of the proposed compatibility files or tools currently exist.
+
 ## Core Setup
 
 - Country tag `MGN` defines Great Ming as an unrecognized empire with primary cultures `han`, `african_han`, and `western_han`.
 - Lower Egypt is the start capital and market capital; Ming-specific hub names localize the city as Yingtian Prefecture and the port as Jinghai Port.
 - Africa is owned and incorporated by `MGN` at game start through generated state history.
 - Egypt's non-African 1836 remnants are reassigned to the Ottomans so `EGY` does not remain as a starting African country.
+- The 1836 Tibetan polity starts under direct Qing ownership but remains unincorporated: Lhasa, Ngari, and the Tibetan-owned provinces of Eastern Himalayas transfer to `CHI` with `state_type = unincorporated`. Tibetan pops, religion, homelands, and the `TIB` releasable tag are preserved. `tools/generate_initial_mod.ps1` applies the ownership/status transfer in generated state history and retargets the matching Central Asian building and pop scopes from `TIB` to `CHI`.
 - Ming starts with Qing-like laws adjusted for slave trade, open migration, colonial resettlement, mercantilism, and professional navy.
+- Great Ming's royal succession chain uses the same base-game Han-style portrait route as the reference Sinoverse mod: the upper half of `chinese_imperial_outfits` for robes and the lower half of `chinese_common_headgear` for round caps. The rule is identity-based rather than tied to opening character templates, so it covers current and future rulers and heirs, including children and women. Vanilla regencies first make the designated regent the current ruler with `set_character_as_ruler = yes`, so regents also inherit this route; the displaced child monarch becomes the heir and remains covered. Ordinary politicians, generals, courtiers, and republican leaders are not forced into royal dress.
+- The same royal route applies to `CHI` only after it no longer has Manchu as a primary culture. Manchu-led Qing keeps the vanilla Qing imperial outfit and headgear. `common/scripted_triggers/99_mgn_clothes_triggers.txt` removes only Great Ming and post-Manchu Qing from the competing vanilla Chinese imperial/court predicates. Because `gfx/portraits/portrait_modifiers/01_clothes.txt` and `01_headgear.txt` require full virtual-path overrides, `tools/generate_portrait_compatibility.ps1` regenerates them from the current installed game files and supports a `-Check` freshness test.
 - Ming starts with `line_infantry` researched so its existing 22 line-infantry battalions can be expanded and the remaining garrisons can be modernized deliberately. The opening army remains mixed—22 line infantry and 44 irregular infantry—and receives neither an automatic mass upgrade nor additional follow-on military technologies.
 - Live verification of a fresh 1836 start shows 466 standing battalions in total: 74 are the deliberately scripted regional force, and 392 inherited irregular battalions are auto-aggregated into “Ming 1st Army.” The latter come from vanilla African barracks retained by the generated building history; they are not conscription capacity and are not caused by Peasant Levies.
 - The accepted compatibility choice is to retain those 392 battalions and their state barracks. Automatic splitting is not implemented because history script provides no verified transfer operation for already generated combat units; reconstructing all units and barracks explicitly would enlarge the state-history compatibility surface. The player can split the default formation after starting the campaign.

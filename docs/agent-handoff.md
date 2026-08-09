@@ -9,6 +9,7 @@ This is the first file a new agent/session should read.
 - Public README: keep it short and introductory.
 - Design records: `docs/design-plan.md` and `docs/route-journal-design.md`.
 - Implementation index: `docs/implementation-map.md`.
+- External-mod compatibility research: `docs/dayang-hanzhou-compatibility-plan.md` records the investigated 1.13 Hanzhou/Dayang conflict surface and a staged compatibility-patch plan. It is a deferred, optional future feature: do not implement it unless the user explicitly reopens the decision.
 
 ## Local Environment
 
@@ -30,9 +31,11 @@ Regenerate these instead of hand-editing large copied vanilla history files:
 - `mod/ming_in_africa/common/history/buildings/03_north_africa.txt`
 - `mod/ming_in_africa/common/history/buildings/04_subsaharan_africa.txt`
 - `mod/ming_in_africa/common/history/buildings/08_middle_east.txt`
+- `mod/ming_in_africa/common/history/buildings/09_central_asia.txt`
 - `mod/ming_in_africa/common/history/pops/03_north_africa.txt`
 - `mod/ming_in_africa/common/history/pops/04_subsaharan_africa.txt`
 - `mod/ming_in_africa/common/history/pops/08_middle_east.txt`
+- `mod/ming_in_africa/common/history/pops/09_central_asia.txt`
 
 Run:
 
@@ -41,6 +44,13 @@ tools\generate_initial_mod.ps1
 ```
 
 or pass `-GameRoot` explicitly.
+
+The portrait modifier overrides are also generated from the locally installed game files:
+
+- `mod/ming_in_africa/gfx/portraits/portrait_modifiers/01_clothes.txt`
+- `mod/ming_in_africa/gfx/portraits/portrait_modifiers/01_headgear.txt`
+
+Run `tools\generate_portrait_compatibility.ps1` after every supported-game-version update, and use `-Check` to verify that the committed copies still match the current game files plus the focused Ming/post-Manchu Qing additions. Do not edit these two generated files by hand.
 
 ## Editing Rules
 
@@ -59,6 +69,10 @@ or pass `-GameRoot` explicitly.
 - The only accepted opening-army modernization change is researched `line_infantry`; it does not automatically upgrade the inherited irregular battalions.
 
 ## Same-Name Vanilla Overrides
+
+- `common/history/states/00_states.txt` and the generated `common/history/buildings/09_central_asia.txt` / `pops/09_central_asia.txt` place the 1836 Tibetan polity under direct Qing ownership as unincorporated territory. Lhasa, Ngari, and Tibet's provinces in Eastern Himalayas transfer from `TIB` to `CHI` with `state_type = unincorporated`; Tibetan culture, religion, homelands, and releasability remain unchanged. Regenerate these files from the current game rather than editing them by hand.
+
+- `mod/ming_in_africa/gfx/portraits/portrait_modifiers/01_clothes.txt` and `01_headgear.txt` are generated full virtual-path overrides. They add high-priority base-game portrait routes for Great Ming and for Qing after it no longer has Manchu as a primary culture: current and future rulers and heirs—including children, women, and regents whom the vanilla regency system installs as the current ruler—use the upper half of `chinese_imperial_outfits` and the lower half of `chinese_common_headgear`. The route is role/owner-based rather than tied to opening templates. Ordinary officials and republican leaders are deliberately outside its scope. `common/scripted_triggers/99_mgn_clothes_triggers.txt` excludes the same royal scopes from the vanilla Qing imperial/court routes. Manchu-led Qing remains unchanged.
 
 - `mod/ming_in_africa/common/laws/00_labour_associations.txt` is a complete Victoria 3 1.13 copy. It exists because a separate duplicate `law_factory_councils` object did not replace the live vanilla definition. The only intended change is that Factory Councils may be enacted while revolutionary or under `law_mgn_revolutionary_committees`, with the matching reverse-reference UI entry.
 - `mod/ming_in_africa/common/laws/00_economic_system.txt` is likewise a complete Victoria 3 1.13 copy. Its only intended change is adding `law_mgn_revolutionary_committees` to Command Economy's `unlocking_laws`, because that database-level list does not inherit the variant's `law_single_party_state` parent.

@@ -1,0 +1,95 @@
+# Narrow overrides of the vanilla Chinese imperial and court-clothes predicates.
+# Great Ming and a Qing without Manchu primary culture use explicit positive
+# portrait routes generated from current base-game modifier files instead.
+
+chinese_imperial_clothes_trigger = {
+	exists = scope:character
+	scope:character = {
+		is_ruler_of_own_country = yes
+		exists = home_country
+		home_country = {
+			OR = {
+				has_law = law_type:law_monarchy
+				has_law = law_type:law_social_monarchy
+			}
+		}
+		OR = {
+			culture = {
+				has_discrimination_trait = heritage_han
+			}
+			AND = {
+				exists = c:CHI
+				home_country = c:CHI
+			}
+		}
+		NOR = {
+			home_country = c:MGN
+			owner = c:MGN
+			AND = {
+				home_country = c:CHI
+				home_country = {
+					NOT = { country_has_primary_culture = cu:manchu }
+				}
+			}
+			AND = {
+				exists = owner
+				owner = {
+					c:CHI ?= this
+					NOT = { country_has_primary_culture = cu:manchu }
+				}
+			}
+		}
+	}
+}
+
+chinese_court_clothes_trigger = {
+	exists = scope:character
+	scope:character = {
+		NOT = {
+			AND = {
+				exists = home_country
+				is_ruler_of_own_country = yes
+				culture = {
+					has_discrimination_trait = heritage_tai
+					has_discrimination_trait_group = heritage_group_southeast_asian
+				}
+				home_country = {
+					OR = {
+						has_law = law_type:law_monarchy
+						has_law = law_type:law_social_monarchy
+						has_law_or_variant = law_type:law_theocracy
+					}
+				}
+			}
+		}
+		culture = {
+			NOT = { this = cu:kalmyk }
+			NOT = { this = cu:korean }
+			OR = {
+				has_discrimination_trait = tradition_sinosphere
+				has_discrimination_trait = heritage_han
+				has_discrimination_trait = language_tibetan
+				has_discrimination_trait_group = language_group_mongolic
+				has_discrimination_trait = heritage_tai
+				has_discrimination_trait = language_hmong
+			}
+		}
+		NOR = {
+			home_country = c:MGN
+			owner = c:MGN
+			AND = {
+				home_country = c:CHI
+				home_country = {
+					NOT = { country_has_primary_culture = cu:manchu }
+				}
+			}
+			AND = {
+				exists = owner
+				owner = {
+					c:CHI ?= this
+					NOT = { country_has_primary_culture = cu:manchu }
+				}
+			}
+		}
+	}
+}

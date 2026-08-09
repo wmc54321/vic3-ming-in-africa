@@ -31,10 +31,55 @@ if ($gameVersions.Count -ne 1 -or [string]::IsNullOrWhiteSpace($gameVersions[0])
 }
 
 $mingCountryHistory = Get-Content -LiteralPath (Join-Path $ModRoot "common\history\countries\mgn - ming.txt") -Raw
+$stateHistory = Get-Content -LiteralPath (Join-Path $ModRoot "common\history\states\00_states.txt") -Raw
+$centralAsiaBuildingHistory = Get-Content -LiteralPath (Join-Path $ModRoot "common\history\buildings\09_central_asia.txt") -Raw
+$centralAsiaPopHistory = Get-Content -LiteralPath (Join-Path $ModRoot "common\history\pops\09_central_asia.txt") -Raw
 
-foreach ($required in @("LICENSE", "NOTICE.md", "README.md", "CHANGELOG.md", "mod\ming_in_africa\thumbnail.png", "mod\ming_in_africa\.metadata\thumbnail.png")) {
+foreach ($required in @(
+    "LICENSE",
+    "NOTICE.md",
+    "README.md",
+    "CHANGELOG.md",
+    "mod\ming_in_africa\thumbnail.png",
+    "mod\ming_in_africa\.metadata\thumbnail.png",
+    "mod\ming_in_africa\common\scripted_triggers\99_mgn_clothes_triggers.txt",
+    "mod\ming_in_africa\common\history\buildings\09_central_asia.txt",
+    "mod\ming_in_africa\common\history\pops\09_central_asia.txt",
+    "mod\ming_in_africa\gfx\portraits\portrait_modifiers\01_clothes.txt",
+    "mod\ming_in_africa\gfx\portraits\portrait_modifiers\01_headgear.txt",
+    "tools\generate_portrait_compatibility.ps1"
+)) {
     if (-not (Test-Path -LiteralPath (Join-Path $RepositoryRoot $required))) {
         Add-ValidationError "Missing required release file: $required"
+    }
+}
+
+if ($stateHistory -match 'country\s*=\s*c:TIB') {
+    Add-ValidationError "Generated state history still assigns starting provinces to Tibet."
+}
+foreach ($qingTibetState in @("STATE_LHASA", "STATE_NGARI", "STATE_EASTERN_HIMALAYAS")) {
+    $stateMatch = [regex]::Match(
+        $stateHistory,
+        "(?ms)^\s*s:$qingTibetState\s*=\s*\{(?<block>.*?)(?=^\s*s:STATE_[A-Z0-9_]+\s*=|\z)"
+    )
+    if (-not $stateMatch.Success -or $stateMatch.Groups["block"].Value -notmatch 'country\s*=\s*c:CHI\s+state_type\s*=\s*unincorporated') {
+        Add-ValidationError "Generated state history does not keep Qing-owned $qingTibetState unincorporated."
+    }
+}
+if ($centralAsiaBuildingHistory -match 'region_state:TIB|country\s*=\s*"?c:TIB"?') {
+    Add-ValidationError "Generated Central Asian building history still targets Tibet."
+}
+if ($centralAsiaPopHistory -match 'region_state:TIB') {
+    Add-ValidationError "Generated Central Asian pop history still targets Tibet."
+}
+
+$environmentPath = Join-Path $RepositoryRoot ".env.local"
+if (Test-Path -LiteralPath $environmentPath -PathType Leaf) {
+    try {
+        & (Join-Path $PSScriptRoot "generate_portrait_compatibility.ps1") -Check
+    }
+    catch {
+        Add-ValidationError "Portrait compatibility validation failed: $($_.Exception.Message)"
     }
 }
 
