@@ -2,13 +2,14 @@
 
 一个《Victoria 3》架空历史 mod：大明在非洲延续国祚，并从尼罗河畔重新争夺中华正统。
 
-当前版本为 **0.1.2**，支持《Victoria 3》**1.13.x**。实际可加载文件位于 `mod/ming_in_africa`。
+当前版本为 **0.1.3**，支持《Victoria 3》**1.13.x**。实际可加载文件位于 `mod/ming_in_africa`。
 
 **[Steam 创意工坊订阅](https://steamcommunity.com/sharedfiles/filedetails/?id=3764465525)** · **[GitHub Releases 手动下载](https://github.com/wmc54321/vic3-ming-in-africa/releases)**
 
 ## 主要内容
 
 - 1836 年从下埃及应天府开局的非洲大明。
+- 大清开局直接管辖西藏，但拉萨、阿里及东喜马拉雅原西藏部分保持未整合。
 - 以战争、臣属关系或政治趋同处理明清并立。
 - 迁都、重建国家和收复中华故土的日志链。
 - 面向非洲、亚洲腹地与海外领土的中华属特许公司。
@@ -20,6 +21,7 @@
 - DLC：没有强制 DLC 要求。
 - 本 mod 替换 `common/history/states`，通常不兼容其他修改 1836 年州所有权、开局国土或州历史的 mod。
 - 本 mod 同名覆盖劳工组织、经济制度、土地改革和权力分配法律文件，以补全自定义法律的原版解锁链；可能与其他修改这些原版法律文件的 mod 冲突。
+- 与“大洋国—汉洲联省共和国”的兼容性已经完成技术调查，但当前尚未实现；未来可选择通过独立兼容补丁支持，现阶段不要把两个本体直接共载视为受支持组合。
 - 建议新开一局，并在报告问题前用只启用本 mod 的播放集复现。
 
 ## 安装
@@ -34,6 +36,7 @@ Steam 用户建议直接从 [Steam 创意工坊](https://steamcommunity.com/shar
 - `docs/implementation-map.md`：当前已实现内容与文件分布。
 - `docs/design-plan.md`：总体设计记录与历史方案。
 - `docs/route-journal-design.md`：两个中华与重建国家日志链设计。
+- `docs/dayang-hanzhou-compatibility-plan.md`：汉洲联省兼容性调查及未来可选实施计划；当前未实现。
 - `docs/publishing.md`：GitHub Release 与 Steam 创意工坊发布流程。
 - `docs/workshop-description.md`：可直接整理到工坊页面的中英文文案。
 
