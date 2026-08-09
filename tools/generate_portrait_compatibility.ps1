@@ -188,8 +188,9 @@ function Get-GeneratedPortraitFile {
     }
 
     $body = $source.Substring(0, $closingIndex).TrimEnd()
+    $normalizedInjection = $Injection.Replace("`r`n", "`n").Replace("`r", "`n").TrimEnd()
     $sourceName = [IO.Path]::GetFileName($SourcePath)
-    return "# Generated from the current Victoria 3 $sourceName by tools/generate_portrait_compatibility.ps1.`n# Full virtual-path override; do not edit by hand.`n" + $body + "`n`n" + $Injection.TrimEnd() + "`n}`n"
+    return "# Generated from the current Victoria 3 $sourceName by tools/generate_portrait_compatibility.ps1.`n# Full virtual-path override; do not edit by hand.`n" + $body + "`n`n" + $normalizedInjection + "`n}`n"
 }
 
 $targets = @(
