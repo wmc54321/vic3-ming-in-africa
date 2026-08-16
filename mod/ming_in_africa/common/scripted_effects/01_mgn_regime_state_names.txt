@@ -1,0 +1,302 @@
+# Fixed, deterministic political toponyms for the two Chinese central-government
+# easter-egg laws. Root scope for every effect in this file is a state.
+
+mgn_restore_regime_state_name = {
+	reset_state_name = yes
+	evaluate_and_assign_state_hub_dynamic_names = yes
+	remove_variable = mgn_regime_state_name_applied
+}
+
+mgn_apply_revolutionary_state_name = {
+	if = {
+		limit = { state_region = s:STATE_BEIJING }
+		set_state_name = STATE_BEIJING_mgn_revolutionary_committees
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_NANJING }
+		set_state_name = STATE_NANJING_mgn_revolutionary_committees
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_GUANGDONG }
+		set_state_name = STATE_GUANGDONG_mgn_revolutionary_committees
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_HENAN }
+		set_state_name = STATE_HENAN_mgn_revolutionary_committees
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_HUNAN }
+		set_state_name = STATE_HUNAN_mgn_revolutionary_committees
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_JIANGXI }
+		set_state_name = STATE_JIANGXI_mgn_revolutionary_committees
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_XIAN }
+		set_state_name = STATE_XIAN_mgn_revolutionary_committees
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_GUIZHOU }
+		set_state_name = STATE_GUIZHOU_mgn_revolutionary_committees
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_FORMOSA }
+		set_state_name = STATE_FORMOSA_mgn_revolutionary_committees
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_SHANDONG }
+		set_state_name = STATE_SHANDONG_mgn_revolutionary_committees
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_OUTER_MANCHURIA }
+		set_state_name = STATE_OUTER_MANCHURIA_mgn_revolutionary_committees
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_AMUR }
+		set_state_name = STATE_AMUR_mgn_revolutionary_committees
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_LOWER_EGYPT }
+		set_state_name = STATE_LOWER_EGYPT_mgn_revolutionary_committees
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_MIDDLE_EGYPT }
+		set_state_name = STATE_MIDDLE_EGYPT_mgn_revolutionary_committees
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_UPPER_EGYPT }
+		set_state_name = STATE_UPPER_EGYPT_mgn_revolutionary_committees
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_SINAI }
+		set_state_name = STATE_SINAI_mgn_revolutionary_committees
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_EAST_SAHARA }
+		set_state_name = STATE_EAST_SAHARA_mgn_revolutionary_committees
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_GOLD_COAST }
+		set_state_name = STATE_GOLD_COAST_mgn_revolutionary_committees
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_CONGO }
+		set_state_name = STATE_CONGO_mgn_revolutionary_committees
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_SOUTH_CAMEROON }
+		set_state_name = STATE_SOUTH_CAMEROON_mgn_revolutionary_committees
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_KENYA }
+		set_state_name = STATE_KENYA_mgn_revolutionary_committees
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_ZANZIBAR }
+		set_state_name = STATE_ZANZIBAR_mgn_revolutionary_committees
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_CAPE_COLONY }
+		set_state_name = STATE_CAPE_COLONY_mgn_revolutionary_committees
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_TRANSVAAL }
+		set_state_name = STATE_TRANSVAAL_mgn_revolutionary_committees
+		set_variable = mgn_regime_state_name_applied
+	}
+}
+
+mgn_apply_national_tutelage_state_name = {
+	if = {
+		limit = { state_region = s:STATE_BEIJING }
+		set_state_name = STATE_BEIJING_mgn_national_tutelage
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_NANJING }
+		set_state_name = STATE_NANJING_mgn_national_tutelage
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_GUANGDONG }
+		set_state_name = STATE_GUANGDONG_mgn_national_tutelage
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_HENAN }
+		set_state_name = STATE_HENAN_mgn_national_tutelage
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_HUNAN }
+		set_state_name = STATE_HUNAN_mgn_national_tutelage
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_JIANGXI }
+		set_state_name = STATE_JIANGXI_mgn_national_tutelage
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_XIAN }
+		set_state_name = STATE_XIAN_mgn_national_tutelage
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_GUIZHOU }
+		set_state_name = STATE_GUIZHOU_mgn_national_tutelage
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_FORMOSA }
+		set_state_name = STATE_FORMOSA_mgn_national_tutelage
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_SHANDONG }
+		set_state_name = STATE_SHANDONG_mgn_national_tutelage
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_OUTER_MANCHURIA }
+		set_state_name = STATE_OUTER_MANCHURIA_mgn_national_tutelage
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_AMUR }
+		set_state_name = STATE_AMUR_mgn_national_tutelage
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_LOWER_EGYPT }
+		set_state_name = STATE_LOWER_EGYPT_mgn_national_tutelage
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_MIDDLE_EGYPT }
+		set_state_name = STATE_MIDDLE_EGYPT_mgn_national_tutelage
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_UPPER_EGYPT }
+		set_state_name = STATE_UPPER_EGYPT_mgn_national_tutelage
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_SINAI }
+		set_state_name = STATE_SINAI_mgn_national_tutelage
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_EAST_SAHARA }
+		set_state_name = STATE_EAST_SAHARA_mgn_national_tutelage
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_GOLD_COAST }
+		set_state_name = STATE_GOLD_COAST_mgn_national_tutelage
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_CONGO }
+		set_state_name = STATE_CONGO_mgn_national_tutelage
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_SOUTH_CAMEROON }
+		set_state_name = STATE_SOUTH_CAMEROON_mgn_national_tutelage
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_KENYA }
+		set_state_name = STATE_KENYA_mgn_national_tutelage
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_ZANZIBAR }
+		set_state_name = STATE_ZANZIBAR_mgn_national_tutelage
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_CAPE_COLONY }
+		set_state_name = STATE_CAPE_COLONY_mgn_national_tutelage
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { state_region = s:STATE_TRANSVAAL }
+		set_state_name = STATE_TRANSVAAL_mgn_national_tutelage
+		set_variable = mgn_regime_state_name_applied
+	}
+}
+
+mgn_refresh_regime_state_name = {
+	if = {
+		limit = { has_game_rule = no_dynamic_naming }
+		if = {
+			limit = { has_variable = mgn_regime_state_name_applied }
+			mgn_restore_regime_state_name = yes
+		}
+	}
+	else_if = {
+		limit = {
+			exists = owner
+			owner = { has_law = law_type:law_mgn_revolutionary_committees }
+		}
+		mgn_apply_revolutionary_state_name = yes
+	}
+	else_if = {
+		limit = {
+			exists = owner
+			owner = { has_law = law_type:law_mgn_national_tutelage }
+		}
+		mgn_apply_national_tutelage_state_name = yes
+	}
+	else_if = {
+		limit = {
+			state_region = s:STATE_LOWER_EGYPT
+			exists = owner
+			owner = {
+				OR = {
+					c:MGN ?= THIS
+					c:CHI ?= THIS
+					global_var:chinese_central_government ?= THIS
+				}
+				capital.state_region = s:STATE_LOWER_EGYPT
+				OR = {
+					has_law = law_type:law_monarchy
+					has_law = law_type:law_social_monarchy
+				}
+			}
+		}
+		set_state_name = STATE_LOWER_EGYPT_mgn_imperial_residence
+		set_variable = mgn_regime_state_name_applied
+	}
+	else_if = {
+		limit = { has_variable = mgn_regime_state_name_applied }
+		mgn_restore_regime_state_name = yes
+	}
+}

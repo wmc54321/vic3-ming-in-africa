@@ -80,6 +80,121 @@ function Get-NamedBlock {
     return $Text.Substring($match.Index, $end - $match.Index + 1)
 }
 
+function Get-StateBlockRange {
+    param(
+        [string]$Text,
+        [string]$State
+    )
+
+    $match = [regex]::Match($Text, "(?m)^[\t ]*s:$([regex]::Escape($State))\s*=\s*\{")
+    if (-not $match.Success) { throw "Could not find state history block $State" }
+    $open = $Text.IndexOf("{", $match.Index)
+    $end = Get-BalancedBlockEnd -Text $Text -OpenBraceIndex $open
+    return [pscustomobject]@{
+        Index = $match.Index
+        Length = $end - $match.Index + 1
+        Text = $Text.Substring($match.Index, $end - $match.Index + 1)
+    }
+}
+
+function Merge-StateCreateScopes {
+    param(
+        [string]$Text,
+        [string]$State,
+        [string]$Country
+    )
+
+    $stateRange = Get-StateBlockRange -Text $Text -State $State
+    $block = $stateRange.Text
+    $scopes = [System.Collections.Generic.List[object]]::new()
+    foreach ($match in [regex]::Matches($block, "(?m)^[\t ]*create_state\s*=\s*\{")) {
+        $open = $block.IndexOf("{", $match.Index)
+        $end = Get-BalancedBlockEnd -Text $block -OpenBraceIndex $open
+        $scopeText = $block.Substring($match.Index, $end - $match.Index + 1)
+        if ($scopeText -match "country\s*=\s*c:$([regex]::Escape($Country))\b") {
+            $scopes.Add([pscustomobject]@{ Index = $match.Index; End = $end; Text = $scopeText })
+        }
+    }
+
+    if ($scopes.Count -ne 2) {
+        throw "Expected two $Country create_state scopes in $State after ownership transfer; found $($scopes.Count)."
+    }
+
+    $provinces = [System.Collections.Generic.List[string]]::new()
+    $seen = [System.Collections.Generic.HashSet[string]]::new()
+    foreach ($scope in $scopes) {
+        $provinceMatch = [regex]::Match($scope.Text, "owned_provinces\s*=\s*\{([^}]*)\}", "Singleline")
+        if (-not $provinceMatch.Success) { throw "Missing owned_provinces in a $Country scope for $State" }
+        foreach ($province in [regex]::Matches($provinceMatch.Groups[1].Value, "x[0-9A-Fa-f]+")) {
+            if ($seen.Add($province.Value)) { $provinces.Add($province.Value) }
+        }
+    }
+
+    $mergedScope = [regex]::Replace(
+        $scopes[0].Text,
+        "owned_provinces\s*=\s*\{[^}]*\}",
+        "owned_provinces = { $($provinces -join ' ') }",
+        1
+    )
+    $out = [System.Text.StringBuilder]::new()
+    $cursor = 0
+    for ($i = 0; $i -lt $scopes.Count; $i++) {
+        $scope = $scopes[$i]
+        [void]$out.Append($block.Substring($cursor, $scope.Index - $cursor))
+        if ($i -eq 0) { [void]$out.Append($mergedScope) }
+        $cursor = $scope.End + 1
+    }
+    [void]$out.Append($block.Substring($cursor))
+
+    return $Text.Remove($stateRange.Index, $stateRange.Length).Insert($stateRange.Index, $out.ToString())
+}
+
+function Merge-RegionStateScopes {
+    param(
+        [string]$Text,
+        [string]$State,
+        [string]$Country
+    )
+
+    $stateRange = Get-StateBlockRange -Text $Text -State $State
+    $block = $stateRange.Text
+    $scopes = [System.Collections.Generic.List[object]]::new()
+    foreach ($match in [regex]::Matches($block, "(?m)^(?<indent>[\t ]*)region_state:$([regex]::Escape($Country))\s*=\s*\{")) {
+        $open = $block.IndexOf("{", $match.Index)
+        $end = Get-BalancedBlockEnd -Text $block -OpenBraceIndex $open
+        $scopes.Add([pscustomobject]@{
+            Index = $match.Index
+            Open = $open
+            End = $end
+            Indent = $match.Groups["indent"].Value
+            Text = $block.Substring($match.Index, $end - $match.Index + 1)
+        })
+    }
+
+    if ($scopes.Count -ne 2) {
+        throw "Expected two region_state:$Country scopes in $State after ownership transfer; found $($scopes.Count)."
+    }
+
+    $mergedScope = $scopes[0].Text.Substring(0, $scopes[0].Open - $scopes[0].Index + 1)
+    foreach ($scope in $scopes) {
+        $body = $block.Substring($scope.Open + 1, $scope.End - $scope.Open - 1)
+        if (-not [string]::IsNullOrWhiteSpace($body)) { $mergedScope += $body.TrimEnd() }
+    }
+    $mergedScope += "`r`n$($scopes[0].Indent)}"
+
+    $out = [System.Text.StringBuilder]::new()
+    $cursor = 0
+    for ($i = 0; $i -lt $scopes.Count; $i++) {
+        $scope = $scopes[$i]
+        [void]$out.Append($block.Substring($cursor, $scope.Index - $cursor))
+        if ($i -eq 0) { [void]$out.Append($mergedScope) }
+        $cursor = $scope.End + 1
+    }
+    [void]$out.Append($block.Substring($cursor))
+
+    return $Text.Remove($stateRange.Index, $stateRange.Length).Insert($stateRange.Index, $out.ToString())
+}
+
 function Get-CompanyRegionStates {
     param(
         [string]$GameRoot,
@@ -244,6 +359,9 @@ function Convert-StateHistory {
     # Transfer those non-African remnants back to the Ottomans so EGY does not survive.
     $result = $out.ToString()
     $result = [regex]::Replace($result, "country\s*=\s*c:EGY", "country = c:TUR")
+    # Vanilla Adana starts split between Egypt and the Ottomans. Once both halves belong
+    # to TUR they must be one state; duplicate same-owner scopes create an empty fragment.
+    $result = Merge-StateCreateScopes -Text $result -State "STATE_ADANA" -Country "TUR"
     Set-Content -LiteralPath $targetPath -Value $result -Encoding UTF8
 }
 
@@ -370,6 +488,7 @@ function Convert-EgyptMiddleEastBuildings {
     $text = Get-Content -LiteralPath $sourcePath -Raw
     $text = [regex]::Replace($text, "region_state:EGY", "region_state:TUR")
     $text = [regex]::Replace($text, 'country\s*=\s*"c:EGY"', 'country="c:TUR"')
+    $text = Merge-RegionStateScopes -Text $text -State "STATE_ADANA" -Country "TUR"
     Set-Content -LiteralPath $targetPath -Value $text -Encoding UTF8
 }
 
@@ -386,6 +505,7 @@ function Convert-EgyptMiddleEastPops {
     $targetPath = Join-Path $ModRoot "common\history\pops\08_middle_east.txt"
     $text = Get-Content -LiteralPath $sourcePath -Raw
     $text = [regex]::Replace($text, "region_state:EGY", "region_state:TUR")
+    $text = Merge-RegionStateScopes -Text $text -State "STATE_ADANA" -Country "TUR"
     Set-Content -LiteralPath $targetPath -Value $text -Encoding UTF8
 }
 

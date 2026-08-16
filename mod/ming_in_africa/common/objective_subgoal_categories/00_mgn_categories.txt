@@ -1,0 +1,4 @@
+sgcat_mgn_two_chinas = {
+	is_exclusive = no
+	is_repeatable = no
+}

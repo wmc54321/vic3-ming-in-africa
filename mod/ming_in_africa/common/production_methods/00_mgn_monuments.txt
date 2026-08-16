@@ -1,0 +1,36 @@
+pm_mgn_imperial_academy = {
+	texture = "gfx/interface/icons/production_method_icons/scholastic_education.dds"
+
+	is_hidden_when_unavailable = yes
+
+	state_modifiers = {
+		workforce_scaled = {
+			state_peasants_education_access_add = 0.02
+			state_pop_qualifications_mult = 0.10
+		}
+	}
+
+	building_modifiers = {
+		workforce_scaled = {
+			goods_input_paper_add = 10
+		}
+
+		level_scaled = {
+			building_employment_academics_add = 500
+			building_employment_clerks_add = 300
+			building_employment_bureaucrats_add = 200
+		}
+	}
+}
+
+pm_mgn_imperial_academy_outreach = {
+	texture = "gfx/interface/icons/production_method_icons/scholastic_education.dds"
+
+	is_hidden_when_unavailable = yes
+
+	country_modifiers = {
+		workforce_scaled = {
+			state_education_access_add = 0.01
+		}
+	}
+}

@@ -569,6 +569,19 @@ mgn_can_use_revolutionary_committees = {
 	is_subject = no
 }
 
+# National Tutelage is the corporatist/social-monarchist counterpart to the
+# Revolutionary Committees easter egg and uses the same narrow China scope.
+mgn_can_use_national_tutelage = {
+	OR = {
+		c:MGN ?= THIS
+		c:CHI ?= THIS
+		global_var:chinese_central_government ?= THIS
+	}
+	NOT = { has_variable = warlord_state }
+	mgn_is_chinese_chartered_company = no
+	is_subject = no
+}
+
 mgn_state_is_japanese_company_region = {
 	OR = {
 		state_region = s:STATE_HOKKAIDO

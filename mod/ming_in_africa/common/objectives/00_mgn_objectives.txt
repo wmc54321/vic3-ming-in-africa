@@ -1,0 +1,16 @@
+objective_mgn_two_chinas = {
+	enabled_background = "gfx/interface/icons/objectives/objective_mgn_two_chinas_illu.dds"
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	recommended_tags = { MGN CHI }
+	available_for_all_countries = no
+
+	objective_subgoals = {
+		sg_mgn_two_chinas
+	}
+
+	final_subgoal = sg_mgn_two_chinas
+
+	on_start = {
+	}
+}

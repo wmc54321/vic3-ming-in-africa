@@ -1,6 +1,6 @@
 [h1]非洲大明：Ming in Africa[/h1]
 
-[b]当前版本：0.1.3[/b]
+[b]当前版本：0.1.4[/b]
 [b]支持版本：Victoria 3 1.13.x[/b]
 [b]所需 DLC：无[/b]
 
@@ -11,13 +11,11 @@
 
 [h2]核心玩法[/h2]
 [list]
-[*][b]两个中华：[/b]围绕明清正统展开完整路线，可通过统一战争、臣属安排或共和制政治趋同完成合流；失败方也拥有“苦涩的和平”结局。
-[*][b]大清开局：[/b]西藏直属大清；拉萨、阿里及东喜马拉雅原西藏部分未整合，藏族人口、homeland 与可释放国保留。
-[*][b]重建国家：[/b]处理非洲行政与边界问题，并在条件成熟后迁都北京或南京。
+[*][b]两个中华：[/b]从专属开局目标选择大明或大清，通过统一战争、臣属安排或共和制政治趋同结束两朝并立；失败方也拥有“苦涩的和平”结局。
+[*][b]重建国家：[/b]处理非洲行政与边界问题，迁都北京或南京；在尼罗河畔建设应天府紫禁城与“四海国子监”，兼顾全国教育扩散与下埃及人才培养。
 [*][b]经略四方：[/b]将远方领土重组为中华属特许公司。八类公司覆盖非洲、中华内地、朝鲜、日本、西伯利亚、中亚、东南亚与婆罗洲。
 [*][b]在地化帝国：[/b]各公司拥有中华桥梁文化、合法 homeland、动态国号与旗帜；非洲各州分布少量中华行政和礼仪人口。
-[*][b]专属政治制度：[/b]统一胜利方可选择“人民资本合作制”；委员会共和国路线可采用“革命委员会制”，并衔接无政府制、集体化农业、计划经济与工厂委员会等原版法律链。
-[*][b]叙事与表现：[/b]包含专属国号、旗帜、文化、法律、建筑、日志、事件及完整中英文本地化，并提供部分旧存档修复。
+[*][b]专属政治制度：[/b]统一胜利方可选择“人民资本合作制”；委员会共和国路线可采用“革命委员会制”；法团国家或社会君主制路线可采用“国民训政制”，并通过轻量日志宣布或解除戒严、延期或恢复选举。两法还会固定改写24个代表州名，并使应天首都圈随政体切换名称。
 [/list]
 
 [h2]兼容性与开局建议[/h2]
@@ -48,7 +46,7 @@
 
 [h1]English[/h1]
 
-[b]Current version: 0.1.3[/b]
+[b]Current version: 0.1.4[/b]
 [b]Supported game version: Victoria 3 1.13.x[/b]
 [b]Required DLC: None[/b]
 
@@ -59,13 +57,11 @@ Vast territory, a complex population, and severe administrative costs arrive tog
 
 [h2]Core Features[/h2]
 [list]
-[*][b]Two Chinas:[/b] Resolve the rival claims through unification war, subject arrangements, or republican political convergence, with a Bitter Peace outcome for the defeated claimant.
-[*][b]Qing's opening:[/b] Tibet is directly ruled but unincorporated in Lhasa, Ngari, and its portion of Eastern Himalayas. Tibetan pops, homelands, and releasability remain.
-[*][b]Rebuild the Nation:[/b] Stabilize the African realm, settle borders, and move the capital to Beijing or Nanjing.
+[*][b]Two Chinas:[/b] Choose Great Ming or Qing from a dedicated starting objective, then end the rival claims through unification war, subject arrangements, or republican political convergence. The defeated claimant can pursue a Bitter Peace.
+[*][b]Rebuild the Nation:[/b] Stabilize Africa, move the capital to Beijing or Nanjing, and build the Yingtian Forbidden City and Imperial Academy of the Four Seas, balancing nationwide education with talent development in Lower Egypt.
 [*][b]Administer the Four Quarters:[/b] Reorganize distant possessions into eight Chinese chartered-company regions spanning Africa, China, Korea, Japan, Siberia, Central Asia, Southeast Asia, and Borneo.
 [*][b]A localized empire:[/b] Companies receive Sinitic bridge cultures, legal homelands, dynamic names, and flags. Small Chinese administrative and ritual communities enrich the African setting.
-[*][b]Unique political paths:[/b] The victorious unifier can adopt People's Capital Cooperation. A Council Republic can develop Revolutionary Committees, connected to Anarchy, Collectivized Agriculture, Command Economy, and Factory Councils.
-[*][b]Narrative presentation:[/b] Unique names, flags, cultures, laws, buildings, journals, events, full bilingual localization, and limited old-save repair.
+[*][b]Unique political paths:[/b] The victorious unifier can adopt People's Capital Cooperation. A Council Republic can develop Revolutionary Committees, while a Corporate State or Social Monarchy can adopt National Tutelage and use a focused journal to declare or lift martial law, postponing or restoring elections. Both laws also apply fixed political names to 24 selected states, including Yingtian's capital region.
 [/list]
 
 [h2]Compatibility and Starting Advice[/h2]

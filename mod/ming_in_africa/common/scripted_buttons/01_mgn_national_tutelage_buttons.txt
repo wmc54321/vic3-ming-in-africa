@@ -1,0 +1,72 @@
+button_mgn_declare_martial_law = {
+	name = "button_mgn_declare_martial_law"
+	desc = "button_mgn_declare_martial_law_desc"
+
+	visible = {
+		has_law = law_type:law_mgn_national_tutelage
+		NOT = { has_variable = mgn_martial_law_active }
+	}
+
+	possible = {
+		custom_tooltip = {
+			text = mgn_tt_not_in_election_campaign
+			hidden_trigger = { in_election_campaign = no }
+		}
+		custom_tooltip = {
+			text = mgn_tt_martial_law_reimposition_ready
+			hidden_trigger = {
+				NOT = { has_variable = mgn_martial_law_reimposition_cooldown }
+			}
+		}
+	}
+
+	effect = {
+		set_variable = mgn_martial_law_active
+		set_variable = { name = mgn_martial_law_minimum_duration days = 730 }
+		add_modifier = { name = mgn_mobilization_period }
+		set_next_election_date = "9999.1.1"
+	}
+
+	ai_chance = { value = 0 }
+}
+
+button_mgn_lift_martial_law = {
+	name = "button_mgn_lift_martial_law"
+	desc = "button_mgn_lift_martial_law_desc"
+
+	visible = {
+		has_law = law_type:law_mgn_national_tutelage
+		has_variable = mgn_martial_law_active
+	}
+
+	possible = {
+		custom_tooltip = {
+			text = mgn_tt_martial_law_minimum_elapsed
+			hidden_trigger = {
+				NOT = { has_variable = mgn_martial_law_minimum_duration }
+			}
+		}
+		custom_tooltip = {
+			text = mgn_tt_not_in_civil_war
+			hidden_trigger = { is_not_in_civil_war = yes }
+		}
+		custom_tooltip = {
+			text = mgn_tt_no_revolution_brewing
+			hidden_trigger = { has_revolution = no }
+		}
+		custom_tooltip = {
+			text = mgn_tt_not_in_election_campaign
+			hidden_trigger = { in_election_campaign = no }
+		}
+	}
+
+	effect = {
+		remove_modifier = mgn_mobilization_period
+		remove_variable = mgn_martial_law_active
+		remove_variable = mgn_martial_law_minimum_duration
+		set_variable = { name = mgn_martial_law_reimposition_cooldown days = 730 }
+		call_election = { months = 6 }
+	}
+
+	ai_chance = { value = 0 }
+}

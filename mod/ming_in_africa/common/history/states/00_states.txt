@@ -7842,12 +7842,9 @@ STATES = {
 	s:STATE_ADANA = {
 		create_state = {
 			country = c:TUR
-			owned_provinces = { x2111E0 x39CBF7 x909463 x63E9DB x7DD48B x4DA0F1 xA4523A xF657D8 xB0E060 xCCBD19 x8517E9 xDAD836 }
+			owned_provinces = { x2111E0 x39CBF7 x909463 x63E9DB x7DD48B x4DA0F1 xA4523A xF657D8 xB0E060 xCCBD19 x8517E9 xDAD836 xFA9C84 xE8DCC5 xA09060 }
 		}
-		create_state = {
-			country = c:TUR
-			owned_provinces = { xFA9C84 xE8DCC5 xA09060 }
-		}
+
 
 		add_homeland = cu:turkish
 		add_homeland = cu:armenian
