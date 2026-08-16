@@ -1,9 +1,68 @@
+on_game_started_after_lobby = {
+	on_actions = { mgn_regime_state_names_game_start }
+}
+
 on_monthly_pulse_country = {
-	on_actions = { mgn_company_monthly_pulse }
+	on_actions = {
+		mgn_company_monthly_pulse
+		mgn_regime_state_names_monthly_pulse
+	}
 }
 
 on_state_owner_change = {
-	on_actions = { mgn_company_state_owner_change }
+	on_actions = {
+		mgn_company_state_owner_change
+		mgn_regime_state_name_owner_change
+	}
+}
+
+on_state_created = {
+	on_actions = { mgn_regime_state_name_owner_change }
+}
+
+mgn_regime_state_names_game_start = {
+	effect = {
+		every_country = {
+			limit = {
+				OR = {
+					c:MGN ?= THIS
+					c:CHI ?= THIS
+					global_var:chinese_central_government ?= THIS
+				}
+			}
+			every_scope_state = {
+				mgn_refresh_regime_state_name = yes
+			}
+		}
+	}
+}
+
+mgn_regime_state_names_monthly_pulse = {
+	effect = {
+		if = {
+			limit = {
+				OR = {
+					c:MGN ?= THIS
+					c:CHI ?= THIS
+					global_var:chinese_central_government ?= THIS
+					has_law = law_type:law_mgn_revolutionary_committees
+					has_law = law_type:law_mgn_national_tutelage
+					any_scope_state = {
+						has_variable = mgn_regime_state_name_applied
+					}
+				}
+			}
+			every_scope_state = {
+				mgn_refresh_regime_state_name = yes
+			}
+		}
+	}
+}
+
+mgn_regime_state_name_owner_change = {
+	effect = {
+		mgn_refresh_regime_state_name = yes
+	}
 }
 
 mgn_company_monthly_pulse = {

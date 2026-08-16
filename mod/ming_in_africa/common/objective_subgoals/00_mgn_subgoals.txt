@@ -1,0 +1,14 @@
+sg_mgn_two_chinas = {
+	category = sgcat_mgn_two_chinas
+	is_repeatable = no
+
+	trigger = {
+	}
+
+	on_start = {
+		add_journal_entry = {
+			type = je_mgn_two_chinas
+			objective_subgoal = sg_mgn_two_chinas
+		}
+	}
+}

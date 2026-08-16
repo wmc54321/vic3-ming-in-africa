@@ -1566,8 +1566,6 @@ POPS = {
 				culture = lacustrine_bantu
 				size = 1000
 			}
-		}
-		region_state:TUR = {
 			create_pop = {
 				culture = turkish
 				size = 30012
@@ -1591,6 +1589,7 @@ POPS = {
 				size = 400
 			}
 		}
+
 	}
 	s:STATE_TRABZON = {
 		region_state:TUR = {

@@ -9,7 +9,7 @@ Before publishing:
 1. Regenerate vanilla-derived history with `tools/generate_initial_mod.ps1` against the supported game version.
 2. Run `tools/validate_release.ps1`.
 3. Test a new game with a playset containing only this mod, in both Simplified Chinese and English.
-4. Confirm the country-selection screen, one year of simulation, save/reload, route journals, scripted buttons, and diplomatic plays.
+4. Confirm the country-selection screen, one year of simulation, save/reload, route journals, scripted buttons, and diplomatic plays. For National Tutelage, explicitly test enactment under both Corporate State and Social Monarchy, declaration outside an election campaign, a save/reload while martial law is active, lifting after two years, the six-month restoration election, the two-year reimposition lockout, and repeal while martial law is active. For fixed regime state names, confirm opening “Yingtian Imperial Residence,” both 24-state law tables, direct law-to-law switching, repeal and vanilla-name restoration, one claimant controlling both starting realms, different laws across the Ming-Qing border, split-state and conquest transfers, capital movement away from and back to Lower Egypt, save/reload, Simplified Chinese and English, and the `no_dynamic_naming` rule. For the Imperial Academy of the Four Seas, confirm its custom icon at building-list and panel sizes, construction only while Lower Egypt is Ming's capital, the separate `Nationwide` and `Lower Egypt` production-method labels, `+1%` nationwide Education Access, local `+2%` Peasant Education Access and `+10%` Qualifications, workforce scaling, and continued operation after moving the capital. Observe national and Lower Egypt literacy for at least two in-game years rather than treating a tooltip check as a balance test.
 5. Review the fresh game `error.log` for errors naming `mgn_` identifiers or this mod's files.
 6. Confirm `CHANGELOG.md`, all three metadata versions, and `supported_version` are current.
 
@@ -23,7 +23,7 @@ tools\build_release.ps1
 
 This validates the project and creates `release/ming_in_africa-v<version>.zip`. The archive is the player-facing artifact; GitHub's automatically generated source archive is a development snapshot and is not the recommended manual-install download.
 
-For a public release, commit the intended source changes, merge the release PR, create a matching annotated tag such as `v0.1.3` from the merged default branch, push the tag, then attach the generated zip to the GitHub Release.
+For a public release, commit the intended source changes, merge the release PR, create a matching annotated tag such as `v0.1.4` from the merged default branch, push the tag, then attach the generated zip to the GitHub Release.
 
 ## Steam Workshop
 

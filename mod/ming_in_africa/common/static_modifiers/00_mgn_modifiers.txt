@@ -26,3 +26,9 @@ mgn_chinese_unification_integration_drive = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
 	state_incorporation_speed_mult = 0.25
 }
+
+mgn_mobilization_period = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	country_authority_add = 100
+	political_movement_radicalism_add = -0.15
+}

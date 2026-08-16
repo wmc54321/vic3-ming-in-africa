@@ -63,3 +63,34 @@ building_mgn_nanjing_forbidden_city = {
 
 	background = "gfx/interface/icons/building_icons/backgrounds/building_panel_bg_monuments.dds"
 }
+
+building_mgn_imperial_academy = {
+	building_group = bg_monuments
+	icon = "gfx/interface/icons/building_icons/building_mgn_imperial_academy.dds"
+	expandable = no
+	buildable = yes
+	downsizeable = no
+	unique = yes
+
+	entity_not_constructed = { }
+	entity_under_construction = { "building_construction_3x3_entity" }
+	entity_constructed = { }
+
+	production_method_groups = {
+		pmg_base_building_mgn_imperial_academy
+		pmg_mgn_imperial_academy_outreach
+	}
+
+	potential = {
+		state_region = s:STATE_LOWER_EGYPT
+		owner = { c:MGN ?= THIS }
+	}
+
+	possible = {
+		is_capital = yes
+	}
+
+	required_construction = construction_cost_mgn_imperial_academy
+
+	background = "gfx/interface/icons/building_icons/backgrounds/building_panel_bg_monuments.dds"
+}

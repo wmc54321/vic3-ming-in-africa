@@ -1,0 +1,39 @@
+je_mgn_national_tutelage = {
+	icon = "gfx/interface/icons/event_icons/event_election.dds"
+	group = je_group_internal_affairs
+
+	possible = {
+		has_law = law_type:law_mgn_national_tutelage
+	}
+
+	scripted_button = button_mgn_declare_martial_law
+	scripted_button = button_mgn_lift_martial_law
+
+	invalid = {
+		NOT = { has_law = law_type:law_mgn_national_tutelage }
+	}
+
+	on_invalid = {
+		if = {
+			limit = { has_modifier = mgn_mobilization_period }
+			remove_modifier = mgn_mobilization_period
+		}
+		if = {
+			limit = { has_variable = mgn_martial_law_active }
+			if = {
+				limit = {
+					country_has_voting_franchise = yes
+					in_election_campaign = no
+				}
+				call_election = { months = 6 }
+			}
+		}
+		remove_variable = mgn_martial_law_active
+		remove_variable = mgn_martial_law_minimum_duration
+		remove_variable = mgn_martial_law_reimposition_cooldown
+	}
+
+	weight = 1000
+	should_be_pinned_by_default_uninvolved_or_context = yes
+	can_revolution_inherit = no
+}

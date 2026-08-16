@@ -2,6 +2,19 @@
 
 All notable public releases are recorded here.
 
+## 0.1.4
+
+Expanded the mod's opening presentation, political paths, regime flavor, and Lower Egypt development while tightening generated starting history.
+
+- Added a static 4K Ming-on-the-Nile main-menu cover and a dedicated “Two Chinas” country-selection objective for Great Ming and Qing. The objective reuses the existing route journal, and Great Ming no longer advertises Qing's vanilla “Fragile Unity” journal in the lobby.
+- Added National Tutelage as a Corporate State/Social Monarchy Single-Party State variant, with Armed Forces and Petite Bourgeoisie support and a focused martial-law journal that can postpone and restore elections.
+- Added deterministic political state names for Revolutionary Committees and National Tutelage across 24 selected Chinese and African regions; monarchic Yingtian uses “Yingtian Imperial Residence,” while Revolutionary Lower Egypt becomes the “Central Soviet Region” and National Tutelage renames it “Xingzhong.”
+- Added the buildable Imperial Academy of the Four Seas in Lower Egypt, with a custom icon, a small nationwide Education Access benefit, and stronger local Peasant Education Access and Qualifications. Separate fixed production methods label nationwide and Lower Egypt effects in the standard UI.
+- Merged vanilla Adana's split 1836 scopes into one Ottoman state after removing Egypt from Africa, preserving its complete starting buildings and population without leaving a duplicate fragment.
+- Expanded release validation for the new objective, GUI assets, political-law lifecycle, regime names, academy, and generated Adana history.
+- Updated the public introduction, Workshop copy, implementation records, design history, and release checklist for the new content.
+- Declared compatibility with Victoria 3 1.13.x; a new campaign and a clean playset remain strongly recommended.
+
 ## 0.1.3
 
 Expanded Qing opening-state coverage, added dynasty-aware royal portraits, and documented external-mod compatibility boundaries.
