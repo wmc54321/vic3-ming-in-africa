@@ -34,3 +34,116 @@ pm_mgn_imperial_academy_outreach = {
 		}
 	}
 }
+
+pm_beijing_imperial_academy = {
+	texture = "gfx/interface/icons/production_method_icons/scholastic_education.dds"
+
+	is_hidden_when_unavailable = yes
+
+	state_modifiers = {
+		workforce_scaled = {
+			state_peasants_education_access_add = 0.02
+			state_pop_qualifications_mult = 0.10
+		}
+	}
+
+	building_modifiers = {
+		workforce_scaled = {
+			goods_input_paper_add = 10
+		}
+
+		level_scaled = {
+			building_employment_academics_add = 500
+			building_employment_clerks_add = 300
+			building_employment_bureaucrats_add = 200
+		}
+	}
+}
+
+pm_beijing_imperial_academy_outreach = {
+	texture = "gfx/interface/icons/production_method_icons/scholastic_education.dds"
+
+	is_hidden_when_unavailable = yes
+
+	country_modifiers = {
+		workforce_scaled = {
+			state_education_access_add = 0.01
+		}
+	}
+}
+
+pm_guangzhou_thirteen_factories = {
+	texture = "gfx/interface/icons/production_method_icons/merchant_guilds.dds"
+
+	is_hidden_when_unavailable = yes
+
+	state_modifiers = {
+		workforce_scaled = {
+			state_trade_capacity_mult = 0.25
+			state_trade_advantage_mult = 0.10
+		}
+	}
+
+	building_modifiers = {
+		workforce_scaled = {
+			goods_input_paper_add = 5
+			goods_input_merchant_marine_add = 5
+		}
+
+		level_scaled = {
+			building_employment_shopkeepers_add = 500
+			building_employment_clerks_add = 300
+			building_employment_bureaucrats_add = 200
+		}
+	}
+}
+
+pm_guangzhou_thirteen_factories_network = {
+	texture = "gfx/interface/icons/production_method_icons/merchant_guilds.dds"
+
+	is_hidden_when_unavailable = yes
+
+	country_modifiers = {
+		workforce_scaled = {
+			country_influence_mult = 0.05
+		}
+	}
+}
+
+pm_jinghai_maritime_exchange = {
+	texture = "gfx/interface/icons/production_method_icons/merchant_guilds.dds"
+
+	is_hidden_when_unavailable = yes
+
+	state_modifiers = {
+		workforce_scaled = {
+			state_trade_capacity_mult = 0.25
+			state_trade_advantage_mult = 0.10
+		}
+	}
+
+	building_modifiers = {
+		workforce_scaled = {
+			goods_input_paper_add = 5
+			goods_input_merchant_marine_add = 5
+		}
+
+		level_scaled = {
+			building_employment_shopkeepers_add = 500
+			building_employment_clerks_add = 300
+			building_employment_bureaucrats_add = 200
+		}
+	}
+}
+
+pm_jinghai_maritime_exchange_network = {
+	texture = "gfx/interface/icons/production_method_icons/merchant_guilds.dds"
+
+	is_hidden_when_unavailable = yes
+
+	country_modifiers = {
+		workforce_scaled = {
+			country_influence_mult = 0.05
+		}
+	}
+}

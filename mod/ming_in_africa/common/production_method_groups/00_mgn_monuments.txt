@@ -17,3 +17,63 @@ pmg_mgn_imperial_academy_outreach = {
 		pm_mgn_imperial_academy_outreach
 	}
 }
+
+pmg_base_building_beijing_imperial_academy = {
+	texture = "gfx/interface/icons/generic_icons/mixed_icon_base.dds"
+	ai_selection = most_productive
+	is_hidden_when_unavailable = yes
+
+	production_methods = {
+		pm_beijing_imperial_academy
+	}
+}
+
+pmg_beijing_imperial_academy_outreach = {
+	texture = "gfx/interface/icons/generic_icons/mixed_icon_base.dds"
+	ai_selection = most_productive
+	is_hidden_when_unavailable = yes
+
+	production_methods = {
+		pm_beijing_imperial_academy_outreach
+	}
+}
+
+pmg_base_building_guangzhou_thirteen_factories = {
+	texture = "gfx/interface/icons/generic_icons/mixed_icon_base.dds"
+	ai_selection = most_productive
+	is_hidden_when_unavailable = yes
+
+	production_methods = {
+		pm_guangzhou_thirteen_factories
+	}
+}
+
+pmg_guangzhou_thirteen_factories_network = {
+	texture = "gfx/interface/icons/generic_icons/mixed_icon_base.dds"
+	ai_selection = most_productive
+	is_hidden_when_unavailable = yes
+
+	production_methods = {
+		pm_guangzhou_thirteen_factories_network
+	}
+}
+
+pmg_base_building_jinghai_maritime_exchange = {
+	texture = "gfx/interface/icons/generic_icons/mixed_icon_base.dds"
+	ai_selection = most_productive
+	is_hidden_when_unavailable = yes
+
+	production_methods = {
+		pm_jinghai_maritime_exchange
+	}
+}
+
+pmg_jinghai_maritime_exchange_network = {
+	texture = "gfx/interface/icons/generic_icons/mixed_icon_base.dds"
+	ai_selection = most_productive
+	is_hidden_when_unavailable = yes
+
+	production_methods = {
+		pm_jinghai_maritime_exchange_network
+	}
+}

@@ -509,6 +509,31 @@ function Convert-EgyptMiddleEastPops {
     Set-Content -LiteralPath $targetPath -Value $text -Encoding UTF8
 }
 
+function Convert-EgyptSouthEuropeHistory {
+    param(
+        [string]$GameRoot,
+        [string]$ModRoot
+    )
+
+    foreach ($category in @("buildings", "pops")) {
+        $sourcePath = Join-Path $GameRoot "common\history\$category\01_south_europe.txt"
+        $targetDir = Join-Path $ModRoot "common\history\$category"
+        $targetPath = Join-Path $targetDir "01_south_europe.txt"
+        $sourceText = Get-Content -LiteralPath $sourcePath -Raw
+        $creteRange = Get-StateBlockRange -Text $sourceText -State "STATE_CRETE"
+        $creteBlock = $creteRange.Text
+        $creteBlock = [regex]::Replace($creteBlock, "region_state:EGY", "region_state:TUR")
+        if ($category -eq "buildings") {
+            $creteBlock = [regex]::Replace($creteBlock, 'country\s*=\s*"c:EGY"', 'country="c:TUR"')
+            $creteBlock = [regex]::Replace($creteBlock, 'country\s*=\s*c:EGY', 'country = c:TUR')
+        }
+
+        New-Item -ItemType Directory -Force -Path $targetDir | Out-Null
+        $text = $sourceText.Remove($creteRange.Index, $creteRange.Length).Insert($creteRange.Index, $creteBlock)
+        Set-Content -LiteralPath $targetPath -Value $text -Encoding utf8BOM
+    }
+}
+
 function Convert-QingTibetCentralAsiaHistory {
     param(
         [string]$GameRoot,
@@ -565,6 +590,7 @@ Convert-PopHistory -GameRoot $GameRoot -ModRoot $ModRoot -Files @(
 ) -GovernmentAdministrationStates $subSaharanAdministrationStates -LocalChineseCulture "african_han"
 Convert-EgyptMiddleEastBuildings -GameRoot $GameRoot -ModRoot $ModRoot
 Convert-EgyptMiddleEastPops -GameRoot $GameRoot -ModRoot $ModRoot
+Convert-EgyptSouthEuropeHistory -GameRoot $GameRoot -ModRoot $ModRoot
 Convert-QingTibetCentralAsiaHistory -GameRoot $GameRoot -ModRoot $ModRoot
 
 Write-Host "Generated Africa state history for $($africaStates.Count) states."
@@ -578,4 +604,5 @@ Write-Host "Generated African pop history files."
 Write-Host "Added Han and local Chinese bureaucrats to $($northAfricaAdministrationStates.Count + $subSaharanAdministrationStates.Count) African states with government administrations; other African states received clergy."
 Write-Host "Generated Middle East building history with Egyptian ownership reassigned to TUR."
 Write-Host "Generated Middle East pop history with Egyptian ownership reassigned to TUR."
+Write-Host "Generated same-name South European building and pop history overrides with Crete reassigned to TUR."
 Write-Host "Generated Central Asian state, building, and pop history with Tibet directly owned by Qing as unincorporated territory."

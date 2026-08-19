@@ -2,6 +2,20 @@
 
 All notable public releases are recorded here.
 
+## 0.1.5
+
+Expanded Great Ming's educational, maritime, and mining institutions while repairing Ottoman Crete's generated opening history.
+
+- Expanded the Imperial Academy system into two stackable, location-bound institutions: the Imperial Academy of the Four Seas in Lower Egypt and the Metropolitan Guozijian in Beijing. Any country controlling the relevant state may construct them regardless of its capital.
+- Added the Guangzhou Thirteen Factories in Guangdong and the Jinghai Maritime Exchange in Lower Egypt as independently stackable maritime wonders with workforce-scaled local trade benefits and restrained nationwide Influence.
+- Added the Ming-only Kunyu Directorate of Mines, spanning Coal, Iron, Sulfur, Lead, and Gold Mines, with alternative Steel Mills or Explosives Factories industry charters and a restrained `+5%` Minting prosperity bonus.
+- Added Dragon-Seal Bar Iron as the Directorate's optional Iron-based prestige good when the Charters of Commerce feature is available; the base company remains usable without mandatory DLC.
+- Replaced the academy artwork with a Guozijian-style precinct and added original DXT5 building, company, and prestige-good icons with editable PNG sources.
+- Retargeted vanilla Crete's complete starting population and buildings from the removed Egyptian tag to the Ottomans through generated same-name South European history overrides.
+- Expanded release validation and the manual test checklist for both academies, both maritime wonders, the Kunyu company, its prestige good, and generated Crete history.
+- Updated the public introduction, Workshop copy, implementation records, design history, and release checklist for the new content.
+- Declared compatibility with Victoria 3 1.13.x; a new campaign and a clean playset remain strongly recommended.
+
 ## 0.1.4
 
 Expanded the mod's opening presentation, political paths, regime flavor, and Lower Egypt development while tightening generated starting history.
