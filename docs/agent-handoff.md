@@ -28,10 +28,12 @@ VICTORIA3_GAME_ROOT=<Victoria 3>/game
 Regenerate these instead of hand-editing large copied vanilla history files:
 
 - `mod/ming_in_africa/common/history/states/00_states.txt`
+- `mod/ming_in_africa/common/history/buildings/01_south_europe.txt`
 - `mod/ming_in_africa/common/history/buildings/03_north_africa.txt`
 - `mod/ming_in_africa/common/history/buildings/04_subsaharan_africa.txt`
 - `mod/ming_in_africa/common/history/buildings/08_middle_east.txt`
 - `mod/ming_in_africa/common/history/buildings/09_central_asia.txt`
+- `mod/ming_in_africa/common/history/pops/01_south_europe.txt`
 - `mod/ming_in_africa/common/history/pops/03_north_africa.txt`
 - `mod/ming_in_africa/common/history/pops/04_subsaharan_africa.txt`
 - `mod/ming_in_africa/common/history/pops/08_middle_east.txt`
@@ -44,6 +46,8 @@ tools\generate_initial_mod.ps1
 ```
 
 or pass `-GameRoot` explicitly.
+
+The generated `01_south_europe.txt` building and pop files are complete same-name vanilla overrides whose only intended change is retargeting Crete from the removed Egyptian tag to the Ottomans. A separate later-loading file with another `s:STATE_CRETE` block does not work: the engine reports an invalid `region_state` event-target link. Recompare these complete overrides after every supported-game-version update.
 
 The portrait modifier overrides are also generated from the locally installed game files:
 
@@ -99,10 +103,27 @@ Run `tools\generate_portrait_compatibility.ps1` after every supported-game-versi
 
 ## Imperial Academy Balance and UI
 
-- `building_mgn_imperial_academy` is the buildable Imperial Academy of the Four Seas in Lower Egypt. Construction requires Lower Egypt to be Ming's capital, but a completed academy remains active after moving the capital. Its custom icon is `gfx/interface/icons/building_icons/building_mgn_imperial_academy.dds`; the editable source is `assets/source/building_mgn_imperial_academy.png`.
-- Keep its two fixed production-method groups separate. `Four Quarters Dispatches (Nationwide)` uses `state_education_access_add = 0.01` as a workforce-scaled country modifier. `Yingtian Statecraft (Lower Egypt)` uses workforce-scaled state modifiers for `+2%` Peasant Education Access and `+10%` Qualifications and carries the Paper input and employment. Reusing Peasant Education Access for both scopes makes the standard UI merge them into one misleading Lower Egypt total.
-- Victoria 3 1.13's generated production-method hover does not consume arbitrary `pm_*_desc` localization. Scope is therefore communicated through the two production-method names, while setting prose belongs in `building_mgn_imperial_academy_desc`. Do not add a global GUI override solely to inject this prose.
-- The current split-scope presentation has been accepted after an in-game UI check. This does not yet prove long-run balance: before release, compare national and Lower Egypt literacy over at least two in-game years, verify a non-Egyptian state receives only the nationwide Education Access effect, and confirm the completed academy survives a later capital move.
+- The academy system is location-bound, not country- or capital-bound. `building_mgn_imperial_academy` is the legacy save-compatible key for the Imperial Academy of the Four Seas in Lower Egypt; `building_beijing_imperial_academy` is the Metropolitan Guozijian in Beijing. Any country controlling the relevant state may construct or inherit the academy regardless of its capital. The two independent `unique = yes` buildings may coexist under one owner and their nationwide effects intentionally stack.
+- Both cost 1,200 construction and, at full employment, consume 10 Paper while employing 500 Academics, 300 Clerks, and 200 Bureaucrats. Each has two fixed production-method groups: a workforce-scaled country modifier for `+1%` Education Access and workforce-scaled state modifiers for local `+2%` Peasant Education Access and `+10%` Qualifications. Keep the Lower Egypt and Beijing PM/PMG keys separate so the standard UI can label their local scopes correctly.
+- The Lower Egypt names are `Four Quarters Dispatches (Nationwide)` and `Yingtian Statecraft (Lower Egypt)`; the Beijing names are `Provincial Education Directives (Nationwide)` and `Metropolitan Statecraft (Beijing)`. Reusing Peasant Education Access for both national and local scopes makes the standard UI merge them into one misleading local total, so the nationwide modifier must remain ordinary Education Access.
+- Both share the Guozijian-precinct icon at `gfx/interface/icons/building_icons/building_mgn_imperial_academy.dds`; the editable source is `assets/source/building_mgn_imperial_academy.png`. Victoria 3 1.13's generated production-method hover does not consume arbitrary `pm_*_desc` localization, so scope belongs in the PM names and setting prose in the two building descriptions. Do not add a global GUI override solely to inject prose.
+- The original split-scope presentation was accepted after an in-game UI check. The replacement Guozijian icon has passed only static 64x64 readability review, while the later location-only construction rules have not yet been confirmed in game. Before release, separately test construction by Ming, Qing, and a third-country owner; construction after moving the capital; conquest/inheritance; simultaneous ownership and `+2%` stacked nationwide Education Access; both local modifier sets; save/reload; icon presentation; and national, Lower Egypt, and Beijing literacy over at least two in-game years.
+
+## Maritime Wonder Balance and UI
+
+- `building_guangzhou_thirteen_factories` is fixed to Guangdong and `building_jinghai_maritime_exchange` to Lower Egypt. Neither checks country, culture, government, or capital, and their independent `unique = yes` definitions may coexist under one owner.
+- Each costs 1,000 construction. At full employment it consumes 5 Paper and 5 Merchant Marine, employs 500 Shopkeepers, 300 Clerks, and 200 Bureaucrats, and provides workforce-scaled local `+25%` Trade Capacity and `+10%` Trade Advantage plus nationwide `+5%` Influence.
+- Keep the PM/PMG keys separate. Guangzhou uses `Canton Trade (Guangdong)` and `Thirteen Factories Network (Nationwide)`; Jinghai uses `Jinghai Exchange (Lower Egypt)` and `Four Seas Network (Nationwide)`. The scope labels and building descriptions provide the normal hover presentation without a GUI override.
+- Both share `gfx/interface/icons/building_icons/building_mgn_maritime_exchange.dds`, with the editable Canton-factories waterfront source at `assets/source/building_mgn_maritime_exchange.png`. The icon has passed only static 64x64 readability review; neither building has yet been confirmed in game. Before release, test both locations under Ming, Qing, and a third country; simultaneous ownership and stacked `+10%` Influence; workforce scaling; goods consumption and hiring; conquest inheritance; save/reload; both languages; and icon clarity at building-list and panel sizes.
+
+## Kunyu Mining Company and DLC Boundary
+
+- `common/company_types/00_mgn_companies.txt` defines the economic company `company_mgn_kunyu_mining`; do not confuse it with the eight country-tag chartered subjects. It is Ming-only, bureaucrat-owned, covers Coal, Iron, Sulfur, Lead, and Gold Mines, and unlocks from an incorporated Southern African state with a level-5 Coal or Iron Mine.
+- The five-type portfolio is intentionally broader than vanilla historical companies. Keep the prosperity reward at `+5%` Minting and do not add mine throughput, construction, or tax bonuses without a fresh balance pass. Steel Mills and Explosives Factories are alternative industry-charter extensions; vanilla permits only one industry charter, so they are a player choice rather than two simultaneous grants.
+- `common/prestige_goods/00_mgn_prestige_goods.txt` defines the Iron-based `prestige_good_mgn_dragon_seal_iron`. Its `has_dlc_feature = mp1_content`, `base_good = iron`, and `prestige_bonus = 0.1` fields match vanilla Oregrounds Iron and Russia Iron. The `0.1` value is a prestige-good coefficient, not a flat `+10%` national Prestige modifier.
+- Keep `possible_prestige_goods = { prestige_good_mgn_dragon_seal_iron }` on the company and do not add `prestige_goods_trigger`, a journal, or unlock variables. With no custom trigger, the engine automatically enables the historical company-specific good when the Directorate first reaches 100 Prosperity; the enabled production then remains permanent for that company. Generic prestige-good journals solve a different cross-company unlock problem and are not a template for this brand.
+- Keep prestige-good activation distinct from the Directorate's prosperity modifier. `+5%` Minting activates at 100 Prosperity and deactivates below 75, while Dragon-Seal Bar Iron remains enabled after its first activation. The base company itself has no mandatory DLC gate; the prestige good and industry-charter extension require the Charters of Commerce feature.
+- Game icons are the 256x256 DXT5 files `gfx/interface/icons/company_icons/historical_company_icons/company_mgn_kunyu_mining.dds` and `gfx/interface/icons/goods_icons/prestige_goods/mgn_dragon_seal_iron_prestige.dds`; editable sources live under `assets/source/`. The user selected the first generated compositions after later five-claw and corner-fitting redraws proved visually weaker; do not replace them with those rejected candidates. Preserve true transparency. Before release, test company visibility only for Ming, the level-5 unlock, headquarters choice, all five base buildings, one-of-two industry charters with and without Charters of Commerce, the 100/75 Minting thresholds, automatic and permanent Dragon-Seal Bar Iron activation at 100 Prosperity, market display and default prestige-good effects, both localizations, save/reload, and small-size icon clarity.
 
 ## Current Narrative Premise
 

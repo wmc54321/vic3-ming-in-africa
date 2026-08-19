@@ -83,14 +83,87 @@ building_mgn_imperial_academy = {
 
 	potential = {
 		state_region = s:STATE_LOWER_EGYPT
-		owner = { c:MGN ?= THIS }
 	}
 
-	possible = {
-		is_capital = yes
+	required_construction = construction_cost_imperial_academy
+
+	background = "gfx/interface/icons/building_icons/backgrounds/building_panel_bg_monuments.dds"
+}
+
+building_beijing_imperial_academy = {
+	building_group = bg_monuments
+	icon = "gfx/interface/icons/building_icons/building_mgn_imperial_academy.dds"
+	expandable = no
+	buildable = yes
+	downsizeable = no
+	unique = yes
+
+	entity_not_constructed = { }
+	entity_under_construction = { "building_construction_3x3_entity" }
+	entity_constructed = { }
+
+	production_method_groups = {
+		pmg_base_building_beijing_imperial_academy
+		pmg_beijing_imperial_academy_outreach
 	}
 
-	required_construction = construction_cost_mgn_imperial_academy
+	potential = {
+		state_region = s:STATE_BEIJING
+	}
+
+	required_construction = construction_cost_imperial_academy
+
+	background = "gfx/interface/icons/building_icons/backgrounds/building_panel_bg_monuments.dds"
+}
+
+building_guangzhou_thirteen_factories = {
+	building_group = bg_monuments
+	icon = "gfx/interface/icons/building_icons/building_mgn_maritime_exchange.dds"
+	expandable = no
+	buildable = yes
+	downsizeable = no
+	unique = yes
+
+	entity_not_constructed = { }
+	entity_under_construction = { "building_construction_3x3_entity" }
+	entity_constructed = { }
+
+	production_method_groups = {
+		pmg_base_building_guangzhou_thirteen_factories
+		pmg_guangzhou_thirteen_factories_network
+	}
+
+	potential = {
+		state_region = s:STATE_GUANGDONG
+	}
+
+	required_construction = construction_cost_maritime_exchange
+
+	background = "gfx/interface/icons/building_icons/backgrounds/building_panel_bg_monuments.dds"
+}
+
+building_jinghai_maritime_exchange = {
+	building_group = bg_monuments
+	icon = "gfx/interface/icons/building_icons/building_mgn_maritime_exchange.dds"
+	expandable = no
+	buildable = yes
+	downsizeable = no
+	unique = yes
+
+	entity_not_constructed = { }
+	entity_under_construction = { "building_construction_3x3_entity" }
+	entity_constructed = { }
+
+	production_method_groups = {
+		pmg_base_building_jinghai_maritime_exchange
+		pmg_jinghai_maritime_exchange_network
+	}
+
+	potential = {
+		state_region = s:STATE_LOWER_EGYPT
+	}
+
+	required_construction = construction_cost_maritime_exchange
 
 	background = "gfx/interface/icons/building_icons/backgrounds/building_panel_bg_monuments.dds"
 }

@@ -36,6 +36,8 @@ $centralAsiaBuildingHistory = Get-Content -LiteralPath (Join-Path $ModRoot "comm
 $centralAsiaPopHistory = Get-Content -LiteralPath (Join-Path $ModRoot "common\history\pops\09_central_asia.txt") -Raw
 $middleEastBuildingHistory = Get-Content -LiteralPath (Join-Path $ModRoot "common\history\buildings\08_middle_east.txt") -Raw
 $middleEastPopHistory = Get-Content -LiteralPath (Join-Path $ModRoot "common\history\pops\08_middle_east.txt") -Raw
+$southEuropeBuildingHistoryPath = Join-Path $ModRoot "common\history\buildings\01_south_europe.txt"
+$southEuropePopHistoryPath = Join-Path $ModRoot "common\history\pops\01_south_europe.txt"
 $nationalTutelageLaw = Get-Content -LiteralPath (Join-Path $ModRoot "common\laws\00_mgn_distribution_of_power.txt") -Raw
 $warlordChinaJournal = Get-Content -LiteralPath (Join-Path $ModRoot "common\journal_entries\00_warlord_china.txt") -Raw
 $routeJournals = Get-Content -LiteralPath (Join-Path $ModRoot "common\journal_entries\00_mgn_route_journal_entries.txt") -Raw
@@ -48,6 +50,12 @@ $frontendMain = Get-Content -LiteralPath (Join-Path $ModRoot "gui\frontend\front
 $objectiveTypesGui = Get-Content -LiteralPath (Join-Path $ModRoot "gui\objective_types.gui") -Raw
 $mgnObjectives = Get-Content -LiteralPath (Join-Path $ModRoot "common\objectives\00_mgn_objectives.txt") -Raw
 $mgnObjectiveSubgoals = Get-Content -LiteralPath (Join-Path $ModRoot "common\objective_subgoals\00_mgn_subgoals.txt") -Raw
+$mgnMonumentBuildings = Get-Content -LiteralPath (Join-Path $ModRoot "common\buildings\00_mgn_monuments.txt") -Raw
+$mgnMonumentPmGroups = Get-Content -LiteralPath (Join-Path $ModRoot "common\production_method_groups\00_mgn_monuments.txt") -Raw
+$mgnMonumentPms = Get-Content -LiteralPath (Join-Path $ModRoot "common\production_methods\00_mgn_monuments.txt") -Raw
+$mgnBuildingValues = Get-Content -LiteralPath (Join-Path $ModRoot "common\script_values\00_mgn_building_values.txt") -Raw
+$kunyuCompany = Get-Content -LiteralPath (Join-Path $ModRoot "common\company_types\00_mgn_companies.txt") -Raw
+$dragonSealPrestigeGood = Get-Content -LiteralPath (Join-Path $ModRoot "common\prestige_goods\00_mgn_prestige_goods.txt") -Raw
 $englishLocalization = Get-Content -LiteralPath (Join-Path $ModRoot "localization\english\mgn_l_english.yml") -Raw
 $chineseLocalization = Get-Content -LiteralPath (Join-Path $ModRoot "localization\simp_chinese\mgn_l_simp_chinese.yml") -Raw
 
@@ -61,6 +69,8 @@ foreach ($required in @(
     "mod\ming_in_africa\common\scripted_triggers\99_mgn_clothes_triggers.txt",
     "mod\ming_in_africa\common\history\buildings\09_central_asia.txt",
     "mod\ming_in_africa\common\history\pops\09_central_asia.txt",
+    "mod\ming_in_africa\common\history\buildings\01_south_europe.txt",
+    "mod\ming_in_africa\common\history\pops\01_south_europe.txt",
     "mod\ming_in_africa\common\journal_entries\00_warlord_china.txt",
     "mod\ming_in_africa\common\journal_entries\01_mgn_national_tutelage.txt",
     "mod\ming_in_africa\common\scripted_buttons\01_mgn_national_tutelage_buttons.txt",
@@ -69,13 +79,23 @@ foreach ($required in @(
     "mod\ming_in_africa\gfx\portraits\portrait_modifiers\01_headgear.txt",
     "mod\ming_in_africa\gfx\interface\illustrations\frontend\mgn_main_menu_background.dds",
     "mod\ming_in_africa\gfx\interface\icons\objectives\objective_mgn_two_chinas_illu.dds",
+    "mod\ming_in_africa\gfx\interface\icons\building_icons\building_mgn_imperial_academy.dds",
+    "mod\ming_in_africa\gfx\interface\icons\building_icons\building_mgn_maritime_exchange.dds",
     "mod\ming_in_africa\gui\frontend\frontend_main.gui",
     "mod\ming_in_africa\gui\objective_types.gui",
     "mod\ming_in_africa\common\objectives\00_mgn_objectives.txt",
     "mod\ming_in_africa\common\objective_subgoal_categories\00_mgn_categories.txt",
     "mod\ming_in_africa\common\objective_subgoals\00_mgn_subgoals.txt",
+    "mod\ming_in_africa\common\company_types\00_mgn_companies.txt",
+    "mod\ming_in_africa\common\prestige_goods\00_mgn_prestige_goods.txt",
+    "mod\ming_in_africa\gfx\interface\icons\company_icons\historical_company_icons\company_mgn_kunyu_mining.dds",
+    "mod\ming_in_africa\gfx\interface\icons\goods_icons\prestige_goods\mgn_dragon_seal_iron_prestige.dds",
     "assets\source\mgn_main_menu_background.png",
     "assets\source\objective_mgn_two_chinas.png",
+    "assets\source\building_mgn_imperial_academy.png",
+    "assets\source\building_mgn_maritime_exchange.png",
+    "assets\source\company_mgn_kunyu_mining.png",
+    "assets\source\prestige_good_mgn_dragon_seal_iron.png",
     "tools\generate_portrait_compatibility.ps1"
 )) {
     if (-not (Test-Path -LiteralPath (Join-Path $RepositoryRoot $required))) {
@@ -263,6 +283,154 @@ foreach ($history in @(
     ).Groups['block'].Value
     if (([regex]::Matches($adanaBlock, 'region_state:TUR\b')).Count -ne 1 -or $adanaBlock -match 'region_state:EGY\b') {
         Add-ValidationError "Generated Adana $($history.Name) history must target one merged Ottoman state scope."
+    }
+}
+
+foreach ($iconName in @('building_mgn_imperial_academy.dds', 'building_mgn_maritime_exchange.dds')) {
+    $iconPath = Join-Path $ModRoot "gfx\interface\icons\building_icons\$iconName"
+    if ((Get-Item -LiteralPath $iconPath).Length -ne 65664) {
+        Add-ValidationError "$iconName must be a complete 256x256 DXT5 DDS payload (65,664 bytes)."
+    }
+}
+$kunyuCompanyIcon = Get-Item -LiteralPath (Join-Path $ModRoot "gfx\interface\icons\company_icons\historical_company_icons\company_mgn_kunyu_mining.dds")
+if ($kunyuCompanyIcon.Length -ne 65664) {
+    Add-ValidationError "Kunyu company icon must be a complete 256x256 DXT5 DDS payload (65,664 bytes)."
+}
+$dragonSealIronIcon = Get-Item -LiteralPath (Join-Path $ModRoot "gfx\interface\icons\goods_icons\prestige_goods\mgn_dragon_seal_iron_prestige.dds")
+if ($dragonSealIronIcon.Length -ne 65664) {
+    Add-ValidationError "Dragon-Seal Bar Iron icon must be a complete 256x256 DXT5 DDS payload (65,664 bytes)."
+}
+foreach ($requiredCompanyFragment in @(
+    'company_mgn_kunyu_mining\s*=\s*\{',
+    'c:MGN\s*\?=\s*this',
+    'building_coal_mine',
+    'building_iron_mine',
+    'building_sulfur_mine',
+    'building_lead_mine',
+    'building_gold_mine',
+    'building_steel_mill',
+    'building_explosives_factory',
+    'prestige_good_mgn_dragon_seal_iron',
+    'region\s*=\s*sr:region_southern_africa',
+    'level\s*>=\s*5',
+    'country_minting_mult\s*=\s*0\.05'
+)) {
+    if ($kunyuCompany -notmatch $requiredCompanyFragment) {
+        Add-ValidationError "Kunyu Directorate of Mines is missing required behavior: $requiredCompanyFragment"
+    }
+}
+if ($kunyuCompany -match 'has_dlc_feature') {
+    Add-ValidationError "Kunyu Directorate of Mines must remain available without a mandatory DLC gate."
+}
+foreach ($requiredPrestigeGoodFragment in @(
+    'prestige_good_mgn_dragon_seal_iron\s*=\s*\{',
+    'has_dlc_feature\s*=\s*mp1_content',
+    'base_good\s*=\s*iron',
+    'prestige_bonus\s*=\s*0\.1',
+    'mgn_dragon_seal_iron_prestige\.dds'
+)) {
+    if ($dragonSealPrestigeGood -notmatch $requiredPrestigeGoodFragment) {
+        Add-ValidationError "Dragon-Seal Bar Iron is missing required behavior: $requiredPrestigeGoodFragment"
+    }
+}
+foreach ($localization in @($englishLocalization, $chineseLocalization)) {
+    foreach ($key in @('company_mgn_kunyu_mining', 'prestige_good_mgn_dragon_seal_iron')) {
+        if ($localization -notmatch "(?m)^\s*$([regex]::Escape($key))\s*:") {
+            Add-ValidationError "Kunyu company or prestige-good localization is missing $key."
+        }
+    }
+}
+foreach ($requiredBuildingFragment in @(
+    'building_guangzhou_thirteen_factories\s*=\s*\{',
+    'building_jinghai_maritime_exchange\s*=\s*\{',
+    'state_region\s*=\s*s:STATE_GUANGDONG',
+    'state_region\s*=\s*s:STATE_LOWER_EGYPT',
+    'required_construction\s*=\s*construction_cost_maritime_exchange'
+)) {
+    if ($mgnMonumentBuildings -notmatch $requiredBuildingFragment) {
+        Add-ValidationError "Maritime wonders are missing required building behavior: $requiredBuildingFragment"
+    }
+}
+foreach ($requiredPmGroup in @(
+    'pmg_base_building_guangzhou_thirteen_factories',
+    'pmg_guangzhou_thirteen_factories_network',
+    'pmg_base_building_jinghai_maritime_exchange',
+    'pmg_jinghai_maritime_exchange_network'
+)) {
+    if ($mgnMonumentPmGroups -notmatch "$requiredPmGroup\s*=\s*\{") {
+        Add-ValidationError "Maritime wonder production-method group is missing: $requiredPmGroup"
+    }
+}
+foreach ($requiredPmFragment in @(
+    'state_trade_capacity_mult\s*=\s*0\.25',
+    'state_trade_advantage_mult\s*=\s*0\.10',
+    'country_influence_mult\s*=\s*0\.05',
+    'goods_input_paper_add\s*=\s*5',
+    'goods_input_merchant_marine_add\s*=\s*5',
+    'building_employment_shopkeepers_add\s*=\s*500',
+    'building_employment_clerks_add\s*=\s*300',
+    'building_employment_bureaucrats_add\s*=\s*200'
+)) {
+    if ($mgnMonumentPms -notmatch $requiredPmFragment) {
+        Add-ValidationError "Maritime wonder production methods are missing: $requiredPmFragment"
+    }
+}
+if ($mgnBuildingValues -notmatch 'construction_cost_maritime_exchange\s*=\s*1000') {
+    Add-ValidationError "Maritime wonders must cost 1,000 construction."
+}
+foreach ($localization in @($englishLocalization, $chineseLocalization)) {
+    foreach ($key in @(
+        'building_guangzhou_thirteen_factories',
+        'building_guangzhou_thirteen_factories_desc',
+        'building_jinghai_maritime_exchange',
+        'building_jinghai_maritime_exchange_desc',
+        'pm_guangzhou_thirteen_factories',
+        'pm_guangzhou_thirteen_factories_network',
+        'pm_jinghai_maritime_exchange',
+        'pm_jinghai_maritime_exchange_network'
+    )) {
+        if ($localization -notmatch "(?m)^\s*$([regex]::Escape($key))\s*:") {
+            Add-ValidationError "Maritime wonder localization is missing $key."
+        }
+    }
+}
+
+if ((Test-Path -LiteralPath $southEuropeBuildingHistoryPath) -and (Test-Path -LiteralPath $southEuropePopHistoryPath)) {
+    foreach ($southEuropeHistoryPath in @($southEuropeBuildingHistoryPath, $southEuropePopHistoryPath)) {
+        $bytes = [IO.File]::ReadAllBytes($southEuropeHistoryPath)
+        if ($bytes.Length -lt 3 -or $bytes[0] -ne 0xEF -or $bytes[1] -ne 0xBB -or $bytes[2] -ne 0xBF) {
+            Add-ValidationError "Generated South European history override must use UTF-8 BOM: $southEuropeHistoryPath"
+        }
+    }
+    $southEuropeBuildingHistory = Get-Content -LiteralPath $southEuropeBuildingHistoryPath -Raw
+    $southEuropePopHistory = Get-Content -LiteralPath $southEuropePopHistoryPath -Raw
+    $creteBuildingHistory = [regex]::Match(
+        $southEuropeBuildingHistory,
+        '(?ms)^\s*s:STATE_CRETE\s*=\s*\{(?<block>.*?)(?=^\s*s:STATE_[A-Z0-9_]+\s*=|\z)'
+    ).Groups['block'].Value
+    $cretePopHistory = [regex]::Match(
+        $southEuropePopHistory,
+        '(?ms)^\s*s:STATE_CRETE\s*=\s*\{(?<block>.*?)(?=^\s*s:STATE_[A-Z0-9_]+\s*=|\z)'
+    ).Groups['block'].Value
+    if (([regex]::Matches($creteBuildingHistory, 'region_state:TUR\b')).Count -ne 1 -or
+        $creteBuildingHistory -match 'region_state:EGY\b|country\s*=\s*"?c:EGY"?' -or
+        $southEuropeBuildingHistory -notmatch 's:STATE_WEST_AEGEAN_ISLANDS\s*=' -or
+        $creteBuildingHistory -notmatch 'create_building\s*=') {
+        Add-ValidationError "Generated South European building override must be a full same-name copy with nonempty Ottoman Crete and no Egyptian references."
+    }
+    if (([regex]::Matches($cretePopHistory, 'region_state:TUR\b')).Count -ne 1 -or
+        $cretePopHistory -match 'region_state:EGY\b' -or
+        $southEuropePopHistory -notmatch 's:STATE_WEST_AEGEAN_ISLANDS\s*=' -or
+        $cretePopHistory -notmatch 'create_pop\s*=') {
+        Add-ValidationError "Generated South European pop override must be a full same-name copy with nonempty Ottoman Crete and no Egyptian references."
+    }
+}
+foreach ($obsoleteCreteHistory in @(
+    "common\history\buildings\99_mgn_egypt_remnants.txt",
+    "common\history\pops\99_mgn_egypt_remnants.txt"
+)) {
+    if (Test-Path -LiteralPath (Join-Path $ModRoot $obsoleteCreteHistory)) {
+        Add-ValidationError "Obsolete additive Crete history must be removed because duplicate state blocks cannot resolve region_state scopes: $obsoleteCreteHistory"
     }
 }
 

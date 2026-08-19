@@ -1,1 +1,2 @@
-construction_cost_mgn_imperial_academy = 1200
+construction_cost_imperial_academy = 1200
+construction_cost_maritime_exchange = 1000

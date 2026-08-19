@@ -1,0 +1,9 @@
+prestige_good_mgn_dragon_seal_iron = {
+	possible = {
+		has_dlc_feature = mp1_content
+	}
+
+	base_good = iron
+	prestige_bonus = 0.1
+	texture = "gfx/interface/icons/goods_icons/prestige_goods/mgn_dragon_seal_iron_prestige.dds"
+}
